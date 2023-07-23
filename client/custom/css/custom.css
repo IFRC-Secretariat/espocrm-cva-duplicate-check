@@ -17,6 +17,9 @@
 .import-container .panel-body div#import-properties div.form-group:has(div[data-name="currency"]) {
     display: None;
 }
+.import-container .panel-body div#import-properties div.form-group:has(div[data-name="manualMode"]) {
+    display: None;
+}
 
 /* Import page step 2: hide options in field drop-down */
 .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="assignedUserName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="assignedUserId"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdAt"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdById"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdByName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="description"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="id"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedAt"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedById"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedByName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="teamsIds"] {

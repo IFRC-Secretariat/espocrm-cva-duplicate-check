@@ -9,6 +9,7 @@ define('custom:import-duplicate-check-data', ['action-handler'], function (Dep) 
             formData.headerRow = true;
             formData.silentMode = true;
             formData.decimalMark = '.';
+            formData.manualMode = false;
 
             this.getRouter().navigate('#Import', {trigger: false});
 
