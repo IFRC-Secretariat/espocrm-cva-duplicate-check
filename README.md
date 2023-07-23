@@ -19,8 +19,8 @@ EspoCRM version: 7.5.4
 
 4. Fetch the custom code from Github into the root of the EspoCRM installation. Some EspoCRM files will be overwritten by customised files in this project. 
 
-```bash
-git init
-git remote add origin -m master [github-repo-url]
-git pull --force
-```
+    ```bash
+    git init
+    git remote add origin -m master [github-repo-url]
+    git pull --force
+    ```
