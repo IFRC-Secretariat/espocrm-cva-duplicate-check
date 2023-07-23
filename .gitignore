@@ -1,0 +1,25 @@
+# Ignore EspoCRM stock files
+/application/
+/bin/
+/client/*/
+!/client/custom/
+/custom/Espo/Custom/.htaccess
+/custom/Espo/Modules/.htaccess
+/data/
+/html/
+/install/
+/public/
+/vendor/
+/.htaccess
+/bootstrap.php
+/clear_cache.php
+/command.php
+/cron.php
+/daemon.php
+/extension.php
+/index.php
+/LICENSE.txt
+/preload.php
+/rebuild.php
+/upgrade.php
+/websocket.php
