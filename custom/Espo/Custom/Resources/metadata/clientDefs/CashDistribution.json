@@ -1,0 +1,27 @@
+{
+    "controller": "controllers/record",
+    "boolFilterList": [
+        "onlyMy"
+    ],
+    "kanbanViewMode": false,
+    "color": null,
+    "iconClass": "far fa-credit-card",
+    "menu": {
+        "list": {
+            "buttons": [
+                "__APPEND__",
+                {
+                    "label": "Import Cash Distribution data",
+                    "name": "importCashDistributionData",
+                    "action": "importCashDistributionData",
+                    "style": "default",
+                    "acl": "edit",
+                    "aclScope": "CashDistribution",
+                    "data": {
+                        "handler": "custom:import-cash-distribution-data"
+                    }
+                }
+            ]
+        }
+    }
+}
