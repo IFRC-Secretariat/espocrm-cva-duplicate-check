@@ -1,4 +1,4 @@
-# EspoCRM Customisations
+# EspoCRM CVA Duplication Check
 
 This project is to add customisations to [EspoCRM](https://www.espocrm.com/), for duplicate checking for cash distributions.
 
