@@ -2,6 +2,12 @@
 .import-container .form-group:has(div[data-name="action"]) {
     display: None;
 }
+.import-container div[data-name="entityType"] div.selectize-dropdown-content > div {
+    display: None;
+}
+.import-container div[data-name="entityType"] div.selectize-dropdown-content > div[data-value="DuplicateCheck"], .import-container div[data-name="entityType"] div.selectize-dropdown-content > div[data-value="CashDistribution"] {
+    display: block;
+}
 .import-container .form-group:has(div[data-name="skipDuplicateChecking"]) {
     display: None;
 }
