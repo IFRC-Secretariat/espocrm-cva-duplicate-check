@@ -11,7 +11,7 @@
             "buttons": [
                 "__APPEND__",
                 {
-                    "label": "Import Cash Distribution data",
+                    "label": "Import Cash Distribution Data",
                     "name": "importCashDistributionData",
                     "action": "importCashDistributionData",
                     "style": "default",
@@ -19,6 +19,17 @@
                     "aclScope": "CashDistribution",
                     "data": {
                         "handler": "custom:import-cash-distribution-data"
+                    }
+                },
+                {
+                    "label": "Check Duplicates",
+                    "name": "importDuplicateCheckData",
+                    "action": "importDuplicateCheckData",
+                    "style": "default",
+                    "acl": "view",
+                    "aclScope": "CashDistribution",
+                    "data": {
+                        "handler": "custom:import-duplicate-check-data"
                     }
                 }
             ]

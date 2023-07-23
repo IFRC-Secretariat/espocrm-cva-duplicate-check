@@ -1,11 +1,11 @@
-define('custom:import-cash-distribution-data', ['action-handler'], function (Dep) {
+define('custom:import-duplicate-check-data', ['action-handler'], function (Dep) {
 
     return Dep.extend({
  
-         actionImportCashDistributionData: function (data, e) {
+         actionImportDuplicateCheckData: function (data, e) {
             var formData = {};
 
-            formData.entityType = 'CashDistribution';
+            formData.entityType = 'DuplicateCheck';
             formData.headerRow = true;
             formData.silentMode = true;
             formData.decimalMark = '.';
