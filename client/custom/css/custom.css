@@ -55,3 +55,11 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 .home-content .page-header {
     margin-bottom: 60px;
 }
+
+/* Hide avatars */
+.form-group[data-name="avatar"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .side {
+    display: None;
+}
