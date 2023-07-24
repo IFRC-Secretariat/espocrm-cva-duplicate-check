@@ -56,10 +56,16 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     margin-bottom: 60px;
 }
 
-/* Hide avatars */
+/* Users: hide avatars and assigned user info */
 .form-group[data-name="avatar"] {
     display: None;
 }
 .record .edit[data-scope="User"] .record-grid .side {
+    display: None;
+}
+.form-group[data-name="assignedUser"] {
+    display: None;
+}
+.record .edit[data-scope="CashDistribution"] .record-grid .side {
     display: None;
 }
