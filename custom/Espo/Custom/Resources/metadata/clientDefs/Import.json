@@ -1,0 +1,15 @@
+{
+    "bottomPanels": {
+    	"detail": [
+            "__APPEND__",
+            {
+	    		"name": "importedNoDuplicates",
+	    		"label": "Imported - no duplicates",
+	    		"view": "custom:views/import/record/panels/imported-no-duplicates",
+                "createDisabled": true,
+                "selectDisabled": true,
+                "unlinkDisabled": true
+	    	}
+        ]
+    }
+}
