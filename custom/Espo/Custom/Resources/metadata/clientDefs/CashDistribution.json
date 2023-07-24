@@ -15,8 +15,6 @@
                     "name": "importCashDistributionData",
                     "action": "importCashDistributionData",
                     "style": "default",
-                    "acl": "edit",
-                    "aclScope": "CashDistribution",
                     "data": {
                         "handler": "custom:import-cash-distribution-data"
                     }
@@ -26,8 +24,6 @@
                     "name": "importDuplicateCheckData",
                     "action": "importDuplicateCheckData",
                     "style": "default",
-                    "acl": "view",
-                    "aclScope": "CashDistribution",
                     "data": {
                         "handler": "custom:import-duplicate-check-data"
                     }
