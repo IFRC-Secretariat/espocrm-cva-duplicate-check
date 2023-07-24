@@ -32,8 +32,12 @@
     display: None;
 }
 
-
 /* Import page results */
 div.detail[data-scope="Import"] div.bottom > div.panel-updated[data-name="updated"] {
+    display: None;
+}
+
+/* Entity list*/
+.record .edit[data-scope="CashDistribution"] .record-grid .form-group[data-name="teams"] {
     display: None;
 }
