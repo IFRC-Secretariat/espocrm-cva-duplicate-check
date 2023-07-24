@@ -32,8 +32,12 @@
     display: None;
 }
 
-/* Import page results: Hid the updated panel because updating records through import is disabled */
+/* Import page results: Hide the updated panel because updating records through import is disabled */
 div.detail[data-scope="Import"] div.bottom > div.panel-updated[data-name="updated"] {
+    display: None;
+}
+/* Hide the "Remove import log" button */
+a.btn[data-name="removeImportLog"] {
     display: None;
 }
 
