@@ -50,3 +50,8 @@ a.btn[data-name="removeImportLog"] {
 ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     display: None;
 }
+
+/* Home page */
+.home-content .page-header {
+    margin-bottom: 60px;
+}
