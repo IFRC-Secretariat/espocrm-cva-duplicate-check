@@ -1,4 +1,4 @@
-/* Import page: step 1 */
+/* Import page step 1: hide fields which aren't needed/ allowed to be set */
 .import-container .form-group:has(div[data-name="action"]) {
     display: None;
 }
@@ -32,12 +32,17 @@
     display: None;
 }
 
-/* Import page results */
+/* Import page results: Hid the updated panel because updating records through import is disabled */
 div.detail[data-scope="Import"] div.bottom > div.panel-updated[data-name="updated"] {
     display: None;
 }
 
-/* Entity list*/
+/* Create single entity CashDistribution: hide the teams field */
 .record .edit[data-scope="CashDistribution"] .record-grid .form-group[data-name="teams"] {
+    display: None;
+}
+
+/* Remove "merge" option from row actions */
+ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     display: None;
 }
