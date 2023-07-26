@@ -34,12 +34,28 @@ define('custom:views/import/list', ['views/list'], function (Dep) {
 
         getHeader: function () {
             return this.buildHeaderHtml([
-                $('<span>').text(this.getLanguage().translate('Import List', 'labels', 'Import'))
+                $('<span>').text(this.getLanguage().translate('Title', 'importList', 'Import'))
             ]);
         },
 
         setup: function () {
             Dep.prototype.setup.call(this);
         },
+
+        afterRender: function () {
+            Dep.prototype.afterRender.call(this);
+
+            // Add a description below the title - print the description in multiple lines
+            let element = document.createElement('p');
+            let description = this.getLanguage().translate('Description', 'importList', 'Import');
+            const descriptionLines = description.split("\n");
+            for (let i = 0; i < descriptionLines.length; i++) {
+                if (i > 0) {
+                    element.appendChild(document.createElement('br'));
+                }
+                element.appendChild(document.createTextNode(descriptionLines[i]));
+            }
+            document.querySelector('.page-header').appendChild(element);
+        }
     });
 });

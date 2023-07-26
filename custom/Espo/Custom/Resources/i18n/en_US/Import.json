@@ -2,8 +2,7 @@
     "labels": {
         "Import Results": "View History",
         "What to Import?": "Select an option",
-        "Entity Type": "Option",
-        "Import List": "History"
+        "Entity Type": "Option"
     },
     "selectOptions": {
         "CashDistribution": "Import cash distribution data",
@@ -12,5 +11,9 @@
     "optionHeader": {
         "CashDistribution": "Cash distribution import",
         "DuplicateCheck": "Duplicate check"
+    },
+    "importList": {
+        "Title": "History",
+        "Description": "'CashDistribution' are cash distribution data imports.\n'DuplicateCheck' are duplicate checks."
     }
 }
