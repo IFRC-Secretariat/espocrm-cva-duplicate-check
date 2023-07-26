@@ -13,7 +13,7 @@
         ]
     },
     "views": {
-        "list": "views/import/list",
+        "list": "custom:views/import/list",
         "detail": "custom:views/import/detail"
     }
 }
