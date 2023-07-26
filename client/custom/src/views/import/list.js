@@ -26,7 +26,7 @@
  * these Appropriate Legal Notices must retain the display of the "EspoCRM" word.
  ************************************************************************/
 
-define('custom:views/import/list', ['views/import/list'], function (Dep) {
+define('custom:views/import/list', ['views/list'], function (Dep) {
 
     return Dep.extend({
 
@@ -36,6 +36,10 @@ define('custom:views/import/list', ['views/import/list'], function (Dep) {
             return this.buildHeaderHtml([
                 $('<span>').text(this.getLanguage().translate('Title', 'importList', 'Import'))
             ]);
+        },
+
+        setup: function () {
+            Dep.prototype.setup.call(this);
         },
 
         afterRender: function () {
