@@ -35,7 +35,8 @@ define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
             let name = this.getDateTime().toDisplay(this.model.get('createdAt'));
 
             return this.buildHeaderHtml([
-                $('<span>')
+                $('<a>')
+                    .attr('href', '#' + this.model.name + '/list')
                     .text(this.getLanguage().translate(this.model.get('entityType'), 'optionHeader', this.model.name)),
                 $('<span>')
                     .text(name)
