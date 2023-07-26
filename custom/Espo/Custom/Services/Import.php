@@ -62,7 +62,7 @@ class Import extends StockImport
             $recordService->prepareEntityForOutput($e);
         }
 
-        $total = $this->getRepository()->countResultRecordsImportedNoDuplicates($entity, $link, $query);
+        $total = $this->getRepository()->countResultRecordsImportedNoDuplicates($entity, $query);
 
         return new RecordCollection($collection, $total);
     }
