@@ -11,5 +11,9 @@
                 "unlinkDisabled": true
 	    	}
         ]
+    },
+    "views": {
+        "list": "views/import/list",
+        "detail": "custom:views/import/detail"
     }
 }
