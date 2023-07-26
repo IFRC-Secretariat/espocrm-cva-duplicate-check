@@ -11,6 +11,7 @@
             "buttons": [
                 "__APPEND__",
                 {
+                    "iconHtml": "<span class='fas fa-file-upload fa-sm'></span>",
                     "label": "Import data",
                     "name": "importCashDistributionData",
                     "action": "importCashDistributionData",
@@ -20,6 +21,7 @@
                     }
                 },
                 {
+                    "iconHtml": "<span class='fas fa-network-wired fa-sm'></span>",
                     "label": "Check duplicates",
                     "name": "importDuplicateCheckData",
                     "action": "importDuplicateCheckData",
