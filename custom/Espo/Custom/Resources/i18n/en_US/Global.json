@@ -1,0 +1,12 @@
+{
+    "scopeNames": {
+        "CashDistribution": "Cash Distribution",
+        "DuplicateCheck": "Duplicate Check",
+        "Import": "Tools"
+    },
+    "scopeNamesPlural": {
+        "CashDistribution": "Cash Distributions",
+        "DuplicateCheck": "Duplicate Checks",
+        "Import": "Tools"
+    }
+}
