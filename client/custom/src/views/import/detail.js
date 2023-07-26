@@ -31,6 +31,7 @@ define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
     return Dep.extend({
 
         getHeader: function () {
+
             let name = this.getDateTime().toDisplay(this.model.get('createdAt'));
 
             return this.buildHeaderHtml([
@@ -39,6 +40,10 @@ define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
                 $('<span>')
                     .text(name)
             ]);
+        },
+
+        afterRender: function () {
+            this.$el.find('.detail[data-scope="Import"]').addClass(this.model.get('entityType').toLowerCase());
         }
     });
 });
