@@ -11,7 +11,7 @@
             "buttons": [
                 "__APPEND__",
                 {
-                    "label": "Import Cash Distribution Data",
+                    "label": "Import data",
                     "name": "importCashDistributionData",
                     "action": "importCashDistributionData",
                     "style": "default",
@@ -20,7 +20,7 @@
                     }
                 },
                 {
-                    "label": "Check Duplicates",
+                    "label": "Check duplicates",
                     "name": "importDuplicateCheckData",
                     "action": "importDuplicateCheckData",
                     "style": "default",
