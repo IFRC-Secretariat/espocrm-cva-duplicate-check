@@ -2,7 +2,8 @@
     "labels": {
         "Import Results": "View History",
         "What to Import?": "Select an option",
-        "Entity Type": "Option"
+        "Entity Type": "Option",
+        "Import List": "History"
     },
     "selectOptions": {
         "CashDistribution": "Import cash distribution data",

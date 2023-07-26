@@ -34,7 +34,7 @@ define('custom:views/import/list', ['views/list'], function (Dep) {
 
         getHeader: function () {
             return this.buildHeaderHtml([
-                $('<span>').text('History')
+                $('<span>').text(this.getLanguage().translate('Import List', 'labels', 'Import'))
             ]);
         },
 
