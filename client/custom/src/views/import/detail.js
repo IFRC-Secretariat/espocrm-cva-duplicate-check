@@ -43,6 +43,8 @@ define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
         },
 
         afterRender: function () {
+            Dep.prototype.afterRender.call(this);
+            
             this.$el.find('.detail[data-scope="Import"]').addClass(this.model.get('entityType').toLowerCase());
         }
     });
