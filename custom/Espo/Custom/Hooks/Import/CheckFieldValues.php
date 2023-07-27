@@ -21,6 +21,7 @@ use Espo\Core\Exceptions\Error;
 
 class CheckFieldValues
 {
+    public static int $order = 1;
 
     public function __construct(
         private EntityManager $entityManager,

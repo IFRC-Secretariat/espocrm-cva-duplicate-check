@@ -1,5 +1,5 @@
 [
-    {"name":"entityType", "link": true},
+    {"name":"action", "link": true},
     {"name":"status"},
     {"name":"createdAt"},
     {"name":"createdBy"}

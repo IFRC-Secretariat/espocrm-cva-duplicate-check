@@ -8,12 +8,14 @@
         "CashDistribution": "Import cash distribution data",
         "DuplicateCheck": "Run duplicate check"
     },
-    "optionHeader": {
-        "CashDistribution": "Cash distribution import",
+    "importEntityDescriptive": {
+        "CashDistribution": "Cash distribution data import",
         "DuplicateCheck": "Duplicate check"
     },
-    "importList": {
-        "Title": "History",
-        "Description": "'CashDistribution' are cash distribution data imports.\n'DuplicateCheck' are duplicate checks."
+    "list": {
+        "Title": "History"
+    },
+    "fields": {
+        "action": "Action"
     }
 }
