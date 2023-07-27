@@ -12,6 +12,10 @@
 	    	}
         ]
     },
+    "recordViews": {
+        "list": "views/import/record/list",
+        "detail": "custom:views/import/record/detail"
+    },
     "views": {
         "list": "custom:views/import/list",
         "detail": "custom:views/import/detail"
