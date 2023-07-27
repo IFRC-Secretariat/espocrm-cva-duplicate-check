@@ -1,4 +1,5 @@
-/* Import page step 1: hide fields which aren't needed/ allowed to be set */
+/* IMPORT STEP 1 */
+/* Hide fields which aren't needed/ allowed to be set */
 .import-container .form-group:has(div[data-name="action"]) {
     display: None;
 }
@@ -27,12 +28,14 @@
     display: None;
 }
 
-/* Import page step 2: hide options in field drop-down */
+/* IMPORT STEP 2 */
+/* Hide options in field drop-down */
 .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="assignedUserName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="assignedUserId"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdAt"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdById"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="createdByName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="description"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="id"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedAt"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedById"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="modifiedByName"], .import-container #mapping-container table tr:not(:first-child) td:not(:first-child) select option[value="teamsIds"] {
     display: None;
 }
 
-/* Import page results: Hide the updated panel because updating records through import is disabled */
+/* IMPORT DETAIL/ RESULTS */
+/* Hide the updated panel because updating records through import is disabled */
 div.detail[data-scope="Import"] div.bottom > div.panel-updated[data-name="updated"] {
     display: None;
 }
@@ -47,23 +50,30 @@ div.detail.cashdistribution[data-scope="Import"] .record-grid .panel-importedNoD
 div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-imported {
     display: None;
 }
+/* Hide the entityType column */
+div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.list[data-scope="Import"] table.table tbody td[data-name="entityType"] {
+    display: None;
+}
 
+/* CASH DISTRIBUTION */
 /* Create single entity CashDistribution: hide the teams field */
 .record .edit[data-scope="CashDistribution"] .record-grid .form-group[data-name="teams"] {
     display: None;
 }
 
+/* GLOBAL*/
 /* Remove "merge" option from row actions */
 ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     display: None;
 }
 
-/* Home page */
+/* HOME PAGE */
 .home-content .page-header {
     margin-bottom: 60px;
 }
 
-/* Users: hide avatars and assigned user info */
+/* USERS */
+/* Hide avatars and assigned user info */
 .form-group[data-name="avatar"] {
     display: None;
 }
