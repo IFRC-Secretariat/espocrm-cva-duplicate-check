@@ -2,11 +2,20 @@
     "scopeNames": {
         "CashDistribution": "Cash Distribution",
         "DuplicateCheck": "Duplicate Check",
-        "Import": "Tools"
+        "Import": "Tools",
+        "Team": "Team"
     },
     "scopeNamesPlural": {
         "CashDistribution": "Cash Distributions",
         "DuplicateCheck": "Duplicate Checks",
-        "Import": "Tools"
+        "Import": "Tools",
+        "Team": "Teams"
+    },
+    "fields": {
+        "teams": "Teams"
+    },
+    "links": {
+        "team": "Team",
+        "teams": "Teams"
     }
 }
