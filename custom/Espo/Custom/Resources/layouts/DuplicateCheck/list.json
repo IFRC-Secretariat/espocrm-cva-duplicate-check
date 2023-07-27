@@ -1,7 +1,7 @@
 [
     {
         "name": "name",
-        "link": true
+        "link": false
     },
     {
         "name": "createdAt"
