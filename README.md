@@ -17,7 +17,9 @@ EspoCRM version: 7.5.4
 
     ![DuplicateCheck fields](img/DuplicateCheck%20fields.png)
 
-4. Fetch the custom code from Github into the root of the EspoCRM installation. Some EspoCRM files will be overwritten by customised files in this project. 
+4. Using the front-end EspoCRM [Entity Manager](https://docs.espocrm.com/administration/entity-manager/), add an ```action``` field to the ```Import``` entity by going to the URL: /#Admin/fieldManager/scope=Import.
+
+5. Fetch the custom code from Github into the root of the EspoCRM installation. Some EspoCRM files will be overwritten by customised files in this project. 
 
     ```bash
     git init

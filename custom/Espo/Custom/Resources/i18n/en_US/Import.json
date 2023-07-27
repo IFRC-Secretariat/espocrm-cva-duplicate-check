@@ -2,7 +2,10 @@
     "labels": {
         "Import Results": "View History",
         "What to Import?": "Select an option",
-        "Entity Type": "Option"
+        "Entity Type": "Option",
+        "Results": "Results",
+        "New CashDistribution with same params": "New Cash Distribution import with same params",
+        "New DuplicateCheck with same params": "New Duplicate Check with same params"
     },
     "selectOptions": {
         "CashDistribution": "Import cash distribution data",

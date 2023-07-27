@@ -39,8 +39,52 @@ define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
                     .attr('href', '#' + this.model.name + '/list')
                     .text(this.getLanguage().translate(this.model.get('entityType'), 'importEntityDescriptive', this.model.name)),
                 $('<span>')
+                    .text(this.getLanguage().translate('Results', 'labels', this.model.name)),
+                $('<span>')
                     .text(name)
             ]);
+        },
+
+        setupMenu: function () {
+            let $importEntityType = this.model.get('entityType');
+
+            if ($importEntityType=='CashDistribution') {
+
+                this.addMenuItem('buttons', {
+                    label: "Remove Import Log",
+                    action: "removeImportLog",
+                    name: 'removeImportLog',
+                    style: "default",
+                    acl: "delete",
+                    title: this.translate('removeImportLog', 'messages', 'Import'),
+                }, true);
+
+                this.addMenuItem('buttons', {
+                    label: "Revert Import",
+                    name: 'revert',
+                    action: "revert",
+                    style: "danger",
+                    acl: "edit",
+                    title: this.translate('revert', 'messages', 'Import'),
+                    hidden: !this.model.get('importedCount'),
+                }, true);
+
+                this.addMenuItem('buttons', {
+                    label: "Remove Duplicates",
+                    name: 'removeDuplicates',
+                    action: "removeDuplicates",
+                    style: "default",
+                    acl: "edit",
+                    title: this.translate('removeDuplicates', 'messages', 'Import'),
+                    hidden: !this.model.get('duplicateCount'),
+                }, true);
+            }
+
+            this.addMenuItem('dropdown', {
+                label: 'New '+$importEntityType+' with same params',
+                name: 'createWithSameParams',
+                action: 'createWithSameParams',
+            });
         },
 
         afterRender: function () {
