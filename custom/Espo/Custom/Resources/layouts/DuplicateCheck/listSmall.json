@@ -2,11 +2,5 @@
     {
         "name": "name",
         "link": true
-    },
-    {
-        "name": "createdAt"
-    },
-    {
-        "name": "createdBy"
     }
 ]
