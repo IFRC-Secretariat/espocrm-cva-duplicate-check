@@ -6,17 +6,4 @@
 </div>
 
 <div class="home-content">
-    <div class="how-to-upload-cash-distributions">
-        <h3>How to upload cash distributions</h3>
-        <ol>
-            <li>Click on "Cash Distributions" in the menu on the left.</li>
-        </ol>  
-    </div>
-
-    <div class="how-to-duplicate-check-cash-distributions">
-        <h3>How to run duplicate checks</h3>
-        <ol>
-            <li>Click on "Cash Distributions" in the menu on the left.</li>
-        </ol>  
-    </div>
 </div>

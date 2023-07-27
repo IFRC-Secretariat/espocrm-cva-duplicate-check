@@ -60,6 +60,10 @@ div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.
 .record .edit[data-scope="CashDistribution"] .record-grid .form-group[data-name="teams"] {
     display: None;
 }
+/* Set padding to the icons in the buttons */
+.header-buttons>.btn>.fa-file-upload, .header-buttons>.btn>.fa-network-wired {
+    padding-right: 3px;
+}
 
 /* GLOBAL*/
 /* Remove "merge" option from row actions */
