@@ -97,3 +97,45 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 .record .edit[data-scope="CashDistribution"] .record-grid .side {
     display: None;
 }
+/* Hide not needed fields: default team, roles, working time calendar, stream */
+.record .edit[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .form-group[data-name="roles"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="roles"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .form-group[data-name="workingTimeCalendar"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="workingTimeCalendar"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .panel[data-name="misc"], .record .detail[data-scope="User"] .record-grid .panel[data-name="misc"] {
+    display: None;
+}
+.record .detail[data-scope="User"] .record-grid .panel-stream[data-name="stream"] {
+    display: None;
+}
+/* Hide the calendar button, email accounts button, external accounts button */
+.header.page-header .header-buttons a[data-name="calendar"] {
+    display: None;
+}
+.header.page-header .header-buttons li:has(a[data-name="emailAccounts"]) {
+    display: None;
+}
+.header.page-header .header-buttons a[data-name="externalAccounts"] {
+    display: None;
+}
+/* Hide user history and activities panels */
+.record .detail[data-scope="User"] .record-grid .side .panels-show-more-delimiter, .record .detail[data-scope="User"] .record-grid .side .panel[data-name="activities"], .record .detail[data-scope="User"] .record-grid .side .panel[data-name="history"] {
+    display: None;
+}
+
+/* TEAMS */
+/* Hide unneeded fields: Position list, layout set, working time calendar */
+.record .edit[data-scope="Team"] .record-grid .form-group[data-name="positionList"], .record .detail[data-scope="Team"] .record-grid .form-group[data-name="positionList"] {
+    display: None;
+}
+.record .edit[data-scope="Team"] .record-grid .form-group[data-name="layoutSet"], .record .detail[data-scope="Team"] .record-grid .form-group[data-name="layoutSet"] {
+    display: None;
+}
+.record .edit[data-scope="Team"] .record-grid .form-group[data-name="workingTimeCalendar"], .record .detail[data-scope="Team"] .record-grid .form-group[data-name="workingTimeCalendar"] {
+    display: None;
+}
