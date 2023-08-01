@@ -54,6 +54,13 @@ div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-imported {
 div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.list[data-scope="Import"] table.table tbody td[data-name="entityType"] {
     display: None;
 }
+/* Colour the duplicates red and the non duplicates green */
+div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody {
+    background-color: rgb(209 27 27 / 9%);
+}
+div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-importedNoDuplicates .panel-body[data-name="importedNoDuplicates"] table tbody {
+    background-color: rgb(45 193 67 / 13%);
+}
 
 /* CASH DISTRIBUTION */
 /* Create single entity CashDistribution: hide the teams field */
