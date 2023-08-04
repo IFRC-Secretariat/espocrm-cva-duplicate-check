@@ -27,6 +27,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
             docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
             docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git pull origin ${{ secrets.MASTER_BRANCH }}
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
