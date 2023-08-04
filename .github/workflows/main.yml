@@ -39,6 +39,8 @@ jobs:
 
       - name: Connect to server, pull in code changes, migrate database schema, set file permissions
         id: docker_container_actions
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
