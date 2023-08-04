@@ -32,7 +32,6 @@ jobs:
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} php rebuild.php
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chown -R www-data .
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chgrp -R www-data .
-            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chmod -R 664 .
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
