@@ -53,7 +53,7 @@ jobs:
 
       - name: If failure, restore the backup containers
         id: restore_backup
-        if: (steps.docker_container_actions.outcome == 'success') && (steps.backup.outcome == 'success')
+        if: (steps.backup.outcome == 'success') && (steps.docker_container_actions.outcome == 'failure')
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
@@ -67,7 +67,7 @@ jobs:
           ENDSSH
 
       - name: Delete the backups
-        if: steps.restore_backup.outcome == 'skipped'
+        if: (steps.backup.outcome == 'success') && (steps.docker_container_actions.outcome == 'success')
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
