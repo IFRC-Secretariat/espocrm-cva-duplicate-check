@@ -25,7 +25,8 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
-            docker stop my-espocrm
+            docker commit -p my-espocrm "$(date "+%Y-%m-%d_%H-%M-%S")_my-espocrm"
+            docker commit -p mysql "$(date "+%Y-%m-%d_%H-%M-%S")_mysql"
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
