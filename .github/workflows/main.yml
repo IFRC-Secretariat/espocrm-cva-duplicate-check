@@ -5,10 +5,6 @@ on:
     branches:
       - master
 
-env:
-  ESPOCRM_CONTAINER_BK_NAME: "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
-  MYSQL_CONTAINER_BK_NAME: "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
-
 jobs:
   deploy:
     name: Push changes to server
@@ -26,13 +22,19 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "$SSH_PRIVATE_KEY"
 
+      - name: Set container backup names
+        id: backup_names
+        run: |
+          echo "ESPOCRM_CONTAINER_BK=$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}" >> "$GITHUB_OUTPUT"
+          echo "MYSQL_CONTAINER_BK=$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}" >> "$GITHUB_OUTPUT"
+
       - name: Connect to server and backup the containers
         id: backup
         if: false
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
-            docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} $ESPOCRM_CONTAINER_BK_NAME
-            docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} $MYSQL_CONTAINER_BK_NAME
+            docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} ${{ steps.backup_names.outputs.ESPOCRM_CONTAINER_BK }}
+            docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}
           ENDSSH
 
       - name: Connect to server, pull in code changes, migrate database schema, set file permissions
@@ -47,10 +49,9 @@ jobs:
           ENDSSH
 
       - name: Restore the backup container
-        if: (steps.docker_container_actions.outcome == 'failure') && (steps.backup.outcome == 'skipped')
+        if: (steps.docker_container_actions.outcome == 'success') && (steps.backup.outcome == 'skipped')
         run: |
-          echo $ESPOCRM_CONTAINER_BK_NAME
-          echo $MYSQL_CONTAINER_BK_NAME
+          echo ${{ steps.backup_names.outputs.ESPOCRM_CONTAINER_BK }}
 
       - name: Cleanup
         run: rm -rf ~/.ssh
