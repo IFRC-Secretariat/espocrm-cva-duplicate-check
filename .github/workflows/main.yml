@@ -26,4 +26,4 @@ jobs:
           ssh -o StrictHostKeyChecking=no {{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
           ENDSSH
       - name: cleanup
-      run: rm -rf ~/.ssh
+        run: rm -rf ~/.ssh
