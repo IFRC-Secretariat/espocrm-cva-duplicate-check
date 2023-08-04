@@ -25,6 +25,7 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
+            docker stop my-espocrm
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
