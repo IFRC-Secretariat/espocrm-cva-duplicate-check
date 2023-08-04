@@ -30,7 +30,8 @@ jobs:
 
       - name: Connect to server and backup the containers
         id: backup
-        if: false
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
             docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} ${{ steps.backup_names.outputs.ESPOCRM_CONTAINER_BK }}
@@ -51,9 +52,12 @@ jobs:
           ENDSSH
 
       - name: Restore the backup container
-        if: (steps.docker_container_actions.outcome == 'success') && (steps.backup.outcome == 'skipped')
+        if: (steps.docker_container_actions.outcome == 'success') && (steps.backup.outcome == 'success')
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo ${{ steps.backup_names.outputs.ESPOCRM_CONTAINER_BK }}
+          echo ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}
 
       - name: Cleanup
         run: rm -rf ~/.ssh
