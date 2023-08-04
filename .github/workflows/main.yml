@@ -72,7 +72,7 @@ jobs:
             docker exec ${{ secrets.MYSQL_CONTAINER_NAME }} mysql -u${{ secrets.MYSQL_USER }} -p${{ secrets.ESPOCRM_DATABASE_PASSWORD }} < ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql
             echo $?
             docker exec ${{ secrets.MYSQL_CONTAINER_NAME }} mysql -u${{ secrets.MYSQL_USER }} -p${{ secrets.ESPOCRM_DATABASE_PASSWORD }} -e "show databases"
-            rm ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql
+            # rm ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql
             # docker exec ${{ secrets.MYSQL_CONTAINER_NAME }} rm ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql
           ENDSSH
 
