@@ -67,7 +67,7 @@ jobs:
           ENDSSH
 
       - name: Delete the backups
-        if: steps.restore_backup.outcome != 'failure'
+        if: steps.restore_backup.outcome == 'skipped'
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
