@@ -9,7 +9,6 @@ jobs:
   deploy:
     name: Deploy to server
     runs-on: ubuntu-latest
-
     steps:
       - name: Add the private SSH key to the ssh-agent
         env:
