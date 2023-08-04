@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to server
+    name: Push changes to server
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "$SSH_PRIVATE_KEY"
-      - name: Connect to server and pull
+      - name: Connect to server and pull changes into Docker container
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
@@ -29,6 +29,10 @@ jobs:
             docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git pull origin ${{ secrets.MASTER_BRANCH }}
+            php rebuild.php
+            chown -R www-data .
+            chgrp -R www-data .
+            chmod -R 664 .
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh

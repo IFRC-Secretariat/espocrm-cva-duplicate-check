@@ -9,13 +9,5 @@
         "fullTextSearch": false,
         "countDisabled": false
     },
-    "optimisticConcurrencyControl": false,
-    "fields": {
-        "test": {
-            "type": "varchar",
-            "maxLength": 150,
-            "options": [],
-            "isCustom": true
-        }
-    }
+    "optimisticConcurrencyControl": false
 }
