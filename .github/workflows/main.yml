@@ -29,10 +29,10 @@ jobs:
             docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git pull origin ${{ secrets.MASTER_BRANCH }}
-            php rebuild.php
-            chown -R www-data .
-            chgrp -R www-data .
-            chmod -R 664 .
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} php rebuild.php
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chown -R www-data .
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chgrp -R www-data .
+            docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chmod -R 664 .
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
