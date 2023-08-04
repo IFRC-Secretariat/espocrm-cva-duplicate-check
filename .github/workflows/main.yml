@@ -5,12 +5,17 @@ on:
     branches:
       - master
 
+env:
+  ESPOCRM_CONTAINER_BK_NAME: "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
+  MYSQL_CONTAINER_BK_NAME: "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
+
 jobs:
   deploy:
     name: Push changes to server
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -20,18 +25,18 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "$SSH_PRIVATE_KEY"
+
       - name: Connect to server and backup the containers
+        id: backup
         if: false
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
-            docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
-            docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
+            docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} $ESPOCRM_CONTAINER_BK_NAME
+            docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} $MYSQL_CONTAINER_BK_NAME
           ENDSSH
-      - name: Connect to server and pull in code changes
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+
+      - name: Connect to server, pull in code changes, migrate database schema, set file permissions
+        id: docker_container_actions
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
@@ -40,5 +45,12 @@ jobs:
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chown -R www-data .
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} chgrp -R www-data .
           ENDSSH
-      - name: cleanup
+
+      - name: Restore the backup container
+        if: (steps.docker_container_actions.outcome == 'failure') && (steps.backup.outcome == 'skipped')
+        run: |
+          echo $ESPOCRM_CONTAINER_BK_NAME
+          echo $MYSQL_CONTAINER_BK_NAME
+
+      - name: Cleanup
         run: rm -rf ~/.ssh
