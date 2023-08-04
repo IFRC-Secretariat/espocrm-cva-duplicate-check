@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Deploy to server
     runs-on: ubuntu-latest
+
     steps:
       - name: Add the private SSH key to the ssh-agent
         env:
@@ -23,7 +24,7 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          ssh -o StrictHostKeyChecking=no {{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
           ENDSSH
       - name: cleanup
         run: rm -rf ~/.ssh
