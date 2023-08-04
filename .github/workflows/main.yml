@@ -70,6 +70,7 @@ jobs:
             while [[ $OUTPUT == *"Can't connect"* ]]
             do
               OUTPUT=$(docker exec ${{ secrets.MYSQL_CONTAINER_NAME }} /bin/bash -c 'mysql -u${{ secrets.MYSQL_USER }} -p${{ secrets.ESPOCRM_DATABASE_PASSWORD }} < ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql' 2>&1)
+              echo OUTPUT
               sleep 1
             done
             rm ${{ steps.backup_names.outputs.MYSQL_CONTAINER_BK }}.sql
