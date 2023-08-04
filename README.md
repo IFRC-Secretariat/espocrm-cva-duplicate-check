@@ -51,7 +51,7 @@ Customise entities using the [Entity Manager](https://docs.espocrm.com/administr
     | -------- | ------- | ------- | ------- | ------- | ------- |
     | date  | Date | Date | Transfer date | | |
     | governorate  | Varchar | Governorate | | | |
-    | transferValue | Float | Transfer value | | 2 | 0 |
+    | transferValue | Float | Transfer value | | 0 | 2 |
 
 - Create a new ```DuplicateCheck``` entity with the following details:
 
@@ -109,7 +109,7 @@ Set the following ```Field Level``` permissions:
 
 We suggest the following customisations, however these are entirely optional as they do not affect the functionality, so they can be set to whatever desired.
 
-- User interface: under ```User Interface```, set the following:
+- User interface: under ```Administration``` → ```User Interface```, set the following:
 
     | Field name | Field value | Description |
     | -------- | ------- | ------- |
@@ -124,7 +124,7 @@ We suggest the following customisations, however these are entirely optional as 
     | Quick Create List | | (Empty) |
     | Dashboard Layout | | (Empty) |
 
-- System customiations: under ```Administration``` → ```System```, set ```Global Search Entity List``` to ```CashDistribution, User```.
+- System customiations: under ```Administration``` → ```Settings```, set ```Global Search Entity List``` to ```CashDistribution, User```.
 
 - Notifications: under ```Administration``` → ```Notifications```, turn off all ```In-app Notifications``` and ```Email Notifications```.
 
@@ -156,7 +156,7 @@ Next, fetch the customisations from this Github repo, and pull them into the roo
 
 ```bash
 git init
-git remote add origin https://github.com/AlexxxH/espocrm-cva-duplicate-check.git
+git remote add origin [this-github-repo-url]
 git fetch origin
 git reset origin/master --hard
 ```
