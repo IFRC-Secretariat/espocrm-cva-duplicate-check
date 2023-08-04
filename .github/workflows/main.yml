@@ -20,13 +20,20 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-add - <<< "$SSH_PRIVATE_KEY"
-      - name: Connect to server and pull changes into Docker container
+      - name: Connect to server and backup the containers
+        if: false
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
-            #docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
-            #docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
+            docker commit -p ${{ secrets.ESPOCRM_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.ESPOCRM_CONTAINER_NAME }}"
+            docker commit -p ${{ secrets.MYSQL_CONTAINER_NAME }} "$(date "+%Y-%m-%d_%H-%M-%S")_${{ secrets.MYSQL_CONTAINER_NAME }}"
+          ENDSSH
+      - name: Connect to server and pull in code changes
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP_ADDRESS }} << 'ENDSSH'
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git checkout ${{ secrets.MASTER_BRANCH }}
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} git pull origin ${{ secrets.MASTER_BRANCH }}
             docker exec ${{ secrets.ESPOCRM_CONTAINER_NAME }} php rebuild.php
