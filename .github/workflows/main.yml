@@ -54,7 +54,7 @@ jobs:
 
       - name: If failure, restore the backup containers and copy DB dump
         id: restore_backup
-        if: (steps.backup.outcome == 'success') && (steps.docker_container_actions.outcome == 'success')
+        if: (steps.backup.outcome == 'success') && (steps.docker_container_actions.outcome == 'failure')
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
