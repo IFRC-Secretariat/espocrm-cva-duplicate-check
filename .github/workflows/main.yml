@@ -65,7 +65,7 @@ jobs:
 
       - name: If failure, stop and remove new containers, and restart old containers
         id: restore_backup
-        if: (steps.backup.outcome == 'success') && (steps.docker_container_actions.outcome == 'failure')
+        if: steps.docker_container_actions.outcome == 'success'
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
