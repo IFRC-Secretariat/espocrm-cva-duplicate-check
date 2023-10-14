@@ -1,10 +1,10 @@
 {
     "fields": {
-        "transferValue": "Transfer value",
-        "date": "Date",
         "name": "National ID",
         "teams": "Partners",
-        "governorate": "Governorate"
+        "date": "Date",
+        "governorate": "Governorate",
+        "transferValue": "TransferValue"
     },
     "links": [],
     "labels": {
@@ -13,7 +13,7 @@
         "Check duplicates": "Check duplicates"
     },
     "tooltips": {
-        "date": "Transfer date",
-        "name": "National ID of the individual who received cash (head of household or household member)"
+        "name": "National ID of the individual who received cash (head of household or household member)",
+        "date": "Transfer date"
     }
 }
