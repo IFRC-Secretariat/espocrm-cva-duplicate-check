@@ -1,0 +1,14 @@
+{
+    "collection": {
+        "orderBy": "dateSent",
+        "order": "desc",
+        "textFilterFields": [
+            "name",
+            "bodyPlain",
+            "body"
+        ],
+        "fullTextSearch": true,
+        "countDisabled": true
+    },
+    "optimisticConcurrencyControl": false
+}
