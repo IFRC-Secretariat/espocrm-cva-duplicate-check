@@ -1,18 +1,3 @@
 {
-    "stream": false,
-    "disabled": true,
-    "kanbanStatusIgnoreList": null,
-    "activityStatusList": [
-        "Planned"
-    ],
-    "historyStatusList": [
-        "Held",
-        "Not Held"
-    ],
-    "completedStatusList": [
-        "Held"
-    ],
-    "canceledStatusList": [
-        "Not Held"
-    ]
+    "disabled": true
 }

@@ -1,8 +1,3 @@
 {
-    "stream": true,
-    "disabled": true,
-    "statusField": "stage",
-    "kanbanStatusIgnoreList": [
-        "Closed Lost"
-    ]
+    "disabled": true
 }
