@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "name": "National ID",
+        "teams": "Partners"
+    },
+    "links": [],
+    "labels": {
+        "Create DuplicateCheck": "Create Duplicate Check"
+    },
+    "tooltips": {
+        "name": "National ID of the individual who received cash (head of household or household member)"
+    }
+}
