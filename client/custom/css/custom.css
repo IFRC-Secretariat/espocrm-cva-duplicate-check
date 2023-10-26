@@ -54,12 +54,18 @@ div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-imported {
 div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.list[data-scope="Import"] table.table tbody td[data-name="entityType"] {
     display: None;
 }
-/* Colour the duplicates red and the non duplicates green */
-div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody {
+/* Colour the duplicates and errors red, and the non duplicates green */
+div.detail[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody {
     background-color: rgb(209 27 27 / 9%);
 }
-div.detail.duplicatecheck[data-scope="Import"] .record-grid .panel-importedNoDuplicates .panel-body[data-name="importedNoDuplicates"] table tbody {
+div.detail[data-scope="Import"] .record-grid .panel-importedNoDuplicates .panel-body[data-name="importedNoDuplicates"] table tbody {
     background-color: rgb(45 193 67 / 13%);
+}
+div.detail[data-scope="Import"] .record-grid .panel-imported .panel-body[data-name="imported"] table tbody {
+    background-color: rgb(45 193 67 / 13%);
+}
+div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name="errors"] table tbody {
+    background-color: rgb(209 27 27 / 16%);
 }
 
 /* CASH DISTRIBUTION */
@@ -97,7 +103,7 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 .record .edit[data-scope="CashDistribution"] .record-grid .side {
     display: None;
 }
-/* Hide not needed fields: default team, roles, working time calendar, stream */
+/* Hide not needed fields: default team, roles, working time calendar, stream, gender, title */
 .record .edit[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"] {
     display: None;
 }
@@ -111,6 +117,12 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     display: None;
 }
 .record .detail[data-scope="User"] .record-grid .panel-stream[data-name="stream"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .form-group[data-name="gender"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="gender"] {
+    display: None;
+}
+.record .edit[data-scope="User"] .record-grid .form-group[data-name="title"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="title"] {
     display: None;
 }
 /* Hide the calendar button, email accounts button, external accounts button */
