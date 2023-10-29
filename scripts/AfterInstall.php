@@ -2,18 +2,29 @@
 
 class AfterInstall
 {
+    protected $container;
+
     public function run($container)
     {
-        $config = $container->get('config');
-        $tabList = $config->get('tabList', []);
+        $this->container = $container;
+        $config = $this->container->get('config');
+        #$tabList = $config->get('tabList', []);
+        $tabList = [];
 
         if (!in_array('CashDistribution', $tabList)) {
-            array_unshift($tabList, 'CashDistribution');
+            array_push($tabList, 'CashDistribution');
         }
-        if (!in_array('DuplicateCheck', $tabList)) {
-            array_unshift($tabList, 'DuplicateCheck');
-        }
+        array_push($tabList, 'Import', 'User', 'Team');
         $config->set('tabList', $tabList);
         $config->save();
+
+        $this->clearCache();
+    }
+    
+    protected function clearCache()
+    {
+        try {
+            $this->container->get('dataManager')->clearCache();
+        } catch (\Exception $e) {}
     }
 }
