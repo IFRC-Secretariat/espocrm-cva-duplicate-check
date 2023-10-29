@@ -1,0 +1,35 @@
+{
+    "bottomPanels": {
+    	"detail": [
+            "__APPEND__",
+            {
+	    		"name": "importedNoDuplicates",
+	    		"label": "Data - no duplicates",
+	    		"view": "custom:views/import/record/panels/imported-no-duplicates",
+                "createDisabled": true,
+                "selectDisabled": true,
+                "unlinkDisabled": true
+	    	}
+        ]
+    },
+    "recordViews": {
+        "list": "views/import/record/list",
+        "detail": "custom:views/import/record/detail"
+    },
+    "views": {
+        "list": "custom:views/import/list",
+        "detail": "custom:views/import/detail"
+    },
+    "menu": {
+        "detail": {
+            "buttons": [
+                "__APPEND__",
+                {
+                    "label": "View History",
+                    "link": "#Import/list",
+                    "style": "default"
+                }
+            ]
+        }
+    }
+}

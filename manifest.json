@@ -1,0 +1,14 @@
+{
+    "name": "CVA De-Duplication System",
+    "description": "For de-duplication of CVA applications",
+    "author": "Alex Howes, IFRC",
+    "php": [
+        ">=7.4"
+    ],
+    "acceptableVersions": [
+        ">=8.0"
+    ],
+    "version": "1.0.0",
+    "skipBackup": true,
+    "releaseDate": "2023-10-29"
+}
