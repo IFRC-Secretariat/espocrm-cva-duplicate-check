@@ -8,16 +8,22 @@ class AfterInstall
     {
         $this->container = $container;
         $config = $this->container->get('config');
-        #$tabList = $config->get('tabList', []);
-        $tabList = [];
 
-        if (!in_array('CashDistribution', $tabList)) {
-            array_push($tabList, 'CashDistribution');
-        }
-        array_push($tabList, 'Import', 'User', 'Team');
-        $config->set('tabList', $tabList);
+        # Set the tab list, quick create list, and global search list
+        $config->set('tabList', ['CashDistribution', 'Import', 'User', 'Team']);
+        $config->set('quickCreateList', []);
+        $config->set('globalSearchEntityList', ['CashDistribution', 'User']);
+
+        # Set other user interface config options
+        $config->set('passwordGenerateLength', 16);
+        $config->set('dashboardLayout', []);
+        $config->set('theme', 'Hazyblue');
+        $config->set('recordsPerPage', 100);
+        $config->set('recordsPerPageSmall', 10);
+        $config->set('applicationName', 'SARC CVA de-duplication system');
+
+        # Save changes and clear cache
         $config->save();
-
         $this->clearCache();
     }
     
