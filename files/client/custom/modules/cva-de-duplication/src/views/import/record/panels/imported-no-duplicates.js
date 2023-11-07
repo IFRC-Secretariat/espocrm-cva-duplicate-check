@@ -6,7 +6,7 @@
  * Link set to: "importedNoDuplicates"
  ************************************************************************/
 
-define('custom:views/import/record/panels/imported-no-duplicates', ['views/record/panels/relationship'], function (Dep) {
+define('cva-de-duplication:views/import/record/panels/imported-no-duplicates', ['views/record/panels/relationship'], function (Dep) {
 
     return Dep.extend({
 

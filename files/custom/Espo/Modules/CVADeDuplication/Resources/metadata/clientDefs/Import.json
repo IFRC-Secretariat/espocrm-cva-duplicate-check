@@ -5,7 +5,7 @@
             {
 	    		"name": "importedNoDuplicates",
 	    		"label": "Data - no duplicates",
-	    		"view": "custom:views/import/record/panels/imported-no-duplicates",
+	    		"view": "cva-de-duplication:views/import/record/panels/imported-no-duplicates",
                 "createDisabled": true,
                 "selectDisabled": true,
                 "unlinkDisabled": true
@@ -14,11 +14,11 @@
     },
     "recordViews": {
         "list": "views/import/record/list",
-        "detail": "custom:views/import/record/detail"
+        "detail": "cva-de-duplication:views/import/record/detail"
     },
     "views": {
-        "list": "custom:views/import/list",
-        "detail": "custom:views/import/detail"
+        "list": "cva-de-duplication:views/import/list",
+        "detail": "cva-de-duplication:views/import/detail"
     },
     "menu": {
         "detail": {

@@ -1,4 +1,4 @@
-define('custom:import-cash-distribution-data', ['action-handler'], function (Dep) {
+define('cva-de-duplication:import-cash-distribution-data', ['action-handler'], function (Dep) {
 
     return Dep.extend({
  

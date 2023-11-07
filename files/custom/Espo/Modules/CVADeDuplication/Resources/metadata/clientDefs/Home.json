@@ -1,4 +1,4 @@
 {
    "iconClass": "fas fa-th-large",
-   "view": "custom:views/home"
+   "view": "cva-de-duplication:views/home"
 }

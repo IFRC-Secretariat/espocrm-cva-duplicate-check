@@ -17,7 +17,7 @@
                     "action": "importCashDistributionData",
                     "style": "default",
                     "data": {
-                        "handler": "custom:import-cash-distribution-data"
+                        "handler": "cva-de-duplication:import-cash-distribution-data"
                     }
                 },
                 {
@@ -27,7 +27,7 @@
                     "action": "importDuplicateCheckData",
                     "style": "default",
                     "data": {
-                        "handler": "custom:import-duplicate-check-data"
+                        "handler": "cva-de-duplication:import-duplicate-check-data"
                     }
                 }
             ]

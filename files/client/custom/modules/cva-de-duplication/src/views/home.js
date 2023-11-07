@@ -26,15 +26,15 @@
  * these Appropriate Legal Notices must retain the display of the "EspoCRM" word.
  ************************************************************************/
 
-define('custom:views/home', ['view'], function (Dep) {
+define('cva-de-duplication:views/home', ['view'], function (Dep) {
 
     return Dep.extend({
 
-        template: 'custom:home',
+        template: 'cva-de-duplication:home',
 
         
         setup: function () {
-            var view = this.getMetadata().get(['custom', 'clientDefs', 'Home', 'view']) || 'views/dashboard';
+            var view = this.getMetadata().get(['cva-de-duplication', 'clientDefs', 'Home', 'view']) || 'views/dashboard';
 
             this.createView('content', view, {
                 el: this.options.el + ' > .home-content'

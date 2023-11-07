@@ -1,4 +1,4 @@
-define('custom:import-duplicate-check-data', ['action-handler'], function (Dep) {
+define('cva-de-duplication:import-duplicate-check-data', ['action-handler'], function (Dep) {
 
     return Dep.extend({
  

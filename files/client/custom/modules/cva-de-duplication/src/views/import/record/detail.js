@@ -4,7 +4,7 @@
  * duplicates.
  ************************************************************************/
 
-define('custom:views/import/record/detail', ['views/import/record/detail'], function (Dep) {
+define('cva-de-duplication:views/import/record/detail', ['views/import/record/detail'], function (Dep) {
 
     return Dep.extend({
 

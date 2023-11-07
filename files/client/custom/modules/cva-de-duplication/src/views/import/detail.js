@@ -26,7 +26,7 @@
  * these Appropriate Legal Notices must retain the display of the "EspoCRM" word.
  ************************************************************************/
 
-define('custom:views/import/detail', ['views/import/detail'], function (Dep) {
+define('cva-de-duplication:views/import/detail', ['views/import/detail'], function (Dep) {
 
     return Dep.extend({
 

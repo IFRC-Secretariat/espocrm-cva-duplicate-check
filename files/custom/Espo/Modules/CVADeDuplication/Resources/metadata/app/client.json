@@ -1,6 +1,6 @@
 {
     "cssList": [
         "__APPEND__",
-        "client/custom/css/custom.css"
+        "client/custom/modules/cva-de-duplication/css/custom.css"
     ]
 }
