@@ -5,34 +5,14 @@ This project is an EspoCRM extension for duplicate checking of cash distribution
 
 ## About
 
-The software is based on [EspoCRM](https://www.espocrm.com/). Customisations have been made to EspoCRM by adding files to the code to meet the requirements of a CVA duplicate check system. The customisations are described in detail [below](#customisations). As far as possible, these customisations have been set up using EspoCRM recommended processes for customisations, e.g. using [hooks](https://docs.espocrm.com/development/hooks/).
+The software is based on [EspoCRM](https://www.espocrm.com/). Customisations have been made to EspoCRM by adding files to the code to meet the requirements of a CVA duplicate check system. The customisations are described in detail [below](#customisations).
 
 
 ## Setup
 
-### Local setup
-
-To set up EspoCRM locally, follow the instructions below.
-
-1. Install EspoCRM by following the instructions in the [documentation](https://docs.espocrm.com/administration/installation-by-script/):
-
-    ```bash
-    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
-    sudo bash install.sh
-    ```
-
-2. Download a release of this extension from the Github repository as a zip file. 
-
-3. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
-
-4. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
-
-Logs can be accessed at `/var/www/espocrm/data/espocrm/data/logs/`. The files are installed at `/var/www/espocrm/`. To remove a previous installation, run: `rm -r /var/wwww/espocrm/`.
-
-
 ### Server setup
 
-To set up EspoCRM on a server, follow the instructions below.
+Follow the instructions below to set up a remote server to install the system on. If you are installing locally or already have a server set up, skip this step.
 
 1. Set up a remote server with SSH access, e.g. with [DigitalOcean](https://www.digitalocean.com/) or another provider, or self-hosted.
 
@@ -62,29 +42,82 @@ To set up EspoCRM on a server, follow the instructions below.
     ufw enable
     ```
 
-7. Create a folder to install into:
+### EspoCRM setup
+
+The following will install a standard EspoCRM installation. The files are installed at `/var/www/espocrm/`, and logs are at `/var/www/espocrm/data/espocrm/data/logs/`.
+To remove a previous installation, run: `sudo rm -r /var/wwww/espocrm/`.
+
+#### HTTP Setup
+
+1. Install EspoCRM based on the [instructions in the documentation](https://docs.espocrm.com/administration/installation-by-script/) for HTTP. 
+    
     ```bash
-    mkdir espocrm
-    cd espocrm
+    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
+    sudo bash install.sh
+    ```
+    Take note of the username and password for admin access which are printed to the terminal.
+
+2. Verify that you can view and login to the EspoCRM site at http://yourdomain.com.
+
+#### HTTPS Setup with Let's Encrypt
+
+First, link your domain name to your server by configuring the DNS, and ensure that the server is accessible at the domain name.
+
+1. Install EspoCRM based on the [instructions in the documentation](https://docs.espocrm.com/administration/installation-by-script/). 
+    ```bash
+    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
+    sudo bash install.sh --ssl --letsencrypt --domain=mydomain.com --email=emailaddress@email.com --clean
+    ```
+    Take note of the username and password for admin access which are printed to the terminal.
+
+2. Verify that you can view and login to the EspoCRM site at https://yourdomain.com.
+
+4. It is advisable to add a cron job to regularly update the SSL certificate (note that the setup is configured so that the certificates will not update unless they are close to expiring). First, make sure that you can update the certificates by running the following:
+    ```bash
+    sudo bash -c "/var/www/espocrm/command.sh cert-renew >> /var/www/espocrm/data/letsencrypt/renew.log 2>&1"
+    ```
+    Verify that the output has been printed to the file:
+    ```bash
+    sudo cat /var/www/espocrm/data/letsencrypt/renew.log
+    ```
+    Next, add a cron job to be run as `root`. To add a root cron job, enter `sudo crontab -u root -e`, enter your password, and then copy and paste the following into the editor:
+    ```bash
+    0 1 * * * /var/www/espocrm/command.sh cert-renew >> /var/www/espocrm/data/letsencrypt/renew.log 2>&1
     ```
 
-8. Install EspoCRM by following the instructions in the [documentation](https://docs.espocrm.com/administration/installation-by-script/):
+
+### Extension installation
+
+To install this extension on top of the standard EspoCRM installation:
+
+1. Download a release of this extension from the Github repository as a zip file. 
+
+2. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
+
+3. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
+
+
+### Server setup
+
+To set up EspoCRM on a server, follow the instructions below.
+
+1. Install EspoCRM by following the instructions in the [documentation](https://docs.espocrm.com/administration/installation-by-script/):
 
     ```bash
     wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
     sudo bash install.sh -y --ssl --letsencrypt --domain=my-espocrm.com --email=email@my-domain.com
     ```
 
-9. Add the following to crontab to set up auto renewal of the SSL certificate, changing `myuser` to the username of the user.
+2. Add the following to crontab to set up auto renewal of the SSL certificate, changing `myuser` to the username of the user.
     ```bash
     0 1 * * * /home/myuser/espocrm/command.sh cert-renew    
     ```
 
-10. Download a release of this extension from the Github repository as a zip file. 
+3. Download a release of this extension from the Github repository as a zip file. 
 
-11. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
+4. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
 
-12. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
+5. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
 
 Logs can be accessed at `/var/www/espocrm/data/espocrm/data/logs/`. The files are installed at `/var/www/espocrm/`. To remove a previous installation, run: `rm -r /var/wwww/espocrm/`.
 
