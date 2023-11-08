@@ -64,6 +64,9 @@ jobs:
     - name: NPM install
       run: npm install
 
+    - name: Build
+      run: grunt test
+
     - name: Checkout customisations
       uses: actions/checkout@v4
       with:
