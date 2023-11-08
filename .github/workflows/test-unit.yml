@@ -17,6 +17,24 @@ jobs:
   test:
     name: Unit Tests
     runs-on: ${{ inputs.runs-on }}
+    env:
+      TEST_DATABASE_HOST: '127.0.0.1'
+      TEST_DATABASE_PORT: '8888'
+      TEST_DATABASE_NAME: integration_test
+      TEST_DATABASE_USER: root
+      TEST_DATABASE_PASSWORD: password
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: integration_test
+        ports:
+          - '8888:3306'
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      fail-fast: false
     steps:
 
     - name: Checkout EspoCRM
@@ -25,6 +43,11 @@ jobs:
         repository: espocrm/espocrm
         ref: ${{ inputs.espocrm-version }}
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
     - name: Setup PHP with Composer
       uses: shivammathur/setup-php@v2
       with:
@@ -32,8 +55,14 @@ jobs:
         tools: composer:v2
         ini-values: memory_limit=1024M
 
-    - name: Composer install
-      run: composer install
+    - name: Start MySQL service
+      run: sudo systemctl start mysql
+
+    - name: Create DB table
+      run: mysql -h 127.0.0.1 --port 8888 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS integration_test;'
+
+    - name: NPM install
+      run: npm install
 
     - name: Checkout customisations
       uses: actions/checkout@v4
