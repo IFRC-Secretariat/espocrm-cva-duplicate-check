@@ -1,0 +1,16 @@
+name: Continuous Integration and Delivery
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+jobs:
+  test-unit:
+
+    name: Unit Tests
+    uses: ./.github/workflows/test-unit.yml
+    with:
+      php-version: '8.1'
+      runs-on: ubuntu-22.04
+      espocrm-version: '7.5.4'
