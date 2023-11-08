@@ -75,7 +75,18 @@ jobs:
           ]
         ];
         EOF
-        cat ./data/config-internal.php
+
+    - name: Write config file
+      run: |
+        cat <<EOF > ./data/config.php
+        <?php
+        return [
+          'version' => ${{ inputs.espocrm-version }},
+          'defaultCurrency' => 'USD',
+          'baseCurrency' => 'USD',
+        ];
+        EOF
+        cat ./data/config.php
 
     - name: NPM install
       run: npm install
