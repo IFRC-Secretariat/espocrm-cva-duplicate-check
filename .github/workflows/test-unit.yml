@@ -61,11 +61,30 @@ jobs:
     - name: Create DB table
       run: mysql -h 127.0.0.1 --port 8888 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS integration_test;'
 
+    - name: Write internal config file
+      run: |
+        cat <<EOF > ./data/config-internal.php
+        <?php
+        return [ 
+          'database' => [ 
+            'host' => '127.0.0.1',
+            'port' => '8888',
+            'dbname' => 'integration_test',
+            'user' => 'root',
+            'password' => 'password'
+          ]
+        ];
+        EOF
+        cat ./data/config-internal.php
+
     - name: NPM install
       run: npm install
 
     - name: Build
-      run: grunt
+      run: grunt test
+
+    - name: Rebuild
+      run: php rebuild.php
 
     - name: Checkout customisations
       uses: actions/checkout@v4
