@@ -76,6 +76,7 @@ jobs:
       run: |
         zip -r cva_de_duplication_extension.zip ./cva_de_duplication_extension/*
         rm -r ./cva_de_duplication_extension/
+        unzip -l cva_de_duplication_extension.zip
 
     - name: Install the extension
       run: |
