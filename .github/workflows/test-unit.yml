@@ -74,13 +74,14 @@ jobs:
 
     - name: Create the extension zip
       run: |
-        zip -r cva_de_duplication_extension.zip ./cva_de_duplication_extension/*
+        cd cva_de_duplication_extension
+        zip -r ../cva_de_duplication_extension.zip ./*
+        cd ../
         rm -r ./cva_de_duplication_extension/
-        unzip -l cva_de_duplication_extension.zip
 
     - name: Install the extension
       run: |
-        php command.php extension --file="cva_de_duplication_extension.zip"
+        php command.php extension --file="./cva_de_duplication_extension.zip"
 
     - name: Static analysis
       run: vendor/bin/phpstan
