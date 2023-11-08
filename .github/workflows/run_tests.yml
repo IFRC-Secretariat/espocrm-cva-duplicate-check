@@ -1,4 +1,4 @@
-name: Run tests on release
+name: Run unit and integration tests
 
 on:
   release:

@@ -81,7 +81,7 @@ jobs:
         cat <<EOF > ./data/config.php
         <?php
         return [
-          'version' => ${{ inputs.espocrm-version }},
+          'version' => '${{ inputs.espocrm-version }}',
           'defaultCurrency' => 'USD',
           'baseCurrency' => 'USD',
         ];
