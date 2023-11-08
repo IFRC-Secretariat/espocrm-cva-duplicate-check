@@ -25,6 +25,16 @@ jobs:
         repository: espocrm/espocrm
         ref: ${{ inputs.espocrm-version }}
 
+    - name: Setup PHP with Composer
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+        tools: composer:v2
+        ini-values: memory_limit=1024M
+
+    - name: Composer install
+      run: composer install
+
     - name: Checkout customisations
       uses: actions/checkout@v4
       with:
@@ -38,16 +48,6 @@ jobs:
     - name: Install the extension
       run: |
         php command.php extension --file="cva_de_duplication_extension.zip"
-
-    - name: Setup PHP with Composer
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ inputs.php-version }}
-        tools: composer:v2
-        ini-values: memory_limit=1024M
-
-    - name: Composer install
-      run: composer install
 
     - name: Static analysis
       run: vendor/bin/phpstan
