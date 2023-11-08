@@ -13,4 +13,4 @@ jobs:
     with:
       php-version: '8.1'
       runs-on: ubuntu-22.04
-      espocrm-version: '7.5.4'
+      espocrm-version: '8.0.2'
