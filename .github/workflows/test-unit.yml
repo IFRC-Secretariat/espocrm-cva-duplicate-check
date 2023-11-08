@@ -65,7 +65,7 @@ jobs:
       run: npm install
 
     - name: Build
-      run: grunt
+      run: grunt test
 
     - name: Checkout customisations
       uses: actions/checkout@v4
@@ -78,6 +78,7 @@ jobs:
         zip -r ../cva_de_duplication_extension.zip ./*
         cd ../
         rm -r ./cva_de_duplication_extension/
+        unzip -l cva_de_duplication_extension.zip
 
     - name: Install the extension
       run: |
