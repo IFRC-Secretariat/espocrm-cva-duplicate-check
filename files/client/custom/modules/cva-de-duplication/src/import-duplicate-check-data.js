@@ -11,9 +11,9 @@ define('cva-de-duplication:import-duplicate-check-data', ['action-handler'], fun
             formData.decimalMark = '.';
             formData.manualMode = false;
 
-            this.getRouter().navigate('#Import', {trigger: false});
+            this.view.getRouter().navigate('#Import', {trigger: false});
 
-            this.getRouter().dispatch('Import', 'index', {
+            this.view.getRouter().dispatch('Import', 'index', {
                 formData: formData,
             });
          },
