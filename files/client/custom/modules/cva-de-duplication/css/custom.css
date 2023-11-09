@@ -6,6 +6,10 @@ header .navbar .navbar-header {
     height: 110px!important;
     padding-bottom: 17px!important;
 }
+#login .logo-container {
+    height: 100px;
+    padding: 10px 10px 0px 10px;
+}
 
 /* IMPORT STEP 1 */
 /* Hide fields which aren't needed/ allowed to be set */
