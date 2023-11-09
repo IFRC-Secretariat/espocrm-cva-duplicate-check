@@ -1,0 +1,55 @@
+@import "/client/css/espo/light.css";
+
+table a {
+    text-decoration: underline;
+}
+table.table-admin-panel tr:hover {
+    background-color: rgb(245, 245, 245);
+}
+header .navbar .navbar-body ul.navbar-right, body.has-navbar {
+    background-color: rgb(245, 243, 243)!important;
+}
+body[data-navbar=side] #navbar ul.tabs>li span.short-label>span {
+    color: rgba(0,0,0,0.8);
+}
+header .navbar {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.15)!important;
+}
+header .navbar ul.navbar-nav li a {
+    font-weight: 100;
+    font-size: 15px;
+    color: rgb(0, 0, 0)!important;
+}
+.navbar-nav>li>a {
+    line-height: 25px;
+}
+body[data-navbar=side] #navbar ul.tabs>li>a {
+    height: 44px;
+}
+@media screen and (min-width: 768px) {
+    body[data-navbar=side] #navbar .navbar-right, body[data-navbar=side].minimized.side-menu-opened #navbar .navbar-right {
+        margin-left: 242px;
+    }
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    border-left: 5px solid #e1261c!important;
+    background-color: transparent;
+}
+.navbar-inverse .navbar-nav li a {
+    border-left: 5px solid white!important;
+}
+:root {
+    --text-color: #333333;
+    --text-muted-color: #565656;
+    --navbar-inverse-link-color: rgba(0, 0, 0, 0.8);
+    --navbar-inverse-link-hover-color: rgba(0, 0, 0, 0.8);
+    --btn-primary-bg: #f6333f;
+    --btn-primary-border: #f6333f;
+    --btn-primary-hover-bg: #f6333f;
+    --btn-primary-hover-border: #f6333f;
+    --btn-primary-active-bg: #f6333f;
+    --btn-primary-active-border: #f6333f;
+    --btn-text-color: rgba(0, 0, 0, 0.8);
+    --link-color: rgba(0, 0, 0, 0.8)!important;
+    --link-hover-color: rgba(0, 0, 0, 0.8);
+}

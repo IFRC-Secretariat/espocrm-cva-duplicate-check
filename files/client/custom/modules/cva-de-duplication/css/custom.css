@@ -1,3 +1,12 @@
+/* Navbar: make the logo bigger */
+header .navbar .navbar-header .navbar-logo-container img, header .navbar .navbar-header .navbar-logo-container a {
+    height: 80px!important;
+}
+header .navbar .navbar-header {
+    height: 110px!important;
+    padding-bottom: 17px!important;
+}
+
 /* IMPORT STEP 1 */
 /* Hide fields which aren't needed/ allowed to be set */
 .import-container .form-group:has(div[data-name="action"]) {
