@@ -53,6 +53,16 @@ class CheckFieldValues
                 throw new Error("Duplicate check must be enabled.");
             }
 
+            // Check that idle mode and manual mode are off
+            $idleMode = $entity->get('params')->idleMode;
+            if (!empty($idleMode)) {
+                throw new Error("Idle mode not allowed.");
+            }
+            $manualMode = $entity->get('params')->manualMode;
+            if (!empty($manualMode)) {
+                throw new Error("Manual mode not allowed.");
+            }
+
             // Validate fields mapping
             $selectedFields = array_filter($entity->get("attributeList"), function($field) { return !is_null($field) && $field !== ''; });
             $entityDefs = $this->entityManager->getDefs()->getEntity($entity->get('entityType'));
