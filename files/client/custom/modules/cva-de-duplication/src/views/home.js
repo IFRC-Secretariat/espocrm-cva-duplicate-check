@@ -31,14 +31,56 @@ define('cva-de-duplication:views/home', ['view'], function (Dep) {
     return Dep.extend({
 
         template: 'cva-de-duplication:home',
-
         
         setup: function () {
+
             var view = this.getMetadata().get(['cva-de-duplication', 'clientDefs', 'Home', 'view']) || 'views/dashboard';
 
             this.createView('content', view, {
                 el: this.options.el + ' > .home-content'
             });
-        }
+
+            this.addHandler(
+                'click',
+                'a[data-action="importCashDistributionData"]',
+                'actionImportCashDistributionData'
+            );
+            this.addHandler(
+                'click',
+                'a[data-action="importDuplicateCheckData"]',
+                'actionImportDuplicateCheckData'
+            );
+        },
+
+        actionImportCashDistributionData: function () {
+            var formData = {};
+
+            formData.entityType = 'CashDistribution';
+            formData.headerRow = true;
+            formData.silentMode = true;
+            formData.decimalMark = '.';
+            formData.manualMode = false;
+
+            this.getRouter().navigate('#Import', {trigger: false});
+
+            this.getRouter().dispatch('Import', 'index', {
+                formData: formData,
+            });
+        },
+        actionImportDuplicateCheckData: function (data, e) {
+            var formData = {};
+
+            formData.entityType = 'DuplicateCheck';
+            formData.headerRow = true;
+            formData.silentMode = true;
+            formData.decimalMark = '.';
+            formData.manualMode = false;
+
+            this.getRouter().navigate('#Import', {trigger: false});
+
+            this.getRouter().dispatch('Import', 'index', {
+                formData: formData,
+            });
+         },
     });
 });

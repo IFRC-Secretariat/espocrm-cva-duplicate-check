@@ -1,9 +1,9 @@
 /* Navbar: make the logo bigger */
 header .navbar .navbar-header .navbar-logo-container img, header .navbar .navbar-header .navbar-logo-container a {
-    height: 80px!important;
+    height: 120px!important;
 }
 header .navbar .navbar-header {
-    height: 110px!important;
+    height: 150px!important;
     padding-bottom: 17px!important;
 }
 #login .logo-container {
@@ -52,8 +52,11 @@ header .navbar .navbar-header {
 div.detail[data-scope="Import"] div.bottom > div.panel-updated[data-name="updated"] {
     display: None;
 }
-/* Hide the "Remove import log" button */
+/* Hide the "Remove import log" and "Remove duplicates" buttons */
 a.btn[data-name="removeImportLog"] {
+    display: None;
+}
+a.btn[data-name="removeDuplicates"] {
     display: None;
 }
 /* Hide panels on import results pages */
@@ -68,18 +71,29 @@ div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.
     display: None;
 }
 /* Colour the duplicates and errors red, and the non duplicates green */
-div.detail[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody {
-    background-color: rgb(209 27 27 / 9%);
+div.detail[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody, .home-content .cash-distribution-results .duplicates {
+    background-color: #d16d1b17;
 }
 div.detail[data-scope="Import"] .record-grid .panel-importedNoDuplicates .panel-body[data-name="importedNoDuplicates"] table tbody {
     background-color: rgb(45 193 67 / 13%);
 }
-div.detail[data-scope="Import"] .record-grid .panel-imported .panel-body[data-name="imported"] table tbody {
+div.detail[data-scope="Import"] .record-grid .panel-imported .panel-body[data-name="imported"] table tbody, .home-content .cash-distribution-results .imported {
     background-color: rgb(45 193 67 / 13%);
 }
-div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name="errors"] table tbody {
-    background-color: rgb(209 27 27 / 16%);
+div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name="errors"] table tbody, .home-content .cash-distribution-results .errors {
+    background-color: #d11b1b29;
 }
+/* Add extra info to the panel titles */
+.detail.cashdistribution .panel-imported .panel-title span::after {
+    content: " - this data was saved successfully";
+}
+.detail.cashdistribution .panel-duplicates .panel-title span::after {
+    content: " - this data was saved but is a duplicate of another cash distribution";
+}
+.detail.cashdistribution .panel-errors .panel-title span::after {
+    content: " - this data was NOT saved because it contains errors";
+}
+
 
 /* CASH DISTRIBUTION */
 /* Create single entity CashDistribution: hide the teams field */
@@ -99,7 +113,18 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 
 /* HOME PAGE */
 .home-content .page-header {
-    margin-bottom: 60px;
+    margin-bottom: 25px;
+}
+.home-content {
+    max-width: 850px;
+}
+.home-content .required {
+    color: red;
+}
+.home-content table.data-example .subtitle {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    margin-bottom: 0px;
 }
 
 /* USERS */
