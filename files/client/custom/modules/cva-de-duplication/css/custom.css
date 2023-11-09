@@ -71,16 +71,16 @@ div.list[data-scope="Import"] table.table thead th[data-name="entityType"], div.
     display: None;
 }
 /* Colour the duplicates and errors red, and the non duplicates green */
-div.detail[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody, .home-content .cash-distribution-results .duplicates {
-    background-color: #d16d1b17;
+div.detail[data-scope="Import"] .record-grid .panel-duplicates .panel-body[data-name="duplicates"] table tbody, .home-content .import-results .duplicates {
+    background-color: #d16d1b2b;
 }
 div.detail[data-scope="Import"] .record-grid .panel-importedNoDuplicates .panel-body[data-name="importedNoDuplicates"] table tbody {
     background-color: rgb(45 193 67 / 13%);
 }
-div.detail[data-scope="Import"] .record-grid .panel-imported .panel-body[data-name="imported"] table tbody, .home-content .cash-distribution-results .imported {
+div.detail[data-scope="Import"] .record-grid .panel-imported .panel-body[data-name="imported"] table tbody, .home-content .import-results .imported {
     background-color: rgb(45 193 67 / 13%);
 }
-div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name="errors"] table tbody, .home-content .cash-distribution-results .errors {
+div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name="errors"] table tbody, .home-content .import-results .errors {
     background-color: #d11b1b29;
 }
 /* Add extra info to the panel titles */
@@ -92,6 +92,15 @@ div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name
 }
 .detail.cashdistribution .panel-errors .panel-title span::after {
     content: " - this data was NOT saved because it contains errors";
+}
+.detail.duplicatecheck .panel-duplicates .panel-title span::after {
+    content: " - the people with these National IDs have already received cash in another distribution";
+}
+.detail.duplicatecheck .panel-errors .panel-title span::after {
+    content: " - this data has NOT been checked because it contains errors";
+}
+.detail.duplicatecheck .panel-importedNoDuplicates .panel-title span::after {
+    content: " - the people with these National IDs have not received cash";
 }
 
 
@@ -127,12 +136,21 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
     font-size: 14px;
     margin-bottom: 0px;
 }
-.home-content .cash-distribution-results {
+.home-content .import-results {
     max-width: 1000px;
     margin-top: 10px;
 }
+.home-content table.import-results .panel-name {
+    width: 150px;
+}
+.home-content h3 {
+    margin-top: 30px;
+}
 .home-content ol.instructions li {
     margin-bottom: 10px;
+}
+.home-content table.data-example th.national-id, .home-content table.duplicate-check {
+    width: 300px;
 }
 
 /* USERS */

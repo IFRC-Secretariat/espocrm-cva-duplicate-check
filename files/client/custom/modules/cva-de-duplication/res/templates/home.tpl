@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2>SARC CVA Duplication Check Platform</h2>
+    <h1>SARC CVA Duplication Check Platform</h1>
 </div>
 <div class="home-content">
     <p>
@@ -27,7 +27,7 @@
         <li>Upload data: the cash distribution data that you upload should contain a column with National IDs of the person (or head of household) who received the cash. You can also include data on governorate, date of transfer, and transfer value:
         <table class="table data-example">
         <tr>
-            <th>National ID<span class="required"> * (required)</span><p class="subtitle">Syrian National ID of the person (or HoH) who received cash (11 digits)</p></th>
+            <th class="national-id">National ID<span class="required"> * (required)</span><p class="subtitle">Syrian National ID of the person (or HoH) who received cash (11 digits)</p></th>
             <th>Governorate<p class="subtitle">Governorate in Syria</p></th>
             <th>Date<p class="subtitle">Date of the transfer - all the dates must be in the same format</p></th>
             <th>Transfer value<p class="subtitle">Amount of the transfer in Syrian Pounds (SYP)</p></th>
@@ -52,17 +52,17 @@
         <li>Select columns: select the column names to match up to the system column names.</li>
 
         <li>Results: the results of the import show:
-        <table class="table cash-distribution-results">
+        <table class="table cash-distribution-results import-results">
         <tr class="imported">
-            <th>Imported</th>
+            <th class="panel-name">Imported</th>
             <th>This data was successfully imported and saved in the system.</th>
         </tr>
         <tr class="duplicates">
-            <td>Duplicates</td>
-            <td>This data was saved in the system, but is a duplicate of other cash distribution data. This means that either you or another organisation has already given this person cash.</td>
+            <td class="panel-name">Duplicates</td>
+            <td>This data was saved in the system, but is a duplicate of other cash distribution data. This means that either you or another organisation has already given these people cash.</td>
         </tr>
         <tr class="errors">
-            <td>Errors</td>
+            <td class="panel-name">Errors</td>
             <td>This data was NOT saved in the system because it contains errors. E.g., the National ID is not 11 digits, the date format is incorrect, the transfer value is not a number, etc. Click on each error for more details.</td>
         </tr>
         </table>
@@ -71,4 +71,50 @@
         </p>
         </li>
     </ol>
+
+    <h3>Running Duplicate Checks</h3>
+    <p>
+        When planning a cash distribution, you can use this system to check whether applicants have already received cash. The comparison is done based on Syrian National IDs.
+    </p>
+
+    <ol class="instructions">
+        <li>Upload data: the cash distribution data that you upload should contain a column with National IDs of the person (or head of household) to duplicate check.
+        <table class="table data-example duplicate-check">
+        <tr>
+            <th class="national-id">National ID<span class="required"> * (required)</span><p class="subtitle">Syrian National ID of the person (or HoH) to run duplicate checks, to check whether they already received cash (11 digits)</p></th>
+        </tr>
+        <tr>
+            <td>92846103678</td>
+        </tr>
+        <tr>
+            <td>83764510394</td>
+        </tr>
+        </table>
+        </li>
+
+        <li>Set properties: enter the property options, including field delimeter, and text qualifier. Check in the preview that the data displays correctly. Click Next.</li>
+
+        <li>Select National ID column: select the National ID column name.</li>
+
+        <li>Results: the results of the import show:
+        <table class="table duplicate-check-results import-results">
+        <tr class="imported">
+            <th class="panel-name">Data no duplicates</th>
+            <th>These people are not in the system so are not recorded as having received cash - you can go ahead and pay them.</th>
+        </tr>
+        <tr class="duplicates">
+            <td class="panel-name">Duplicates</td>
+            <td>This data is a duplicate of other cash distribution data. This means that either you or another organisation has already given these people cash.</td>
+        </tr>
+        <tr class="errors">
+            <td class="panel-name">Errors</td>
+            <td>This data was NOT duplicate checked because it contains errors. E.g., the National ID is not 11 digits, the date format is incorrect, the transfer value is not a number, etc. Click on each error for more details.</td>
+        </tr>
+        </table>
+        <p>
+            If needed, you can revert the import by clicking the "Revert Import" button at the top.
+        </p>
+        </li>
+    </ol>
+
 </div>
