@@ -1,22 +1,14 @@
-name: Test Unit
+name: Run unit and integration tests
 
 on:
-  workflow_call:
-    inputs:
-      php-version:
-        required: true
-        type: string
-      runs-on:
-        required: true
-        type: string
-      espocrm-version:
-        required: true
-        type: string
+  release:
+    types: [ published ]
+  workflow_dispatch:
 
 jobs:
   test:
-    name: Unit Tests
-    runs-on: ${{ inputs.runs-on }}
+    name: Unit and Integration Tests
+    runs-on: ubuntu-22.04
     env:
       TEST_DATABASE_HOST: '127.0.0.1'
       TEST_DATABASE_PORT: '8888'
@@ -41,7 +33,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: espocrm/espocrm
-        ref: ${{ inputs.espocrm-version }}
+        ref: '8.0.2'
 
     - name: Setup Node.js
       uses: actions/setup-node@v1
@@ -51,7 +43,7 @@ jobs:
     - name: Setup PHP with Composer
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ inputs.php-version }}
+        php-version: '8.1'
         tools: composer:v2
         ini-values: memory_limit=1024M
 
@@ -81,7 +73,7 @@ jobs:
         cat <<EOF > ./data/config.php
         <?php
         return [
-          'version' => '${{ inputs.espocrm-version }}',
+          'version' => '8.0.2',
           'defaultCurrency' => 'USD',
           'baseCurrency' => 'USD',
         ];
@@ -118,3 +110,6 @@ jobs:
 
     - name: Unit testing
       run: vendor/bin/phpunit tests/unit
+
+    - name: Integration testing
+      run: vendor/bin/phpunit tests/integration
