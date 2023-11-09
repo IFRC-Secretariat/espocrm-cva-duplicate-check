@@ -115,16 +115,24 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 .home-content .page-header {
     margin-bottom: 25px;
 }
-.home-content {
-    max-width: 850px;
-}
 .home-content .required {
     color: red;
+}
+.home-content table.data-example {
+    max-width: 1000px;
+    margin-top: 10px;
 }
 .home-content table.data-example .subtitle {
     color: rgba(0, 0, 0, 0.6);
     font-size: 14px;
     margin-bottom: 0px;
+}
+.home-content .cash-distribution-results {
+    max-width: 1000px;
+    margin-top: 10px;
+}
+.home-content ol.instructions li {
+    margin-bottom: 10px;
 }
 
 /* USERS */
