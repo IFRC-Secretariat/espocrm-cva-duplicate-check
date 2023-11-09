@@ -1,8 +1,5 @@
 @import "/client/css/espo/light.css";
 
-table tr a {
-    text-decoration: underline;
-}
 table tr ul.dropdown-menu a {
     text-decoration: none;
 }
@@ -56,7 +53,7 @@ body[data-navbar=side] #navbar ul.tabs>li>a {
     --btn-primary-active-bg: #f6333f;
     --btn-primary-active-border: #f6333f;
     --btn-text-color: rgba(0, 0, 0, 0.8);
-    --link-color: rgba(0, 0, 0, 0.8)!important;
+    --link-color: #537898;
     --link-hover-color: rgba(0, 0, 0, 0.8);
     --body-bg: rgb(245, 243, 243);
 }
