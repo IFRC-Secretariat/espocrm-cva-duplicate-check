@@ -56,4 +56,11 @@ body[data-navbar=side] #navbar ul.tabs>li>a {
     --link-color: #537898;
     --link-hover-color: rgba(0, 0, 0, 0.8);
     --body-bg: rgb(245, 243, 243);
+    --btn-danger-bg: #666666;
+    --btn-danger-border: #666666;
+    --btn-danger-color: #fff;
+    --btn-danger-hover-bg: #666666;
+    --btn-danger-hover-border: #666666;
+    --btn-danger-active-bg: #666666;
+    --btn-danger-active-border: #666666;
 }
