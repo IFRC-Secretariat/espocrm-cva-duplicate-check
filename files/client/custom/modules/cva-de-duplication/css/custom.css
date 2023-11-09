@@ -100,7 +100,7 @@ div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name
     content: " - this data has NOT been checked because it contains errors";
 }
 .detail.duplicatecheck .panel-importedNoDuplicates .panel-title span::after {
-    content: " - the people with these National IDs have not received cash";
+    content: " - no cash distributions recorded for the people with these National IDs";
 }
 
 

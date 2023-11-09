@@ -4,7 +4,7 @@
             "__APPEND__",
             {
 	    		"name": "importedNoDuplicates",
-	    		"label": "Data - no duplicates",
+	    		"label": "Not received cash",
 	    		"view": "cva-de-duplication:views/import/record/panels/imported-no-duplicates",
                 "createDisabled": true,
                 "selectDisabled": true,
