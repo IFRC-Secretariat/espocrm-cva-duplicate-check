@@ -91,7 +91,7 @@ First, link your domain name to your server by configuring the DNS, and ensure t
 
 To install this extension on top of the standard EspoCRM installation:
 
-1. Zip the `files`, `scripts`, and `manifest.json` folders and file, or download a release of this extension from the Github repository as a zip file. 
+1. Zip the `files`, `scripts`, and `manifest.json` folders and file, or download the zipped files from Github (from the repository page, or by downloading a release). 
 
 2. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
 
@@ -184,28 +184,20 @@ In `Administration` → Authentication, set the following fields:
 | Password must contain letters of both upper and lower case | ✔ |
 
 
-#### Visual customisations
+#### User interface and notifications
 
-We suggest the following customisations which affect the display (but do not affect funcionality):
+Under `Administration` → `User Interface`, set the following:
 
 - User interface: under `Administration` → `User Interface`, set the following:
 
     | Field name | Field value | Description |
     | -------- | ------- | ------- |
     | Company Logo   |  | Select a logo |
-    | Application Name   | SARC CVA de-duplication system | |
-    | Theme   | Hazyblue | |
+    | Application Name   | SARC CVA de-duplication system | Or choose a name |
     | Disable User Themes | ✔ | |
     | Disable Avatars  | ✔ | |
-    | Records Per Page  | 200 | |
-    | Records Per Page (Small) | 10 | |
-    | Tab List | Cash Distributions, Import, Users, Teams | |
-    | Quick Create List | | (Empty) |
-    | Dashboard Layout | | (Empty) |
 
-- System customiations: under ```Administration``` → ```Settings```, set ```Global Search Entity List``` to ```CashDistribution, User```.
-
-- Notifications: under ```Administration``` → ```Notifications```, turn off all ```In-app Notifications``` and ```Email Notifications```.
+Notification settings can be set under `Administration` → `Notifications`.
 
 
 ## Docker

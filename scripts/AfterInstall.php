@@ -18,8 +18,10 @@ class AfterInstall
         $config->set('passwordGenerateLength', 16);
         $config->set('dashboardLayout', []);
         $config->set('theme', 'Hazyblue');
-        $config->set('recordsPerPage', 100);
-        $config->set('recordsPerPageSmall', 10);
+        $config->set('recordsPerPage', 200);
+        $config->set('recordsPerPageSmall', 100);
+        $config->set('recordsPerPageSelect', 100);
+        $config->set('recordsPerPageKanban', 100);
         $config->set('applicationName', 'SARC CVA de-duplication system');
         $config->set('theme', 'RCRC');
 
