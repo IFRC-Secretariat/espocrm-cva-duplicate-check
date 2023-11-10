@@ -68,6 +68,7 @@ First, link your domain name to your server by configuring the DNS, and ensure t
     wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
     sudo bash install.sh --ssl --letsencrypt --domain=mydomain.com --email=emailaddress@email.com --clean
     ```
+    Note that the `docker-compose.yml` file is saved in `/var/www/espocrm/docker-compose.yml`, and the volumes are in `/var/www/espocrm/data`.
     Take note of the username and password for admin access which are printed to the terminal.
 
 2. Verify that you can view and login to the EspoCRM site at https://yourdomain.com.
@@ -90,7 +91,7 @@ First, link your domain name to your server by configuring the DNS, and ensure t
 
 To install this extension on top of the standard EspoCRM installation:
 
-1. Download a release of this extension from the Github repository as a zip file. 
+1. Zip the `files`, `scripts`, and `manifest.json` folders and file, or download a release of this extension from the Github repository as a zip file. 
 
 2. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
 
@@ -163,20 +164,40 @@ Set the following ```Field Level``` permissions:
 | Cash Distributions | |
 | | Partners | <span style="color: #6BC924;">yes</span> | <span style="color: rgb(242, 51, 51);">no</span> |
 
+
+#### Email
+
+To enable email sending, go to Administration -> Outbound Emails at `/#Admin/outboundEmails`, and add SMTP details. E.g. if using [Sendgrid](https://sendgrid.com/), the host is `smtp@sendgrid.net`, the username is `apikey`, and the password is the API key.
+
+
+#### Authentication
+
+In `Administration` → Authentication, set the following fields:
+
+| Field name | Value | 
+| -------- | ------- | 
+| Enable 2-Factor Authentication | ✔ | 
+| Available 2FA methods | TOTP, Email | 
+| Force regular users to set up 2FA | ✔ |
+| Length of generated passwords | 16 |
+| Minimum password length | 16 |
+| Password must contain letters of both upper and lower case | ✔ |
+
+
 #### Visual customisations
 
 We suggest the following customisations which affect the display (but do not affect funcionality):
 
-- User interface: under ```Administration``` → ```User Interface```, set the following:
+- User interface: under `Administration` → `User Interface`, set the following:
 
     | Field name | Field value | Description |
     | -------- | ------- | ------- |
     | Company Logo   |  | Select a logo |
     | Application Name   | SARC CVA de-duplication system | |
     | Theme   | Hazyblue | |
-    | Disable User Themes | True | |
-    | Disable Avatars  | True | |
-    | Records Per Page  | 100 | |
+    | Disable User Themes | ✔ | |
+    | Disable Avatars  | ✔ | |
+    | Records Per Page  | 200 | |
     | Records Per Page (Small) | 10 | |
     | Tab List | Cash Distributions, Import, Users, Teams | |
     | Quick Create List | | (Empty) |
@@ -209,25 +230,52 @@ sudo docker commit -p [container-name] yyyy-mm-dd-espocrm
 These are saved as Docker images and are shown in the list: `docker images`.
 
 
+## Development
 
-## Customisations
+The development workflow should follow:
+
+1. Make changes to the files locally. You can set up a local instance to test on and make changes, [as described in the documentation](https://docs.espocrm.com/administration/installation-by-script/):
+
+    ```bash
+    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
+    sudo bash install.sh
+    ```
+    Make sure that everything works as expected. The following [EspoCRM commands](https://docs.espocrm.com/administration/commands/) are useful if making changes:
+    ```bash
+    php clear_cache.php # Clear the cache for new changes to take effect
+    php rebuild.php # Rebuild to clear the cache and update the database
+    ```
+
+2. Update the version in the `manifest.json`.
+
+3. Push changes to GitHub.
+
+4. Run unit and integration tests: go to `Actions`, then click `Run unit and integration tests` in the left menu. You can see the progress of the tests under `Actions`.
+
+5. If the tests have passed, [create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+
+
+
+## Annex
+
+### Customisations
 
 As far as possible, customisations are made using EspoCRM functionality for customisation.
 
-### CSS
+#### CSS
 
 CSS changes have been made following the [EspoCRM documentation](https://docs.espocrm.com/development/custom-css/), which included adding the files:
 
 - `custom/Espo/Custom/Resources/metadata/app/client.json`
 - `client/custom/css/custom.css`
 
-### Language changes
+#### Language changes
 
 For all language changes, added new files in: `custom/Espo/Custom/Resources/i18n/en_US/`.
 
 As currently only `en_US` is added, if EspoCRM is added in other languages (e.g. Arabic), then a new folder will need to be added in `custom/Espo/Custom/Resources/i18n/` with translations into that language.
 
-### Custom duplicate checking of DuplicateCheck against CashDistribution
+#### Custom duplicate checking of DuplicateCheck against CashDistribution
 
 Duplicate checking is not set by default for created entities. It has been set up for the new entities ```CashDistribution``` and ```DuplicateCheck``` following the (EspoCRM guidance for custom duplicate checking)[https://docs.espocrm.com/development/duplicate-check/], which included adding the files:
 
@@ -267,7 +315,7 @@ The `beforeSave` `Import` [hooks](https://docs.espocrm.com/development/hooks/) a
 - `custom\Espo\Custom\Hooks\Import\SetFieldValues` sets the value of the field `action` so that only import is allowed.
 
 
-### Setting teams field as teams of creating user
+#### Setting teams field as teams of creating user
 
 `assignTeam` `beforeSave` [hooks](https://docs.espocrm.com/development/hooks/) are added for `CashDistribution` and `DupilcateCheck` in `custom\Espo\Custom\Hooks\`. These set the `teams` field to be the team of the user creating the entity. This functionality is important because the `teams` field is used in permissions and visibility - users are only able to see data where the `teams` field of the data contains the team the user is in.
 
@@ -280,7 +328,7 @@ ifThen(
 );
 ```
 
-### Buttons on Cash Distribution list page
+#### Buttons on Cash Distribution list page
 
 Added a `Import Cash Distribution data` button and a `Check Duplicates` button to the Cash `Distribution` list page, using [EspoCRM customisation functionality for adding buttons](https://docs.espocrm.com/development/custom-buttons/). Buttons: `Import Cash Distribution data` button, and `Check Duplicates` button.
 
@@ -289,7 +337,7 @@ Added a `Import Cash Distribution data` button and a `Check Duplicates` button t
 - Created: `client/custom/src/import-duplicate-check-data.js`
 
 
-### Home page customisations
+#### Home page customisations
 
 Customisations to the home page have been made based on [similar EspoCRM documentation for customising entity views](https://docs.espocrm.com/development/custom-views/).
 
@@ -300,7 +348,7 @@ Added files:
 - `Custom/Resources/metadata/clientDefs/Home.json`, based on (and to replace) `Espo/Resources/metadata/clientDefs/Home.json` with modifications.
 
 
-### “Imported no duplicates” panel on import results page
+#### “Imported no duplicates” panel on import results page
 
 It was a requirement to be able to view and download data with no duplicates on the import results page, after running a duplicate check.
 
@@ -321,7 +369,7 @@ File changes:
     - Added the new option `imported-no-duplicates`
 
 
-### Import page import selection
+#### Import page import selection
 
 On the import page, I wanted to change the labels for selecting an entity to import, to be more descriptive and user friendly. To do this it was necessary to make a **hard-coded** (non-functional):
 
@@ -332,7 +380,7 @@ On the import page, I wanted to change the labels for selecting an entity to imp
 This change is not functional. It was too complicated to do this in an update secure way, it would have meant writing several files (`controllers/import.js`, `views/index.js`, `views/step1.js`).
 
 
-### Import results page
+#### Import results page
 
 Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
 
@@ -341,7 +389,7 @@ Customised the import results/ detail view based on the [EspoCRM documentation](
 - Created file: `client/custom/src/views/import/detail.js`, based on `client/src/views/import/detail.js`. Changed the header of the import detail page (removed the link, changed the text). Added a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`).
 
 
-### History page
+#### History page
 
 Customised the import list view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
 
@@ -349,7 +397,7 @@ Customised the import list view based on the [EspoCRM documentation](https://doc
 - Created file `client/custom/src/views/import/list.js`, based on `client/src/views/import/list.js`. Set the header so that the title is “History”.
 
 
-### Import data validation - EspoCRM BUG, fix in EspoCRM 8.0.0
+#### Import data validation - EspoCRM BUG, fix in EspoCRM 8.0.0
 
 Bug found found where invalid import data is converted to default, blank, or unexpected values in parsing. This parsing is done before data validation so cannot be fixed by implementing [custom validation](https://docs.espocrm.com/development/custom-field-type/#backend-validator). Issue raised and fixed on [Github](https://github.com/espocrm/espocrm/issues/2801). The fix is due to be included in version 8.0.0, ETA end of August.
 
