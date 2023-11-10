@@ -27,7 +27,7 @@
             "buttons": [
                 "__APPEND__",
                 {
-                    "label": "View History",
+                    "label": "View Import list",
                     "link": "#Import/list",
                     "style": "default"
                 }

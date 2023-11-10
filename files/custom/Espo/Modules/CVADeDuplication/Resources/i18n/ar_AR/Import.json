@@ -6,7 +6,8 @@
         "Results": "Results",
         "New CashDistribution with same params": "New Cash Distribution import with same params",
         "New DuplicateCheck with same params": "New Duplicate Check with same params",
-        "importedNoDuplicates": "Data - no duplicates"
+        "importedNoDuplicates": "Data - no duplicates",
+        "View Import list": "View previous Cash Distributions and Duplicate Checks"
     },
     "selectOptions": {
         "CashDistribution": "Import cash distribution data",
