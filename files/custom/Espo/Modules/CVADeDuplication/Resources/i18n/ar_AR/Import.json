@@ -17,7 +17,7 @@
         "DuplicateCheck": "Duplicate check"
     },
     "list": {
-        "Title": "Previous Cash Distributions and Duplicate Checks"
+        "Title": "History"
     },
     "fields": {
         "action": "Action"
