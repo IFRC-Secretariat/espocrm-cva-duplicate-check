@@ -4,6 +4,7 @@
         "onlyMy"
     ],
     "kanbanViewMode": false,
+    "listPagination": true,
     "color": null,
     "iconClass": "far fa-credit-card",
     "menu": {

@@ -3,5 +3,6 @@
     "boolFilterList": [
         "onlyMy"
     ],
-    "iconClass": "fas fa-network-wired"
+    "iconClass": "fas fa-network-wired",
+    "listPagination": true
 }

@@ -1,4 +1,6 @@
 {
+    
+    "listPagination": true,
     "bottomPanels": {
     	"detail": [
             "__APPEND__",
