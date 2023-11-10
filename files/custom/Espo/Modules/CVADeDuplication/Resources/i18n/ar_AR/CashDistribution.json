@@ -1,5 +1,22 @@
 {
+  "fields": {
+      "name": "National ID",
+      "teams": "Partners",
+      "date": "Date",
+      "governorate": "Governorate",
+      "transferValue": "Transfer Value"
+  },
+  "links": [],
   "labels": {
-    "Create CashDistribution": "إنشاء {الكيانTypeTranslated}"
+      "Create CashDistribution": "إنشاء {الكيانTypeTranslated}",
+      "Import data": "Import data",
+      "Check duplicates": "Check duplicates"
+  },
+  "tooltips": {
+      "name": "National ID of the individual who received cash (head of household or household member)",
+      "date": "Transfer date"
+  },
+  "buttons": {
+    
   }
 }
