@@ -1,5 +1,19 @@
 @import "/client/css/espo/light.css";
 
+/* Navbar: make the logo bigger */
+header .navbar .navbar-header .navbar-logo-container img, header .navbar .navbar-header .navbar-logo-container a {
+    height: 120px!important;
+}
+header .navbar .navbar-header {
+    height: 150px!important;
+    padding-bottom: 17px!important;
+}
+#login .logo-container {
+    height: 100px;
+    padding: 10px 10px 0px 10px;
+}
+
+/* */
 table tr ul.dropdown-menu a {
     text-decoration: none;
 }
