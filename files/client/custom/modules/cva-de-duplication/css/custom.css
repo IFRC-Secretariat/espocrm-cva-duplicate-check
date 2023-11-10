@@ -183,6 +183,13 @@ ul.dropdown-menu.actions-menu li:has(a[data-action="merge"]){
 .record .edit[data-scope="CashDistribution"] .record-grid .side {
     display: None;
 }
+/* Hide options in user preferences page */
+.edit[data-scope="Preferences"] .record-grid .tabs button.btn[data-tab="2"] {
+    display: None;
+}
+.edit[data-scope="Preferences"] .record-buttons button.dropdown-toggle {
+    display: None;
+}
 /* Hide not needed fields: default team, roles, working time calendar, stream, gender, title */
 .record .edit[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"], .record .detail[data-scope="User"] .record-grid .form-group[data-name="defaultTeam"] {
     display: None;
