@@ -127,33 +127,6 @@ Logs can be accessed at `/var/www/espocrm/data/espocrm/data/logs/`. The files ar
 
 Customisations need to be made in the front-end of EspoCRM to configure settings which affect the database.
 
-#### Roles
-
-Under ```Administration``` → ```Roles```, create a role with the ```Name``` set to ```Partner```. Set ```Export Permission ``` to ```yes```, and all other permissions to ```no```. Set the following ```Scope Level``` permissions:
-
-|  | Access | Create | Read | Edit | Delete | Stream |
-| -------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| Activities | <span style="color: rgb(242, 51, 51);">disabled</span> |
-| Calendar | <span style="color: rgb(242, 51, 51);">disabled</span> |
-| Cash Distributions | <span style="color: #6BC924;">enabled</span> | <span style="color: #6BC924;">yes</span> | <span style="color: #999900;">team</span> | <span style="color: #999900;">team</span> | <span style="color: #999900;">team</span> |
-| Currency | <span style="color: rgb(242, 51, 51);">disabled</span> | | | |
-| Duplicate Checks	 | <span style="color: #6BC924;">enabled</span> | <span style="color: #6BC924;">yes</span> | <span style="color: #999900;">team</span> | <span style="color: #999900;">team</span> | <span style="color: rgb(242, 51, 51);">no</span> |
-| Email Templates | <span style="color: rgb(242, 51, 51);">disabled</span> | | | | |
-| External Accounts	 | <span style="color: rgb(242, 51, 51);">disabled</span> |
-| Personal Email Accounts	 | <span style="color: rgb(242, 51, 51);">disabled</span> |
-| Teams | <span style="color: rgb(242, 51, 51);">disabled</span> | | |
-| Tools | <span style="color: #6BC924;">enabled</span> |
-| Users | <span style="color: #6BC924;">enabled</span> | | <span style="color: #999900;">team</span> | <span style="color: rgb(242, 51, 51);">no</span> |
-| Webhooks | <span style="color: rgb(242, 51, 51);">disabled</span> |
-| Working Time Calendars | <span style="color: rgb(242, 51, 51);">disabled</span> |
-
-Set the following ```Field Level``` permissions:
-
-|  |  | Read | Edit |
-| -------- | ------- | ------- | ------- |
-| Cash Distributions | |
-| | Partners | <span style="color: #6BC924;">yes</span> | <span style="color: rgb(242, 51, 51);">no</span> |
-
 
 #### Email and 2FA
 

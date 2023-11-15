@@ -26,6 +26,61 @@ class AfterInstall
         $config->set('recordsPerPageKanban', 100);
         $config->set('theme', 'RCRC');
 
+        # Create a Partner role entity
+        $entityManager = $container->get('entityManager');
+        $partnerRole = $entityManager->getRepository('Role')->where(['name' => 'Partner'])->findOne();
+        if (!$partnerRole) {
+            $partnerRole = $entityManager->getEntity('Role');
+        }
+        $partnerRole->set([
+            'name' => 'Partner',
+            'exportPermission' => 'yes',
+            'userPermission' => 'no',
+            'assignmentPermission' => 'no',
+            'portalPermission' => 'no',
+            'groupEmailAccountPermission' => 'no',
+            'dataPrivacyPermission' => 'no',
+            'massUpdatePermission' => 'no',
+            'followerManagementPermission' => 'no',
+            'messagePermission' => 'no',
+            'data' => array(
+                "Activities" => false,
+                "Calendar" => false,
+                "CashDistribution" => array(
+                    "create" => "yes",
+                    "read" => "team",
+                    "edit" => "team",
+                    "delete" => "team"
+                ),
+                "Currency" => false,
+                "DuplicateCheck" => array(
+                    "create" => "yes",
+                    "read" => "team",
+                    "edit" => "team",
+                    "delete" => "no"
+                ),
+                "EmailTemplateCategory" => false,
+                "EmailTemplate" => false,
+                "Email" => false,
+                "ExternalAccount" => false,
+                "EmailAccountScope" => false,
+                "Team" => false,
+                "Import" => true,
+                "User" => array(
+                    "read" => "team",
+                    "delete" => "no"
+                ),
+                "Webhook" => false,
+                "WorkingTimeCalendar" => false
+            ),
+            'fieldData' => array(
+                "CashDistribution" => array(),
+                'DuplicateCheck' => array(),
+                'User' => array(),
+            )
+         ]);
+         $entityManager->saveEntity($partnerRole);
+
         # Save changes and clear cache
         $config->save();
         $this->clearCache();
