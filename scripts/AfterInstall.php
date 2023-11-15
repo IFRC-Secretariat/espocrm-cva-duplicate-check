@@ -16,6 +16,8 @@ class AfterInstall
 
         # Set other user interface config options
         $config->set('passwordGenerateLength', 16);
+        $config->set('passwordStrengthLength', 16);
+        $config->set('passwordStrengthBothCases', true);
         $config->set('dashboardLayout', []);
         $config->set('theme', 'Hazyblue');
         $config->set('recordsPerPage', 200);

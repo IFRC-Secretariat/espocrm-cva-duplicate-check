@@ -155,23 +155,17 @@ Set the following ```Field Level``` permissions:
 | | Partners | <span style="color: #6BC924;">yes</span> | <span style="color: rgb(242, 51, 51);">no</span> |
 
 
-#### Email
+#### Email and 2FA
 
 To enable email sending, go to Administration -> Outbound Emails at `/#Admin/outboundEmails`, and add SMTP details. E.g. if using [Sendgrid](https://sendgrid.com/), the host is `smtp@sendgrid.net`, the username is `apikey`, and the password is the API key.
 
-
-#### Authentication
-
-In `Administration` → Authentication, set the following fields:
+To set two-factor authentication, go to `Administration` → `Authentication`, and set the following fields:
 
 | Field name | Value | 
 | -------- | ------- | 
 | Enable 2-Factor Authentication | ✔ | 
 | Available 2FA methods | TOTP, Email | 
 | Force regular users to set up 2FA | ✔ |
-| Length of generated passwords | 16 |
-| Minimum password length | 16 |
-| Password must contain letters of both upper and lower case | ✔ |
 
 
 #### User interface and notifications
