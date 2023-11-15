@@ -2,7 +2,5 @@
     "cssList": [
         "__APPEND__",
         "client/custom/modules/cva-de-duplication/css/custom.css"
-    ],
-    "favicon": "client/custom/modules/cva-de-duplication/img/favicon.png",
-    "favicon196": "client/custom/modules/cva-de-duplication/img/favicon196x196.png"
+    ]
 }

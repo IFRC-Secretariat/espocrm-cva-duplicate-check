@@ -1,5 +1,4 @@
 {
-    "logo": "client/custom/modules/cva-de-duplication/img/sarc_logo.png",
     "stylesheet": "client/custom/modules/cva-de-duplication/css/rcrc.css",
     "stylesheetIframe": "client/css/espo/light-iframe.css",
     "textColor": "#333333",

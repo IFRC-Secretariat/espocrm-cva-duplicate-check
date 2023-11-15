@@ -193,6 +193,7 @@ Under `Administration` → `User Interface`, set the following:
     | Field name | Field value | Description |
     | -------- | ------- | ------- |
     | Application Name   | SARC CVA de-duplication system | Or choose a name |
+    | Company Logo | | Upload a logo |
     | Disable User Themes | ✔ | |
     | Disable Avatars  | ✔ | |
 

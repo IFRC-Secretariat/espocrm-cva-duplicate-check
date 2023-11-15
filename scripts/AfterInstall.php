@@ -22,7 +22,6 @@ class AfterInstall
         $config->set('recordsPerPageSmall', 100);
         $config->set('recordsPerPageSelect', 100);
         $config->set('recordsPerPageKanban', 100);
-        $config->set('applicationName', 'SARC CVA de-duplication system');
         $config->set('theme', 'RCRC');
 
         # Save changes and clear cache

@@ -1,9 +1,9 @@
 <div class="page-header">
-    <h1>SARC CVA Duplication Check Platform</h1>
+    <h1>CVA Duplication Check Platform</h1>
 </div>
 <div class="home-content">
     <p>
-        This platform is managed by <a href="https://sarc.sy">The Syrian Arab Red Crescent</a>, and is for collaboration and duplicate checking on cash activities between partners in Syria. It can be used for uploading data on cash distributions, and running duplicate checks. 
+        This platform is for collaboration and duplicate checking on cash activities between humanitarian organisations/ partners. It can be used for uploading data on cash distributions, and running duplicate checks. 
         Click the buttons to upload cash distribution data or run a duplicate check. See below for more information.
     </p>
     <a role="button" tabindex="0" class="btn btn-default btn-xs-wide main-header-manu-action action" data-name="importCashDistributionData" data-action="importCashDistributionData" data-handler="cva-de-duplication:import-cash-distribution-data">
