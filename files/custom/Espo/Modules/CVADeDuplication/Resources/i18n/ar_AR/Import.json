@@ -9,10 +9,6 @@
         "importedNoDuplicates": "Data - no duplicates",
         "View Import list": "View previous Cash Distributions and Duplicate Checks"
     },
-    "selectOptions": {
-        "CashDistribution": "Import cash distribution data",
-        "DuplicateCheck": "Run duplicate check"
-    },
     "importEntityDescriptive": {
         "CashDistribution": "Cash distribution data import",
         "DuplicateCheck": "Duplicate check"

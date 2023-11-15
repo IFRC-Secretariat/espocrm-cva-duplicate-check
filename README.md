@@ -123,16 +123,6 @@ To set up EspoCRM on a server, follow the instructions below.
 Logs can be accessed at `/var/www/espocrm/data/espocrm/data/logs/`. The files are installed at `/var/www/espocrm/`. To remove a previous installation, run: `rm -r /var/wwww/espocrm/`.
 
 
-### Hard coded change
-
-There is just one hard-coded change (as described [here](#import-page-import-selection)). This changes the display values of the `entityType` drop-down field on the Import (step 1) page. This makes it more user friendly, changing them from `Cash Distribution` and `Duplicate Check`, to `Import cash distribution data` and `Run duplicate check`.
-
-To implement this change:
-
-- Change line 215 of `client/src/views/import/step1.js` from: `translation: Global.scopeNamesPlural`, to: `translation: Import.selectOptions`.
-- In `client/lib/espo-extra.js`, ctrl F to find and change `Global.scopeNamesPlural` to `Import.selectOptions`.
-
-
 ### Front-end customisations
 
 Customisations need to be made in the front-end of EspoCRM to configure settings which affect the database.
@@ -359,17 +349,6 @@ File changes:
     - Created new methods specific to based on the methods: `findResultRecords`, `addImportEntityJoin`, `countResultRecords`
 - Created new file: `client/custom/src/views/import/record/detail.js`, based on `client/src/views/import/record/detail.js`
     - Added the new option `imported-no-duplicates`
-
-
-#### Import page import selection
-
-On the import page, I wanted to change the labels for selecting an entity to import, to be more descriptive and user friendly. To do this it was necessary to make a **hard-coded** (non-functional):
-
-- Changed line 215 of `client/src/views/import/step1.js` from: `translation: Global.scopeNamesPlural`, to: `translation: Import.selectOptions`.
-
-- Added a new item `selectOptions` in `custom/Espo/Custom/Resources\i18n\en_US\Import.json` for the new translation. 
-
-This change is not functional. It was too complicated to do this in an update secure way, it would have meant writing several files (`controllers/import.js`, `views/index.js`, `views/step1.js`).
 
 
 #### Import results page

@@ -36,6 +36,15 @@
 .import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="dateFormat"]), .import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="decimalMark"]) {
     display: None;
 }
+/* Add description to EntityType options */
+.import-container .panel-body div[data-name="entityType"] .selectize-control div[data-value="CashDistribution"]::after {
+    content: " - upload cash distribution data";
+    color: rgba(0, 0, 0, 0.6);
+}
+.import-container .panel-body div[data-name="entityType"] .selectize-control div[data-value="DuplicateCheck"]::after {
+    content: " - run duplicate check";
+    color: rgba(0, 0, 0, 0.6);
+}
 
 /* IMPORT STEP 2 */
 /* Hide options in field drop-down */
