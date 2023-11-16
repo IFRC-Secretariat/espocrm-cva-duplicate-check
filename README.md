@@ -10,7 +10,7 @@ The software is based on [EspoCRM](https://www.espocrm.com/). Customisations hav
 
 ## Setup
 
-### Server setup
+### 1. Server setup
 
 Follow the instructions below to set up a remote server to install the system on. If you are installing locally or already have a server set up, skip this step.
 
@@ -42,7 +42,7 @@ Follow the instructions below to set up a remote server to install the system on
     ufw enable
     ```
 
-### EspoCRM setup
+### 2. EspoCRM setup
 
 The following will install a standard EspoCRM installation. The files are installed at `/var/www/espocrm/`, and logs are at `/var/www/espocrm/data/espocrm/data/logs/`.
 To remove a previous installation, run: `sudo rm -r /var/wwww/espocrm/`.
@@ -87,45 +87,20 @@ First, link your domain name to your server by configuring the DNS, and ensure t
     ```
 
 
-### Extension installation
+### 3. Extension installation
 
 To install this extension on top of the standard EspoCRM installation:
 
-1. Zip the `files`, `scripts`, and `manifest.json` folders and file, or download the zipped files from Github (from the repository page, or by downloading a release). 
+1. Zip the `files`, `scripts`, and `manifest.json` folders and file. You can do this by zipping the files locally, or downloading the zipped files from Github (from the repository page under `Code`, or by downloading a release) and then unzipping, and zipping one level lower. 
 
-2. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
+2. Login to EspoCRM as an administrator, go to `Administration` -> `Extensions`, upload the zip file, and click the Install button.
 
 3. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
 
 
-### Server setup
+### 4. User interface customisations
 
-To set up EspoCRM on a server, follow the instructions below.
-
-1. Install EspoCRM by following the instructions in the [documentation](https://docs.espocrm.com/administration/installation-by-script/):
-
-    ```bash
-    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
-    sudo bash install.sh -y --ssl --letsencrypt --domain=my-espocrm.com --email=email@my-domain.com
-    ```
-
-2. Add the following to crontab to set up auto renewal of the SSL certificate, changing `myuser` to the username of the user.
-    ```bash
-    0 1 * * * /home/myuser/espocrm/command.sh cert-renew    
-    ```
-
-3. Download a release of this extension from the Github repository as a zip file. 
-
-4. Login to EspoCRM as an administrator, go to Administration -> Extensions, upload the zip file, and click the Install button.
-
-5. Run the [front-end-customisations](#front-end-customisations) which affect the user interface and are saved in the database.
-
-Logs can be accessed at `/var/www/espocrm/data/espocrm/data/logs/`. The files are installed at `/var/www/espocrm/`. To remove a previous installation, run: `rm -r /var/wwww/espocrm/`.
-
-
-### Front-end customisations
-
-Customisations need to be made in the front-end of EspoCRM to configure settings which affect the database.
+Customisations need to be made in the user interface (UI) of EspoCRM.
 
 
 #### Email and 2FA
@@ -141,42 +116,80 @@ To set two-factor authentication, go to `Administration` → `Authentication`, a
 | Force regular users to set up 2FA | ✔ |
 
 
-#### User interface and notifications
+#### User interface
 
 Under `Administration` → `User Interface`, set the following:
 
-- User interface: under `Administration` → `User Interface`, set the following:
+| Field name | Field value | Description |
+| -------- | ------- | ------- |
+| Application Name   | CVA de-duplication system | Or choose a name |
+| Company Logo | | Upload a logo |
+| Disable User Themes | ✔ | |
+| Disable Avatars  | ✔ | |
 
-    | Field name | Field value | Description |
-    | -------- | ------- | ------- |
-    | Application Name   | SARC CVA de-duplication system | Or choose a name |
-    | Company Logo | | Upload a logo |
-    | Disable User Themes | ✔ | |
-    | Disable Avatars  | ✔ | |
+
+#### Notifications
 
 Notification settings can be set under `Administration` → `Notifications`.
 
 
-## Docker
+## Usage
 
-The set up is done using Docker. Some helpful Docker information is given in this section.
+### Users and roles
 
-### General commands
+Users can use the platform to run duplicate checks and upload data on cash distributions. All users should belong to a `Partner`, which should be the organisation name, e.g. WFP, UNICEF, IFRC, etc. To create a partner, click `Partners` in the left menu, click `Create Partner`, and set the `Name` to the organisation name, and set `Roles` to `Partner`. The `Partner` role is created automatically when the extension is installed, and gives users access to:
 
-```bash
-docker ps # List running Docker containers
-docker ps -a # List all Docker containers (running and stopped)
-docker images # List images
-```
+- Create Cash Distributions and run Duplicate Checks (including importing data)
+- View and edit Cash Distributions and Duplicate Checks **of their partner only**
+- Delete Cash Distributions **of their partner only**
+- View users **of their partner only**
 
-### Backups
+### Uploading cash distributions
 
-To create a backup of the Docker containers at any time, run:
+It is important to **always** upload data into the platform **as soon as possible** after carrying out a cash distribution. This is so that when other organisations run duplicate checks, they can see who has already received cash. Follow these steps to upload cash distribution data:
 
-```bash
-sudo docker commit -p [container-name] yyyy-mm-dd-espocrm
-```
-These are saved as Docker images and are shown in the list: `docker images`.
+1. Upload data: the cash distribution data that you upload should contain a column with National IDs of the person (or head of household) who received the cash. You can also include data on governorate, date of transfer, and transfer value:
+
+    | National ID * (required) | Governorate | Date | Transfer value |
+    | -------- | ------- | ------- | ------- |
+    | 92846103678 | Homs | 06/11/2023 | 600000 |
+    | 23846287365 | Damascus | 30/10/2023 | 800000 |
+
+2. Set properties: enter the property options, including field delimeter, date format (e.g. in the data above this would be `DD/MM/YYYY`), decimal mark, and text qualifier. Check in the preview that the data displays correctly. Click `Next`.
+
+3. Select columns: select the column names to match up to the system column names.
+
+4. Results: the results of the import show:
+
+    - **Imported**: This data was successfully imported and saved in the system.
+    - **Duplicates**: This data was saved in the system, but is a duplicate of other cash distribution data. This means that either you or another organisation has already given these people cash.
+    - **Errors**: This data was NOT saved in the system because it contains errors. E.g., the National ID is not 11 digits, the date format is incorrect, the transfer value is not a number, etc. Click on each error for more details.
+
+    If needed, you can revert the import by clicking the "Revert Import" button at the top.
+
+
+### Running duplicate checks
+
+When planning a cash distribution, you can use this system to check whether applicants have already received cash. The comparison is done based on National IDs. Follow these steps to run a duplicate check:
+
+1. Upload data: the cash distribution data that you upload should contain a column with National IDs of the person (or head of household) to duplicate check.
+
+    | National ID * (required) | 
+    | -------- |
+    | 92846103678 |
+    | 83764510394 |
+
+2. Set properties: enter the property options, including field delimeter, and text qualifier. Check in the preview that the data displays correctly. Click Next.
+
+3. Select National ID column: select the National ID column name.
+
+4. Results: the results of the import show:
+
+    - **Data no duplicates**: These people are not in the system so are not recorded as having received cash - you can go ahead and pay them.
+    - **Duplicates**: This data is a duplicate of other cash distribution data. This means that either you or another organisation has already given these people cash.
+    - **Errors**: This data was NOT duplicate checked because it contains errors. E.g., the National ID is not 11 digits, the date format is incorrect, the transfer value is not a number, etc. Click on each error for more details.
+
+    If needed, you can revert the import by clicking the "Revert Import" button at the top.
 
 
 ## Development
@@ -205,11 +218,68 @@ The development workflow should follow:
 
 
 
-## Annex
 
-### Customisations
 
-As far as possible, customisations are made using EspoCRM functionality for customisation.
+# Annex
+
+## Docker
+
+The set up is done using Docker. Some helpful Docker information is given in this section.
+
+Generally useful Docker commands:
+
+```bash
+docker ps # List running Docker containers
+docker ps -a # List all Docker containers (running and stopped)
+docker images # List images
+```
+
+To create a backup of the Docker containers at any time, run:
+
+```bash
+sudo docker commit -p [container-name] yyyy-mm-dd-espocrm
+```
+These are saved as Docker images and are shown in the list: `docker images`.
+
+
+## Customisations
+
+As far as possible, customisations are made using EspoCRM functionality for customisation. The customisations are listed below according to their level of importance to the functionality of the site.
+
+### Level 1: visual customisations
+
+Customisations in this section are visual **only**. They do not affect the performance of the system, but do affect the usability and user experience.
+
+#### Home page customisations
+
+Customisations to the home page have been made based on [similar EspoCRM documentation for customising entity views](https://docs.espocrm.com/development/custom-views/).
+
+Added files:
+
+- `client/custom/src/views/home.js`, based on (and to replace) `client/src/views/home.js` with modifications.
+- `client/custom/res/templates/home.tpl`, based on (and to replace) `client/res/templates/home.tpl` with modifications.
+- `Custom/Resources/metadata/clientDefs/Home.json`, based on (and to replace) `Espo/Resources/metadata/clientDefs/Home.json` with modifications.
+
+#### Import history page
+
+Customised the import list view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
+
+- Set the custom view in `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`, for list.
+- Created file `client/custom/src/views/import/list.js`, based on `client/src/views/import/list.js`. Set the header so that the title is “History”.
+
+#### Buttons on Cash Distribution list page
+
+Added a `Import Cash Distribution data` button and a `Check Duplicates` button to the Cash `Distribution` list page, using [EspoCRM customisation functionality for adding buttons](https://docs.espocrm.com/development/custom-buttons/). Buttons: `Import Cash Distribution data` button, and `Check Duplicates` button.
+
+- Modified: `custom/Espo/Custom/Resources/metadata/clientDefs/CashDistribution.json` - added `menu` key and contents
+- Created: `client/custom/src/import-cash-distribution-data.js`
+- Created: `client/custom/src/import-duplicate-check-data.js`
+
+#### Language changes
+
+For all language changes, added new files in: `custom/Espo/Custom/Resources/i18n/en_US/`.
+
+As currently only `en_US` is added, if EspoCRM is added in other languages (e.g. Arabic), then a new folder will need to be added in `custom/Espo/Custom/Resources/i18n/` with translations into that language.
 
 #### CSS
 
@@ -218,11 +288,58 @@ CSS changes have been made following the [EspoCRM documentation](https://docs.es
 - `custom/Espo/Custom/Resources/metadata/app/client.json`
 - `client/custom/css/custom.css`
 
-#### Language changes
 
-For all language changes, added new files in: `custom/Espo/Custom/Resources/i18n/en_US/`.
+### Level 2: functionality
 
-As currently only `en_US` is added, if EspoCRM is added in other languages (e.g. Arabic), then a new folder will need to be added in `custom/Espo/Custom/Resources/i18n/` with translations into that language.
+The customisations below affect the functioning of the system, but are not critical. E.g., if these did not work, the system may be more likely to break.
+
+#### Import validation
+
+The `beforeSave` `Import` [hooks](https://docs.espocrm.com/development/hooks/) are run before an `Import` entity is saved:
+
+- `custom\Espo\Custom\Hooks\Import\CheckFieldValues` runs validation checks on the import:
+    - The entity type is either `CashDistribution` or `DuplicateCheck`
+    - The action is `create` (not update)
+    - Duplicate checking is not set to skip
+    - All selected fields are custom fields or `name` (not built-in fields)
+    - No selected fields are read-only fields
+    - Fields aren't selected multiple times in the field mapping
+    - Required fields are set in the field mapping
+
+- `custom\Espo\Custom\Hooks\Import\SetFieldValues` sets the value of the field `action` so that only import is allowed.
+
+#### “Imported no duplicates” panel on import results page
+
+It was a requirement to be able to view and download data with no duplicates on the import results page, after running a duplicate check. Therefore, although this is a visual change, it is important to the functionality of the site.
+
+File changes:
+
+- Created file: `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`
+    - Based on file: `/application/Espo/Resources/metadata/clientDefs/Import.json`, but adding another panel using `APPEND`
+    - Pointing to the view `custom:views/import/record/panels/imported-no-duplicates`, and `custom:views/import/record/detail`
+- Created file: `/client/custom/src/views/import/record/panels/imported-no-duplicates.js`
+    - Based on file `client/src/views/import/record/panels/imported.js`, but setting the link to: link: `importedNoDuplicates`
+- Created new file: `Espo/Custom/Services/Import.php`
+    - Extending the file `Espo/Services/Import.php`
+    - Based on the `findLinked` method, but calling the new functions `findResultRecordsImportedNoDuplicates` and `countResultRecordsImportedNoDuplicates`
+- Created new file: `Espo/Custom/Repositories/Import.php`
+    - Extending the file: `Espo/Repositories/Import.php`
+    - Created new methods specific to based on the methods: `findResultRecords`, `addImportEntityJoin`, `countResultRecords`
+- Created new file: `client/custom/src/views/import/record/detail.js`, based on `client/src/views/import/record/detail.js`
+    - Added the new option `imported-no-duplicates`
+
+#### Import results page
+
+Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
+
+- Set the custom view in: `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`, for detail.
+
+- Created file: `client/custom/src/views/import/detail.js`, based on `client/src/views/import/detail.js`. Changed the header of the import detail page (removed the link, changed the text). Added a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`).
+
+
+### Level 3: critical functionality
+
+The customisations below are integral to the functioning of the system. If these did not work, the system would not function at all for the intended purpose.
 
 #### Custom duplicate checking of DuplicateCheck against CashDistribution
 
@@ -248,25 +365,9 @@ Files added:
 - `custom\Espo\Custom\DuplicateCheckEntityType\Finder`
 
 
-#### Import validation
-
-The `beforeSave` `Import` [hooks](https://docs.espocrm.com/development/hooks/) are run before an `Import` entity is saved:
-
-- `custom\Espo\Custom\Hooks\Import\CheckFieldValues` runs validation checks on the import:
-    - The entity type is either `CashDistribution` or `DuplicateCheck`
-    - The action is `create` (not update)
-    - Duplicate checking is not set to skip
-    - All selected fields are custom fields or `name` (not built-in fields)
-    - No selected fields are read-only fields
-    - Fields aren't selected multiple times in the field mapping
-    - Required fields are set in the field mapping
-
-- `custom\Espo\Custom\Hooks\Import\SetFieldValues` sets the value of the field `action` so that only import is allowed.
-
-
 #### Setting teams field as teams of creating user
 
-`assignTeam` `beforeSave` [hooks](https://docs.espocrm.com/development/hooks/) are added for `CashDistribution` and `DupilcateCheck` in `custom\Espo\Custom\Hooks\`. These set the `teams` field to be the team of the user creating the entity. This functionality is important because the `teams` field is used in permissions and visibility - users are only able to see data where the `teams` field of the data contains the team the user is in.
+`assignTeam` `beforeSave` [hooks](https://docs.espocrm.com/development/hooks/) are added for `CashDistribution` and `DupilcateCheck` in `custom\Espo\Custom\Hooks\`. These set the `teams` field to be the team of the user creating the entity. This functionality is critical because the `teams` field is used in permissions and visibility - users are only able to see data where the `teams` field of the data contains the team the user is in.
 
 This functionality was added as [hooks](https://docs.espocrm.com/development/hooks/) for the purpose of version control, however it can alternatively be added in the front-end via the formula manager: `Admin → Entity Manager → {Entity} → Formula → Before Save Custom Script` with the following code:
 
@@ -276,75 +377,3 @@ ifThen(
   entity\addLinkMultipleId('teams', createdBy.teamsIds)
 );
 ```
-
-#### Buttons on Cash Distribution list page
-
-Added a `Import Cash Distribution data` button and a `Check Duplicates` button to the Cash `Distribution` list page, using [EspoCRM customisation functionality for adding buttons](https://docs.espocrm.com/development/custom-buttons/). Buttons: `Import Cash Distribution data` button, and `Check Duplicates` button.
-
-- Modified: `custom/Espo/Custom/Resources/metadata/clientDefs/CashDistribution.json` - added `menu` key and contents
-- Created: `client/custom/src/import-cash-distribution-data.js`
-- Created: `client/custom/src/import-duplicate-check-data.js`
-
-
-#### Home page customisations
-
-Customisations to the home page have been made based on [similar EspoCRM documentation for customising entity views](https://docs.espocrm.com/development/custom-views/).
-
-Added files:
-
-- `client/custom/src/views/home.js`, based on (and to replace) `client/src/views/home.js` with modifications.
-- `client/custom/res/templates/home.tpl`, based on (and to replace) `client/res/templates/home.tpl` with modifications.
-- `Custom/Resources/metadata/clientDefs/Home.json`, based on (and to replace) `Espo/Resources/metadata/clientDefs/Home.json` with modifications.
-
-
-#### “Imported no duplicates” panel on import results page
-
-It was a requirement to be able to view and download data with no duplicates on the import results page, after running a duplicate check.
-
-File changes:
-
-- Created file: `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`
-    - Based on file: `/application/Espo/Resources/metadata/clientDefs/Import.json`, but adding another panel using `APPEND`
-    - Pointing to the view `custom:views/import/record/panels/imported-no-duplicates`, and `custom:views/import/record/detail`
-- Created file: `/client/custom/src/views/import/record/panels/imported-no-duplicates.js`
-    - Based on file `client/src/views/import/record/panels/imported.js`, but setting the link to: link: `importedNoDuplicates`
-- Created new file: `Espo/Custom/Services/Import.php`
-    - Extending the file `Espo/Services/Import.php`
-    - Based on the `findLinked` method, but calling the new functions `findResultRecordsImportedNoDuplicates` and `countResultRecordsImportedNoDuplicates`
-- Created new file: `Espo/Custom/Repositories/Import.php`
-    - Extending the file: `Espo/Repositories/Import.php`
-    - Created new methods specific to based on the methods: `findResultRecords`, `addImportEntityJoin`, `countResultRecords`
-- Created new file: `client/custom/src/views/import/record/detail.js`, based on `client/src/views/import/record/detail.js`
-    - Added the new option `imported-no-duplicates`
-
-
-#### Import results page
-
-Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
-
-- Set the custom view in: `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`, for detail.
-
-- Created file: `client/custom/src/views/import/detail.js`, based on `client/src/views/import/detail.js`. Changed the header of the import detail page (removed the link, changed the text). Added a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`).
-
-
-#### History page
-
-Customised the import list view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
-
-- Set the custom view in `custom/Espo/Custom/Resources/metadata/clientDefs/Import.json`, for list.
-- Created file `client/custom/src/views/import/list.js`, based on `client/src/views/import/list.js`. Set the header so that the title is “History”.
-
-
-#### Import data validation - EspoCRM BUG, fix in EspoCRM 8.0.0
-
-Bug found found where invalid import data is converted to default, blank, or unexpected values in parsing. This parsing is done before data validation so cannot be fixed by implementing [custom validation](https://docs.espocrm.com/development/custom-field-type/#backend-validator). Issue raised and fixed on [Github](https://github.com/espocrm/espocrm/issues/2801). The fix is due to be included in version 8.0.0, ETA end of August.
-
-The issue is a bug and could potentially create erranous data, so I have implemented the fixes directly in the code by copying the fixes which were made in two EspoCRM commits [here](https://github.com/espocrm/espocrm/commit/0c26d35287d0f8ee53bd4ed502266c523c4e70cd, and [here](https://github.com/espocrm/espocrm/commit/753daebadf0336137134b2702ff196f294f30325). Upgrading to 8.0.0 will overwrite these changes but should include the fix.
-
-This affects the following files:
-
-- `application/Espo/Resources/i18n/en_US/Global.json`
-- `application/Espo/Tools/Import/Import.php`
-- `application/Espo/Classes/FieldValidators/IntType.php`
-- `application/Espo/Resources/metadata/fields/float.json`
-- `application/Espo/Resources/metadata/fields/int.json`
