@@ -281,6 +281,13 @@ For all language changes, added new files in: `files/custom/Espo/Modules/CVADeDu
 
 As currently only `en_US` is added, if EspoCRM is added in other languages (e.g. Arabic), then a new folder will need to be added in `files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/` with translations into that language.
 
+#### Theme
+
+This extension includes a new theme, `RCRC`, designed in IFRC colours. This can be turned on and off in the EspoCRM front-end, under `Administration` -> `User Interface`. The theme includes the files:
+
+- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/themes/RCRC.json` - this sets the theme details.
+- `files/client/custom/modules/cva-de-duplication/css/rcrc.css` - this includes CSS for the theme.
+
 #### CSS
 
 CSS changes have been made following the [EspoCRM documentation](https://docs.espocrm.com/development/custom-css/), which included adding the files:
