@@ -26,6 +26,14 @@ class AfterInstall
         $config->set('recordsPerPageKanban', 100);
         $config->set('theme', 'RCRC');
 
+        # Set currency settings
+        $config->set('currencyList', [0 => 'SYP']);
+        $config->set('defaultCurrency', 'SYP');
+        $config->set('baseCurrency', 'SYP');
+        $config->set('currencyRates', []);
+        $config->set('currencyFormat', 1);
+        $config->set('currencyDecimalPlaces', 2);
+
         # Create a Partner role entity
         $entityManager = $container->get('entityManager');
         $partnerRole = $entityManager->getRepository('Role')->where(['name' => 'Partner'])->findOne();

@@ -4,7 +4,9 @@
         "teams": "Partners",
         "date": "Date",
         "governorate": "Governorate",
-        "transferValue": "Transfer Value"
+        "transferValue": "Transfer Value",
+        "transferValueCurrency": "Transfer Value (Currency)",
+        "transferValueConverted": "Transfer Value (Converted)"
     },
     "links": [],
     "labels": {
@@ -14,6 +16,7 @@
     },
     "tooltips": {
         "name": "National ID of the individual who received cash (head of household or household member)",
-        "date": "Transfer date"
+        "date": "Transfer date",
+        "transferValue": "Transfer amount in Syrian Pounds (SYP)"
     }
 }

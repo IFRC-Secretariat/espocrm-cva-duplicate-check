@@ -14,7 +14,8 @@
   },
   "tooltips": {
       "name": "National ID of the individual who received cash (head of household or household member)",
-      "date": "Transfer date"
+      "date": "Transfer date",
+      "transferValue": "Transfer amount in Syrian Pounds (SYP)"
   },
   "buttons": {
     

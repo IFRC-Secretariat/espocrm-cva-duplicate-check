@@ -50,11 +50,15 @@
             "isCustom": true
         },
         "transferValue": {
-            "notNull": false,
-            "type": "float",
+            "type": "currency",
+            "onlyDefaultCurrency": true,
+            "conversionDisabled": true,
+            "decimal": false,
             "min": 0,
-            "decimalPlaces": 2,
             "isCustom": true
+        },
+        "transferValueCurrency": {
+            "default": "SYP"
         }
     },
     "links": {
