@@ -35,6 +35,7 @@ class SetFieldValues
                 if (array_key_exists($entityType, $actionFieldValues)) {
                     $entity->set('action', $actionFieldValues[$entityType]);
                 }
+                $entity->set('action', $entityType);
             }
         }
     }
