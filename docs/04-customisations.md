@@ -2,6 +2,10 @@
 
 As far as possible, customisations are made using EspoCRM functionality for customisation. The customisations are listed below, from most critical (affecting critical functionality), to least critical (affecting visual appearance and UI/ UX).
 
+- [Level 1: Critical functionality](#level-1-critical-functionality)
+- [Level 2: Non-critical functionality](#level-2-non-critical-functionality)
+- [Level 3: Visual customisations and UI/ UX](#level-3-visual-customisations-and-ui-ux)
+
 ## Level 1: Critical functionality
 
 The customisations below are integral to the functioning of the system. If these did not work, the system would not function at all for the intended purpose.
