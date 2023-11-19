@@ -1,6 +1,6 @@
 # Customisations
 
-As far as possible, customisations are made using EspoCRM functionality for customisation. The customisations are listed below according to their level of importance to the functionality of the site.
+As far as possible, customisations are made using EspoCRM functionality for customisation. The customisations are listed below, from most critical (affecting critical functionality), to least critical (affecting visual appearance and UI/ UX).
 
 ## Level 1: Critical functionality
 
@@ -8,12 +8,12 @@ The customisations below are integral to the functioning of the system. If these
 
 ### Custom duplicate checking of DuplicateCheck against CashDistribution
 
-Duplicate checking is not set by default for created entities. It has been set up for the new entities ```CashDistribution``` and ```DuplicateCheck``` following the (EspoCRM guidance for custom duplicate checking)[https://docs.espocrm.com/development/duplicate-check/], which included adding the files:
+Duplicate checking is not set by default for created entities. It has been set up for the new entities ```CashDistribution``` and ```DuplicateCheck``` following the [EspoCRM guidance for custom duplicate checking](https://docs.espocrm.com/development/duplicate-check/). Added files:
 
-- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/CashDistribution.json`
-- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/DuplicateCheck.json`
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/CashDistribution.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/CashDistribution.json)
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/DuplicateCheck.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/recordDefs/DuplicateCheck.json)
 
-Rather than using a custom `DuplicateWhereBuilder` as described in the documentation, we have used an existing one at `Espo/Classes/DuplicateWhereBuilders/Name.php`, as this compares based on the `Name` field which is what is needed.
+which contain:
 
 ```php
 {
@@ -21,20 +21,23 @@ Rather than using a custom `DuplicateWhereBuilder` as described in the documenta
 }
 ```
 
-A ```beforeSave``` ```ImportEntity``` [hook](https://docs.espocrm.com/development/hooks/) has been added, to run a duplicate check of the `DuplicateCheck` entity against `CashDistribution` data using `checkIsDuplicate`, and save the result in the `isDuplicate` property. `Service` and `Finder` classes are set in `custom\Espo\Custom\DuplicateCheckEntityType` following the structure of the usual EspoCRM duplicate check.
+This uses the existing `DuplicateWhereBuilder` at `Espo/Classes/DuplicateWhereBuilders/Name.php`, as this compares based on the `Name` field which in this case represents the Syrian National ID.
 
-Files added:
+With these changes, duplicate checking will be run, but duplicate checking for an entity compares imported data to other data of that entity. This means that `DuplicateCheck` data is compared to other `DuplicateCheck` data, rather than to `CashDistribution` data. To change this so that `DuplicateCheck` data is compared to `CashDistribution` data, a ```beforeSave``` ```ImportEntity``` [hook](https://docs.espocrm.com/development/hooks/) has been added. This uses `checkIsDuplicate` to run a duplicate check against `CashDistribution` data, and saves the results in the `isDuplicate` property. This uses custom `Service` and `Finder` classes. Added files:
 
-- `custom\Espo\Custom\Hooks\ImportEntity\DuplicateCheckCashDistributions`
-- `custom\Espo\Custom\DuplicateCheckEntityType\Serivce`
-- `custom\Espo\Custom\DuplicateCheckEntityType\Finder`
+- [files/custom/Espo/Modules/CVADeDuplication/Hooks/ImportEntity/DuplicateCheckCashDistributions.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/ImportEntity/DuplicateCheckCashDistributions.php)
+- [files/custom/Espo/Modules/CVADeDuplication/DuplicateCheckEntityType/Serivce.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/DuplicateCheckEntityType/Service.php)
+- [files/custom/Espo/Modules/CVADeDuplication/DuplicateCheckEntityType/Finder.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/DuplicateCheckEntityType/Finder.php)
 
 
 ### Setting teams field as teams of creating user
 
-`assignTeam` `beforeSave` [hooks](https://docs.espocrm.com/development/hooks/) are added for `CashDistribution` and `DupilcateCheck` in `custom\Espo\Custom\Hooks\`. These set the `teams` field to be the team of the user creating the entity. This functionality is critical because the `teams` field is used in permissions and visibility - users are only able to see data where the `teams` field of the data contains the team the user is in.
+[Hooks](https://docs.espocrm.com/development/hooks/) are added to set the `teams` field of created or imported `CashDistribution` or `DuplicateCheck` data to be the team of the user creating the entity. This is critical because the `teams` field is used in permissions - users are only able to see data where the `teams` field contains the team the user is in. Added files:
 
-This functionality was added as [hooks](https://docs.espocrm.com/development/hooks/) for the purpose of version control, however it can alternatively be added in the front-end via the formula manager: `Admin → Entity Manager → {Entity} → Formula → Before Save Custom Script` with the following code:
+- [files/custom/Espo/Modules/CVADeDuplication/Hooks/CashDistribution/AssignTeam.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/CashDistribution/AssignTeam.php)
+- [files/custom/Espo/Modules/CVADeDuplication/Hooks/DuplicateCheck/AssignTeam.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/DuplicateCheck/AssignTeam.php)
+
+This functionality was added as [hooks](https://docs.espocrm.com/development/hooks/) for the purpose of version control, however it can alternatively be added in the front-end as a [before-save script](https://docs.espocrm.com/administration/api-before-save-script/) via the formula manager: `Admin → Entity Manager → {Entity} → Formula → Before Save Custom Script` with the following code:
 
 ```php
 ifThen(
@@ -52,46 +55,55 @@ The customisations below affect the functioning of the system, but are not criti
 
 It was a requirement to be able to view and download data with no duplicates on the import results page, after running a duplicate check. Therefore, although this is a visual change, it is important to the functionality of the site.
 
-File changes:
+This is added as a new panel on the import detail page. Added files:
 
-- Created file: `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json`
-    - Based on file: `/application/Espo/Resources/metadata/clientDefs/Import.json`, but adding another panel using `APPEND`
-    - Pointing to the view `custom:views/import/record/panels/imported-no-duplicates`, and `custom:views/import/record/detail`
-- Created file: `files/client/custom/modules/cva-de-duplication/src/views/import/record/panels/imported-no-duplicates.js`
-    - Based on file `client/src/views/import/record/panels/imported.js`, but setting the link to: link: `importedNoDuplicates`
-- Created new file: `files/custom/Espo/Modules/CVADeDuplication/Services/Import.php`
-    - Extending the file `Espo/Services/Import.php`
-    - Based on the `findLinked` method, but calling the new functions `findResultRecordsImportedNoDuplicates` and `countResultRecordsImportedNoDuplicates`
-- Created new file: `files/custom/Espo/Modules/CVADeDuplication/Repositories/Import.php`
-    - Extending the file: `Espo/Repositories/Import.php`
-    - Created new methods specific to based on the methods: `findResultRecords`, `addImportEntityJoin`, `countResultRecords`
-- Created new file: `files/client/custom/modules/cva-de-duplication/src/views/import/record/detail.js`, based on `client/src/views/import/record/detail.js`
-    - Added the new option `imported-no-duplicates`
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json)
+    - Adds another panel to the import detail page, showing imported data without duplicates. Based on `/application/Espo/Resources/metadata/clientDefs/Import.json`.
+    - Points to a custom view for the import record details, which includes the new panel: `cva-de-duplication:views/import/record/detail`.
+    - Points to a custom view for the new panel: `cva-de-duplication:views/import/record/panels/imported-no-duplicates`.
+
+- [files/client/custom/modules/cva-de-duplication/src/views/import/record/detail.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/views/import/record/detail.js)
+    - Custom view for the import detail page; extends `client/src/views/import/record/detail.js`.
+    - Adds the new option `imported-no-duplicates`.
+
+- [files/client/custom/modules/cva-de-duplication/src/views/import/record/panels/imported-no-duplicates.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/views/import/record/panels/imported-no-duplicates.js)
+    - View for the new panel; based on `client/src/views/import/record/panels/imported.js`.
+    - Sets the link to: link: `importedNoDuplicates`.
+    - Calls `findLinkedImportedNoDuplicates` in the `Services` file below.
+
+- [files/custom/Espo/Modules/CVADeDuplication/Services/Import.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Services/Import.php)
+    - Extends `Espo/Services/Import.php`.
+    - Based on the `findLinked` method, but calls the new functions `findResultRecordsImportedNoDuplicates` and `countResultRecordsImportedNoDuplicates` in the `Repositories` file below.
+
+- [files/custom/Espo/Modules/CVADeDuplication/Repositories/Import.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Repositories/Import.php)
+    - Extends `Espo/Repositories/Import.php`.
+    - Created new methods specific to based on the methods: `findResultRecords`, `addImportEntityJoin`, `countResultRecords`.
 
 
 ### Import validation
 
-The `beforeSave` `Import` [hooks](https://docs.espocrm.com/development/hooks/) are run before an `Import` entity is saved:
+A before-save import [hook](https://docs.espocrm.com/development/hooks/) is added at [files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/CheckFieldValues.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/CheckFieldValues.php).
+This validates import form data before an import is run to check that:
 
-- `custom\Espo\Custom\Hooks\Import\CheckFieldValues` runs validation checks on the import:
-    - The entity type is either `CashDistribution` or `DuplicateCheck`
-    - The action is `create` (not update)
-    - Duplicate checking is not set to skip
-    - All selected fields are custom fields or `name` (not built-in fields)
-    - No selected fields are read-only fields
-    - Fields aren't selected multiple times in the field mapping
-    - Required fields are set in the field mapping
+- The entity type is either `CashDistribution` or `DuplicateCheck`
+- The action is `create` (not update)
+- Duplicate checking is not set to skip
+- All selected fields are custom fields or `name` (not built-in fields)
+- No selected fields are read-only fields
+- Fields aren't selected multiple times in the field mapping
+- Required fields are set in the field mapping
 
-- `custom\Espo\Custom\Hooks\Import\SetFieldValues` sets the value of the field `action` to display on the import list page.
+If any of these checks fail, an error message appears on the screen and the user has to fix the issue.
 
 
 ### Import results page
 
-Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
+Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/), to change the header (remove the link, change the text), and add a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`) for CSS. Added files:
 
-- Set the custom view in: `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json`, for detail.
-
-- Created file: `files/client/custom/modules/cva-de-duplication/src/views/import/detail.js`, based on `client/src/views/import/detail.js`. Changed the header of the import detail page (removed the link, changed the text). Added a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`).
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json)
+    - Set the detail view to point to the custom view, `cva-de-duplication:views/import/detail`.
+- [files/client/custom/modules/cva-de-duplication/src/views/import/detail.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/views/import/detail.js)
+    - Based on `client/src/views/import/detail.js`.
 
 
 ## Level 3: Visual customisations and UI/ UX
@@ -101,50 +113,72 @@ Customisations in this section are visual **only**. They do not affect the perfo
 
 ### Home page customisations
 
-Customisations to the home page have been made based on [similar EspoCRM documentation for customising entity views](https://docs.espocrm.com/development/custom-views/).
+Customisations to the home page have been made based on [EspoCRM documentation for customising entity views](https://docs.espocrm.com/development/custom-views/). This adds buttons to the home page, and sets a custom template with HTML.
 
 Added files:
 
-- `files/client/custom/modules/cva-de-duplication/src/views/home.js`, based on (and to replace) `client/src/views/home.js` with modifications.
-- `files/client/custom/modules/cva-de-duplication/res/templates/home.tpl`, based on (and to replace) `client/res/templates/home.tpl` with modifications.
-- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Home.json`, based on (and to replace) `Espo/Resources/metadata/clientDefs/Home.json` with modifications.
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Home.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Home.json)
+    - Sets the custom home page view.
+    - Based on (and to replace) `Espo/Resources/metadata/clientDefs/Home.json`.
+- [files/client/custom/modules/cva-de-duplication/src/views/home.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/views/home.js)
+    - Custom view for the home page, sets the custom template.
+    - Based on (and to replace) `client/src/views/home.js`.
+- [files/client/custom/modules/cva-de-duplication/res/templates/home.tpl](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/res/templates/home.tpl)
+    - Custom template for the home page.
+    - Based on (and to replace) `client/res/templates/home.tpl`.
 
 
-### Import history page
+### Import list page (previous cash distributions and duplicate checks)
 
-Customised the import list view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/).
+These customisations modify the import list view, based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/). This is to modify the page header. Added files:
 
-- Set the custom view in `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json`, for list.
-- Created file `files/client/custom/modules/cva-de-duplication/src/views/import/list.js`, based on `client/src/views/import/list.js`. Set the header so that the title is “History”.
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json)
+    - Sets the custom import list view.
+- [files/client/custom/modules/cva-de-duplication/src/views/import/list.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/views/import/list.js)
+    - Custom import list view. Sets the header to a custom title.
+    - Based on `client/src/views/import/list.js`.
+
+An extra column, `action`, is added to the table on the import list page. This is set as a hook, and added to the layout which defines the columns to show in the table. Added files:
+
+- [files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/SetFieldValues.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/SetFieldValues.php)
+    - Sets the new `action` field to a description of the import entity.
+- [files/custom/Espo/Custom/Resources/layouts/Import/list.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Custom/Resources/layouts/Import/list.json)
+    - Adds the new `action` field to the table on the import list page, with a link to the detail page.
 
 
-### Buttons on Cash Distribution list page
+### Buttons on the CashDistribution list page
 
-Added a `Import Cash Distribution data` button and a `Check Duplicates` button to the Cash `Distribution` list page, using [EspoCRM customisation functionality for adding buttons](https://docs.espocrm.com/development/custom-buttons/). Buttons: `Import Cash Distribution data` button, and `Check Duplicates` button.
+Added a `Import data` button and a `Check Duplicates` button to the Cash `Distribution` list page, using [EspoCRM customisation functionality for adding buttons](https://docs.espocrm.com/development/custom-buttons/). Added files:
 
-- Modified: `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/CashDistribution.json` - added `menu` key and contents
-- Created: `files/client/custom/modules/cva-de-duplication/src/import-cash-distribution-data.js`
-- Created: `files/client/custom/modules/cva-de-duplication/src/import-duplicate-check-data.js`
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/CashDistribution.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/CashDistribution.json)
+    - Added buttons to the import list page by appending to the list.
+- [files/client/custom/modules/cva-de-duplication/src/import-cash-distribution-data.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/import-cash-distribution-data.js)
+    - Sends to the import page, with `formData.entityType` set to `CashDistribution`.
+- [files/client/custom/modules/cva-de-duplication/src/import-duplicate-check-data.js](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/src/import-duplicate-check-data.js)
+    - Sends to the import page, with `formData.entityType` set to `DuplicateCheck`.
 
 
 ### Language changes
 
-For all language changes, added new files in: `files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/en_US/`.
+For language changes, added files:
 
-As currently only `en_US` is added, if EspoCRM is added in other languages (e.g. Arabic), then a new folder will need to be added in `files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/` with translations into that language.
+- US English: [files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/en_US/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/en_US)
+- Arabic: [files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/en_US/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/ar_AR)
 
-
-### Theme
-
-This extension includes a new theme, `RCRC`, designed in IFRC colours. This can be turned on and off in the EspoCRM front-end, under `Administration` -> `User Interface`. The theme includes the files:
-
-- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/themes/RCRC.json` - this sets the theme details.
-- `files/client/custom/modules/cva-de-duplication/css/rcrc.css` - this includes CSS for the theme.
+To use another language, you should copy the files in one of the folders above into the language code folder, and change the translations to that language.
 
 
-### CSS
+### RCRC theme
 
-CSS changes have been made following the [EspoCRM documentation](https://docs.espocrm.com/development/custom-css/), which included adding the files:
+This extension includes a new theme, `RCRC`, designed in Red Cross/ Red Crescent colours. This can be turned on and off in the EspoCRM front-end, under `Administration` → `User Interface`. Added files:
 
-- `files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/app/client.json`
-- `files/client/custom/modules/cva-de-duplication/css/custom.css`
+- Theme details: [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/themes/RCRC.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/themes/RCRC.json)
+- Theme CSS: [files/client/custom/modules/cva-de-duplication/css/rcrc.css](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/css/rcrc.css)
+
+
+### Custom CSS
+
+CSS changes have been made following the [EspoCRM documentation](https://docs.espocrm.com/development/custom-css/). Added files:
+
+- Adds the new CSS file: [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/app/client.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/app/client.json)
+- Custom CSS: [files/client/custom/modules/cva-de-duplication/css/custom.css](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/css/custom.css)
