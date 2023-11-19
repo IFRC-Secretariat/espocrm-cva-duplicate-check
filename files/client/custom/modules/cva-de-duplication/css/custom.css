@@ -30,7 +30,7 @@
 .import-container .panel-body div#import-properties div.form-group:has(div[data-name="silentMode"]) {
     display: None;
 }
-.import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="dateFormat"]), .import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="decimalMark"]) {
+.import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="dateFormat"]), .import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="decimalMark"]), .import-container:has(.item[data-value="DuplicateCheck"]) div.form-group:has([data-name="currency"]) {
     display: None;
 }
 /* Add description to EntityType options */
