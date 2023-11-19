@@ -12,11 +12,7 @@ The software is based on [EspoCRM](https://www.espocrm.com/). Customisations hav
 Documentation and instructions are in the following files:
 
 - [Setup Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/01-setup.md)
-
 - [Usage Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/02-usage.md)
-
 - [Development Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-development.md)
-
 - [Customisations documentation](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-customisations.md)
-
 - [Docker tips](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/05-docker.md)
