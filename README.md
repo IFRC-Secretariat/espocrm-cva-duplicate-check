@@ -2,10 +2,16 @@
 
 ## About
 
-This project is an EspoCRM extension for duplicate checking of cash distributions in Syria, based on Syrian National ID.
-The settings are set up for Syria (e.g. currency is set to Syrian Pounds, timezone is set to Damascus, and National ID is set to 11 digits), but it can be adapted to other use cases where comparison can be done based solely on a National ID.
+This project is an [EspoCRM](https://www.espocrm.com/) extension for duplicate checking of cash distributions, based on a National ID. It is set up for use by multiple partners/ organisations, where each partern/ organisation can only view it's own data, but can run duplicate checking on the whole dataset.
 
-The software is based on [EspoCRM](https://www.espocrm.com/). Customisations have been made to EspoCRM by adding files to the code to meet the requirements of a CVA duplicate check system.
+The extension is built for duplicate checking of cash distributions in Syria, based on Syrian National ID. The settings are set up for Syria, including:
+
+- Currency set to Syrian Pounds
+- Timezone set to Damascus
+- National ID must be 11 digits
+
+However the extension can be adapted to other use cases where comparison can be done based solely on a National ID.
+
 
 ## Documentation
 
@@ -13,6 +19,6 @@ Documentation and instructions are in the following files:
 
 - [Setup Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/01-setup.md)
 - [Usage Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/02-usage.md)
-- [Development Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-development.md)
-- [Customisations documentation](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-customisations.md)
+- [Development Workflow](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-development-workflow.md)
+- [Developer Documentation](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-developer-documentation.md)
 - [Docker tips](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/05-docker.md)
