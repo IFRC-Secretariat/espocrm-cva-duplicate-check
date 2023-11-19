@@ -98,7 +98,7 @@ If any of these checks fail, an error message appears on the screen and the user
 
 ### Import results page
 
-Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/), to change the header (remove the link, change the text), and add a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`) for CSS. Added files:
+Customised the import results/ detail view based on the [EspoCRM documentation](https://docs.espocrm.com/development/custom-views/), to change the header (remove the link, change the text), and add a class to the page giving the entity type (`CashDistribution` or `DuplicateCheck`) for CSS. The class is important because it affects the panels and fields which show on the page, depending on whether it is a `CashDistribution` import, or a `DuplicateCheck` import. Added files:
 
 - [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/clientDefs/Import.json)
     - Set the detail view to point to the custom view, `cva-de-duplication:views/import/detail`.
@@ -138,12 +138,19 @@ These customisations modify the import list view, based on the [EspoCRM document
     - Custom import list view. Sets the header to a custom title.
     - Based on `client/src/views/import/list.js`.
 
-An extra column, `action`, is added to the table on the import list page. This is set as a hook, and added to the layout which defines the columns to show in the table. Added files:
 
+### New import column: action
+
+An extra column, `action`, is added to the import entity, which gives a description of the entity type. This is added to the entity definition, set as a hook, and added to the import list and detail layouts. Added files:
+
+- [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/entityDefs/Import.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/entityDefs/Import.json)
+    - Adds the new field `action` to the import entity definition.
 - [files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/SetFieldValues.php](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Modules/CVADeDuplication/Hooks/Import/SetFieldValues.php)
-    - Sets the new `action` field to a description of the import entity.
+    - Sets the new `action` field to a description of the import entity when data is imported.
 - [files/custom/Espo/Custom/Resources/layouts/Import/list.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Custom/Resources/layouts/Import/list.json)
     - Adds the new `action` field to the table on the import list page, with a link to the detail page.
+- [files/custom/Espo/Custom/Resources/layouts/Import/detail.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/custom/Espo/Custom/Resources/layouts/Import/detail.json)
+    - Adds the new `action` field to the import detail page, with a link to the detail page.
 
 
 ### Buttons on the CashDistribution list page
@@ -182,3 +189,11 @@ CSS changes have been made following the [EspoCRM documentation](https://docs.es
 
 - Adds the new CSS file: [files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/app/client.json](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/metadata/app/client.json)
 - Custom CSS: [files/client/custom/modules/cva-de-duplication/css/custom.css](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/files/client/custom/modules/cva-de-duplication/css/custom.css)
+
+
+### Layouts
+
+Custom layouts for `CashDistribution` and `DuplicateCheck` are added to set which columns should show in the list and detail pages. Added files:
+
+- `CashDistribution` layouts: [files/custom/Espo/Modules/CVADeDuplication/Resources/layouts/CashDistribution](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/layouts/CashDistribution)
+- `DuplicateCheck` layouts: [files/custom/Espo/Modules/CVADeDuplication/Resources/layouts/DuplicateCheck](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/layouts/DuplicateCheck)
