@@ -27,6 +27,7 @@ class AfterInstall
         $config->set('theme', 'RCRC');
         $config->set('userThemesDisabled', true);
         $config->set('avatarsDisabled', true);
+        $config->set('timeZone', 'Asia/Damascus');
 
         # Set currency settings
         $config->set('currencyList', [0 => 'SYP']);

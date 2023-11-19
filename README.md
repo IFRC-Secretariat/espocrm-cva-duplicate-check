@@ -1,6 +1,7 @@
 # EspoCRM CVA Duplication Check - Extension
 
-This project is an EspoCRM extension for duplicate checking of cash distributions, based on a personal ID.
+This project is an EspoCRM extension for duplicate checking of cash distributions in Syria, based on Syrian National ID.
+The settings are set up for Syria (e.g. currency is set to Syrian Pounds, timezone is set to Damascus, and National ID is set to 11 digits), but it can be adapted to other use cases where comparison can be done based solely on a National ID.
 
 
 ## About
