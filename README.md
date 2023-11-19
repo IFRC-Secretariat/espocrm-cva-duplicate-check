@@ -124,8 +124,6 @@ Under `Administration` → `User Interface`, set the following:
 | -------- | ------- | ------- |
 | Application Name   | CVA de-duplication system | Or choose a name |
 | Company Logo | | Upload a logo |
-| Disable User Themes | ✔ | |
-| Disable Avatars  | ✔ | |
 
 
 #### Notifications

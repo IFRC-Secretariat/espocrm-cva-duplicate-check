@@ -25,6 +25,8 @@ class AfterInstall
         $config->set('recordsPerPageSelect', 100);
         $config->set('recordsPerPageKanban', 100);
         $config->set('theme', 'RCRC');
+        $config->set('userThemesDisabled', true);
+        $config->set('avatarsDisabled', true);
 
         # Set currency settings
         $config->set('currencyList', [0 => 'SYP']);
