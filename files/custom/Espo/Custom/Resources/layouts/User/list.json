@@ -1,0 +1,8 @@
+[
+    {"name":"userName", "link": true},
+    {"name":"emailAddress"},
+    {"name":"name"},
+    {"name":"teams"},
+    {"name":"type", "width": 10},
+    {"name":"isActive", "width": 10}
+]
