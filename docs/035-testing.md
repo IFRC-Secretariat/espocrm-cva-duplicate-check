@@ -15,9 +15,11 @@ This testing assumes testing from a blank installation, with this extension inst
 
 Set up the tests by doing the following:
 
-1. Create two Partners, e.g. with names `SARC` and `WFP`. Set their roles to `Partner`.
+1. Delete all data, including all `Cash Distribution` data, all imports, and all Users.
 
-2. Create three users with the following info. Click `Save`.
+2. Create two Partners, e.g. with names `SARC` and `WFP`. Set their roles to `Partner`.
+
+3. Create three users with the following info. Click `Save`.
 
     | User name | Email | Type | Is Active | Partners | Password | Send Email with Access Info to User |
     | -------- | ------- | ------- | ------- | ------- | ------- | ------- | 
