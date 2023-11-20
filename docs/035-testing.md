@@ -61,9 +61,11 @@ Set up the tests by doing the following:
 
 Test that users are only able to view data from their Partner.
 
+First, login as `admin` and delete all `Cash Distribution` data.
+
 1. Login as `sarc_user` and upload `Cash Distribution` data:
 
-    1. Upload the data at `data/cash_distributions_user_permissions.csv`. Set the following fields:
+    1. Download the data at [data/cash_distributions_user_permissions.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/cash_distributions_user_permissions.csv). Go to `Tools`, and upload the data as a `Cash Distribution`. Set the following fields:
 
         ![Import step 1 settings](img/test_cash_distribution_user_permissions/import_step1.png)
 
@@ -91,14 +93,12 @@ Test that users are only able to view data from their Partner.
 
     ![Cash distributions list user 2](img/test_cash_distribution_user_permissions/list_admin.png)
 
-5. Remove all data and imports.
-
 
 ### Test cash distribution errors
 
 1. Login as `sarc_user`.
 
-2. Go to `Tools`, and upload the data in `data/cash_distributions_errors.csv`. Set the following information, and click `Next`.
+2. Download the data from [data/cash_distributions_errors.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/cash_distributions_errors.csv). Go to `Tools`, and upload the data as a `Cash Distribution`. Set the following information, and click `Next`.
 
     | Header row | Field Delimiter | Date Format | Decimal Mark | Text Qualifier | Currency |
     | -------- | ------- | ------- | ------- | ------- | ------- | 
@@ -131,11 +131,7 @@ Test that users are only able to view data from their Partner.
 
 1. Login as `sarc_user`.
 
-2. Go to `Tools`, and upload the data in `data/duplicate_check_errors.csv`. Set the following information, and click `Next`.
-
-    | Header row | Field Delimiter | Text Qualifier |
-    | -------- | ------- | ------- | 
-    | ✔ | , | Double Quote | 
+2. Download the data from [data/duplicate_check_errors.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/duplicate_check_errors.csv). Go to `Tools`, and upload the data as a `Duplicate Check`. Set the following information, and click `Next`.
 
     ![Import step 1 settings](img/test_duplicate_check_errors/import_step1.png)
 
@@ -163,7 +159,7 @@ Login as `admin`. Make sure that there is no data in the `Cash Distributions` li
 
 1. Login as `sarc_user` and import `Cash Distribution` data:
 
-    1. Import the `Cash Distribution` data in `data/test_duplicate_checking/1_cash_distributions.csv`. Click `Next`. 
+    1. Download the data from [data/test_duplicate_checking/1_cash_distributions.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/test_duplicate_checking/1_cash_distributions.csv). Go to `Tools`, and upload the data as a `Cash Distribution`. Set the following information, and click `Next`.
 
         ![Import step 1 settings](img/test_duplicate_checking/1_cash_distributions_import_step1.png)
 
@@ -177,9 +173,9 @@ Login as `admin`. Make sure that there is no data in the `Cash Distributions` li
 
 2. Still as `sarc_user`, run a duplicate check.
 
-    1. Import the data in `data/test_duplicate_checking/2_duplicate_checks.csv`. Click `Next`. 
+    1. Download the data from [data/test_duplicate_checking/2_duplicate_checks.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/test_duplicate_checking/2_duplicate_checks.csv). Go to `Tools`, and upload the data as a `Duplicate Check`. Set the following information, and click `Next`.
 
-    ![Import step 1 settings](img/test_duplicate_checking/2_duplicate_checks_import_step1.png)
+        ![Import step 1 settings](img/test_duplicate_checking/2_duplicate_checks_import_step1.png)
 
     2. Set the field mapping, and click `Run Import`.
 
@@ -191,8 +187,8 @@ Login as `admin`. Make sure that there is no data in the `Cash Distributions` li
 
 3. Logout, and login as `wfp_user`. Run a duplicate check.
 
-    1. Import the data in `data/test_duplicate_checking/3_duplicate_checks.csv`. Click `Next`. 
-
+    1. Download the data from [data/test_duplicate_checking/3_duplicate_checks.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/test_duplicate_checking/3_duplicate_checks.csv). Go to `Tools`, and upload the data as a `Duplicate Check`. Set the following information, and click `Next`.
+    
         ![Import step 1 settings](img/test_duplicate_checking/3_duplicate_checks_import_step1.png)
 
     2. Set the field mapping, and click `Run Import`.
@@ -205,8 +201,8 @@ Login as `admin`. Make sure that there is no data in the `Cash Distributions` li
 
 4. Still as `wfp_user`, import cash distribution data.
 
-    1. Import the `Cash Distribution` data in `data/test_duplicate_checking/4_cash_distributions.csv`. Click `Next`. 
-
+    1. Download the data from [data/test_duplicate_checking/4_cash_distributions.csv](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/data/test_duplicate_checking/4_cash_distributions.csv). Go to `Tools`, and upload the data as a `Cash Distribution`. Set the following information, and click `Next`.
+    
         ![Import step 1 settings](img/test_duplicate_checking/4_cash_distributions_import_step1.png)
 
     2. Set the field mapping, and click `Run Import`.
