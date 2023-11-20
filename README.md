@@ -19,6 +19,6 @@ Documentation and instructions are in the following files:
 
 - [Setup Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/01-setup.md)
 - [Usage Instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/02-usage.md)
-- [Development Workflow](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-development-workflow.md)
+- [Changes and Upgrades](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-changes-upgrades.md)
 - [Developer Documentation](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-developer-documentation.md)
 - [Docker tips](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/05-docker.md)

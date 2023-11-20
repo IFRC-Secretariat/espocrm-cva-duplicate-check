@@ -1,4 +1,4 @@
-# Development Instructions
+# Changes and Upgrades
 
 When making developments to this extension, follow either of the following processes.
 
