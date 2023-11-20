@@ -4,7 +4,7 @@
             "required": true
         },
         "lastName": {
-            "required": false
+            "required": true
         },
         "teams": {
             "required": true
