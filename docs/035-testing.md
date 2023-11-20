@@ -77,17 +77,19 @@ Test that users are only able to view data from their Partner.
 
     ![Cash distributions list](img/test_cash_distribution_user_permissions_list.png)
 
-6. Logout, and login as `sarc_user_2`.
-
-7. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
+6. Logout, and login as `sarc_user_2`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
 
     ![Cash distributions list user 2](img/test_cash_distribution_user_permissions_list_user2.png)
 
-8. Logout, and login as `wfp_user`.
-
-9. Verify that you **can't** see the data in the `Cash Distribution` list created by `sarc_user`:
+8. Logout, and login as `wfp_user`. Verify that you **can't** see the data in the `Cash Distribution` list created by `sarc_user`:
 
     ![Cash distributions list other user](img/test_cash_distribution_user_permissions_list_other_user.png)
+
+10. Logout, and login as `admin`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
+
+    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions_list_user2.png)
+
+11. Remove all data and imports.
 
 
 ### Test cash distribution errors
@@ -150,9 +152,65 @@ Test that users are only able to view data from their Partner.
     | 2 | National ID | Pattern Matching | 
     | 3 | National ID | Pattern Matching | 
 
-6. Remove all imports.
+6. Remove all data and imports.
 
 
 ### Test duplicate checking
 
+Login as `admin`. Make sure that there is no data in the `Cash Distributions` list; if there is, remove it.
 
+1. Login as `sarc_user` and import `Cash Distribution` data:
+
+    1. Import the `Cash Distribution` data in `data/test_duplicate_checking/1_cash_distributions.csv`. Click `Next`. 
+
+        ![Import step 1 settings](img/test_duplicate_checking/1_cash_distributions_import_step1.png)
+
+    2. Set the field mapping, and click `Run Import`.
+
+        ![Import step 2 settings](img/test_duplicate_checking/1_cash_distributions_import_step2.png)
+
+    3. The results should show 3 successfully imported rows with National IDs `11111111111`, `11111111112`, and `11111111113`. There should be no duplicates, and no errors.
+
+        ![Import results](img/test_duplicate_checking/1_cash_distributions_import_results.png)
+
+2. Still as `sarc_user`, run a duplicate check.
+
+    1. Import the data in `data/test_duplicate_checking/2_duplicate_checks.csv`. Click `Next`. 
+
+    ![Import step 1 settings](img/test_duplicate_checking/2_duplicate_checks_import_step1.png)
+
+    2. Set the field mapping, and click `Run Import`.
+
+        ![Import step 2 settings](img/test_duplicate_checking/2_duplicate_checks_import_step2.png)
+
+    3. Check that the results contain 1 duplicate (`11111111113`), and 1 non-duplicate (`11111111114`), as below:
+
+        ![Import results](img/test_duplicate_checking/2_duplicate_checks_import_results.png)
+
+3. Logout, and login as `wfp_user`. Run a duplicate check.
+
+    1. Import the data in `data/test_duplicate_checking/3_duplicate_checks.csv`. Click `Next`. 
+
+        ![Import step 1 settings](img/test_duplicate_checking/3_duplicate_checks_import_step1.png)
+
+    2. Set the field mapping, and click `Run Import`.
+
+        ![Import step 2 settings](img/test_duplicate_checking/3_duplicate_checks_import_step2.png)
+
+    3. Check that the results contain 1 duplicate (`11111111113`), and 2 non-duplicates (`11111111115` and `11111111114`), as below:
+
+        ![Import results](img/test_duplicate_checking/3_duplicate_checks_import_results.png)
+
+4. Still as `wfp_user`, import cash distribution data.
+
+    1. Import the `Cash Distribution` data in `data/test_duplicate_checking/4_cash_distributions.csv`. Click `Next`. 
+
+        ![Import step 1 settings](img/test_duplicate_checking/4_cash_distributions_import_step1.png)
+
+    2. Set the field mapping, and click `Run Import`.
+
+        ![Import step 2 settings](img/test_duplicate_checking/4_cash_distributions_import_step2.png)
+
+    3. The results should show 4 successfully imported rows with National IDs `11111111113`, `11111111114`, `11111111115`, and `11111111116`. There should be 1 duplicate with National ID `11111111113`, and no errors.
+
+        ![Import results](img/test_duplicate_checking/4_cash_distributions_import_results.png)
