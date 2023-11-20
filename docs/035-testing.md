@@ -102,15 +102,15 @@ Test that users are only able to view data from their Partner.
     | -------- | ------- | ------- | ------- | ------- | ------- | 
     | ✔ | , | DD/MM/YYYY | . | Double Quote | SYP |
 
-    ![Import step 1 settings](img/test_cash_distribution_errors_import_step1.png)
+    ![Import step 1 settings](img/test_cash_distribution_errors/import_step1.png)
 
 3. Set the field mapping, and click `Run Import`.
 
-    ![Import step 2 settings](img/test_cash_distribution_errors_import_step2.png)
+    ![Import step 2 settings](img/test_cash_distribution_errors/import_step2.png)
 
-4. The results should show 1 successfully imported row, and 5 errors:
+4. The results should show 1 successfully imported row with National ID `11111111111`, and 5 errors with line numbers `2`, `3`, `4`, `5`, and `6`.
 
-    ![Import results](img/test_cash_distribution_errors_import_results.png)
+    ![Import results](img/test_cash_distribution_errors/import_results.png)
 
 5. Check that each error contains the following validation failures:
 
@@ -135,15 +135,15 @@ Test that users are only able to view data from their Partner.
     | -------- | ------- | ------- | 
     | ✔ | , | Double Quote | 
 
-    ![Import step 1 settings](img/test_duplicate_check_errors_import_step1.png)
+    ![Import step 1 settings](img/test_duplicate_check_errors/import_step1.png)
 
 3. Set the field mapping, and click `Run Import`.
 
-    ![Import step 2 settings](img/test_duplicate_check_errors_import_step2.png)
+    ![Import step 2 settings](img/test_duplicate_check_errors/import_step2.png)
 
-4. The results should show 1 successfully imported row, and 2 errors:
+4. The results should show 1 successfully imported row with National ID `11111111111`, and 2 errors with line numbers `2` and `3`:
 
-    ![Import results](img/test_duplicate_check_errors_import_results.png)
+    ![Import results](img/test_duplicate_check_errors/import_results.png)
 
 5. Check that each error contains the following validation failures:
 
