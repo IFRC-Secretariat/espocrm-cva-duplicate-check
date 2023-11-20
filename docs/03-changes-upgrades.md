@@ -43,12 +43,14 @@ When making developments to this extension, follow either of the following proce
 
 2. Zip the `files`, `scripts`, and `manifest.json` folders and file. You can do this by zipping the files locally, or downloading the zipped files from Github (from the repository page under `Code`, or by downloading a release) and then unzipping, and zipping one level lower. 
 
-3. On the **staging** site, go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
+3. Go to the EspoCRM **staging** site.
 
-4. Run the [automated tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/035-testing.md#manual-testing) to test the new extension.
+    1. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
 
-5. Go to the **main** site. Put the site into maintenance mode by going to `Administration` → `Settings`, and checking the `Maintenance Mode` box.
+    4. Run the [manual tests in the site](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/035-testing.md#manual-testing) to test the new extension.
 
-6. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
+4. Go to the EspoCRM **main** site. 
 
-7. Run the [automated tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/035-testing.md#manual-testing) to test the new extension.
+    1. Put the site into maintenance mode by going to `Administration` → `Settings`, and checking the `Maintenance Mode` box.
+
+    2. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
