@@ -59,37 +59,37 @@ Set up the tests by doing the following:
 
 Test that users are only able to view data from their Partner.
 
-1. Login as `sarc_user`.
+1. Login as `sarc_user` and upload `Cash Distribution` data:
 
-2. Upload cash distribution data at `data/cash_distributions_user_permissions.csv`. Set the following fields:
+    1. Upload the data at `data/cash_distributions_user_permissions.csv`. Set the following fields:
 
-    ![Import step 1 settings](img/test_cash_distribution_user_permissions_import_step1.png)
+        ![Import step 1 settings](img/test_cash_distribution_user_permissions/import_step1.png)
 
-3. Set the field mapping, and click `Run Import`.
+    2. Set the field mapping, and click `Run Import`.
 
-    ![Import step 2 settings](img/test_cash_distribution_user_permissions_import_step2.png)
+        ![Import step 2 settings](img/test_cash_distribution_user_permissions/import_step2.png)
 
-4. See that the 3 rows of data have been imported successfully.
+    3. Verify that three rows of data with National IDs `11111111111`, `11111111112`, and `11111111113` have been imported successfully. There should be no errors and no duplicates.
 
-    ![Import results](img/test_cash_distribution_user_permissions_import_results.png)
+        ![Import results](img/test_cash_distribution_user_permissions/import_results.png)
 
-5. View the results in the `Cash Distributions` list:
+    4. View the results in the `Cash Distributions` list. There should be three rows, with National IDs `11111111111`, `11111111112`, and `11111111113`.
 
-    ![Cash distributions list](img/test_cash_distribution_user_permissions_list.png)
+        ![Cash distributions list](img/test_cash_distribution_user_permissions/list.png)
 
-6. Logout, and login as `sarc_user_2`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
+2. Logout, and login as `sarc_user_2`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`. There should be three rows, with National IDs `11111111111`, `11111111112`, and `11111111113`.
 
-    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions_list_user2.png)
+    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions/list_user2.png)
 
-8. Logout, and login as `wfp_user`. Verify that you **can't** see the data in the `Cash Distribution` list created by `sarc_user`:
+3. Logout, and login as `wfp_user`. Verify that you **can't** see the data in the `Cash Distribution` list created by `sarc_user`:
 
-    ![Cash distributions list other user](img/test_cash_distribution_user_permissions_list_other_user.png)
+    ![Cash distributions list other user](img/test_cash_distribution_user_permissions/list_other_user.png)
 
-10. Logout, and login as `admin`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
+4. Logout, and login as `admin`. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`. There should be three rows, with National IDs `11111111111`, `11111111112`, and `11111111113`.
 
-    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions_list_user2.png)
+    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions/list_admin.png)
 
-11. Remove all data and imports.
+5. Remove all data and imports.
 
 
 ### Test cash distribution errors
