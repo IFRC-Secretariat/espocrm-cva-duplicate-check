@@ -1,23 +1,22 @@
 {
-  "fields": {
-      "name": "National ID",
-      "teams": "Partners",
-      "date": "Date",
-      "governorate": "Governorate",
-      "transferValue": "Transfer Value"
-  },
-  "links": [],
-  "labels": {
-      "Create CashDistribution": "إنشاء {الكيانTypeTranslated}",
-      "Import data": "Import data",
-      "Check duplicates": "Check duplicates"
-  },
-  "tooltips": {
-      "name": "National ID of the individual who received cash (head of household or household member)",
-      "date": "Transfer date",
-      "transferValue": "Transfer amount in Syrian Pounds (SYP)"
-  },
-  "buttons": {
-    
-  }
+    "fields": {
+        "name": "National ID",
+        "teams": "Partners",
+        "date": "Date",
+        "governorate": "Governorate",
+        "transferValue": "Transfer Value",
+        "transferValueCurrency": "Transfer Value (Currency)",
+        "transferValueConverted": "Transfer Value (Converted)"
+    },
+    "links": [],
+    "labels": {
+        "Create CashDistribution": "إنشاء {الكيانTypeTranslated}",
+        "Import data": "Import data",
+        "Check duplicates": "Check duplicates"
+    },
+    "tooltips": {
+        "name": "National ID of the individual who received cash (head of household or household member)",
+        "date": "Transfer date",
+        "transferValue": "Transfer amount in Syrian Pounds (SYP)"
+    }
 }

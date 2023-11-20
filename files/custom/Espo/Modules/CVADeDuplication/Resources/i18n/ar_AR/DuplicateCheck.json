@@ -1,5 +1,13 @@
 {
+  "fields": {
+      "name": "National ID",
+      "teams": "Partners"
+  },
+  "links": [],
   "labels": {
-    "Create DuplicateCheck": "إنشاء {الكيانTypeTranslated}"
+      "Create DuplicateCheck": "إنشاء {الكيانTypeTranslated}"
+  },
+  "tooltips": {
+      "name": "National ID of the individual who received cash (head of household or household member)"
   }
 }
