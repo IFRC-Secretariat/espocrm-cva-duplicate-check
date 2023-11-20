@@ -2,6 +2,12 @@
     "fields": {
         "emailAddress": {
             "required": true
+        },
+        "lastName": {
+            "required": false
+        },
+        "teams": {
+            "required": true
         }
     }
 }

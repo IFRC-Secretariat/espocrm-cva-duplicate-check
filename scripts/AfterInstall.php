@@ -14,10 +14,14 @@ class AfterInstall
         $config->set('quickCreateList', []);
         $config->set('globalSearchEntityList', ['CashDistribution', 'User']);
 
-        # Set other user interface config options
+        # Set authentication settings
         $config->set('passwordGenerateLength', 16);
         $config->set('passwordStrengthLength', 16);
         $config->set('passwordStrengthBothCases', true);
+        $config->set('passwordStrengthLetterCount', 4);
+        $config->set('passwordStrengthNumberCount', 4);
+
+        # Set user interface settings
         $config->set('dashboardLayout', []);
         $config->set('theme', 'Hazyblue');
         $config->set('recordsPerPage', 200);
