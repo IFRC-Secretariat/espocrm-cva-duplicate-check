@@ -17,11 +17,12 @@ Set up the tests by doing the following:
 
 1. Create two Partners, e.g. with names `SARC` and `WFP`. Set their roles to `Partner`.
 
-2. Create two users with the following info, one assigned to each Partner. Click `Save`.
+2. Create three users with the following info. Click `Save`.
 
     | User name | Email | Type | Is Active | Partners | Password | Send Email with Access Info to User |
     | -------- | ------- | ------- | ------- | ------- | ------- | ------- | 
     | sarc_user | sarc@test.org | Regular | ✔ | SARC | 5888IHBKOQmWernj | x |
+    | sarc_user_2 | sarc2@test.org | Regular | ✔ | SARC | 7de2wvSz7464NRAj | x |
     | wfp_user | wfp@test.org | Regular | ✔ | WFP | 44NHX9swGHZ4641x | x |
 
 
@@ -52,6 +53,41 @@ Set up the tests by doing the following:
 8. Set the password to "passwordPassword1234" and click `Save`. This should save successfully.
 
 9. Delete the user.
+
+
+### Test user permissions
+
+Test that users are only able to view data from their Partner.
+
+1. Login as `sarc_user`.
+
+2. Upload cash distribution data at `data/cash_distributions_user_permissions.csv`. Set the following fields:
+
+    ![Import step 1 settings](img/test_cash_distribution_user_permissions_import_step1.png)
+
+3. Set the field mapping, and click `Run Import`.
+
+    ![Import step 2 settings](img/test_cash_distribution_user_permissions_import_step2.png)
+
+4. See that the 3 rows of data have been imported successfully.
+
+    ![Import results](img/test_cash_distribution_user_permissions_import_results.png)
+
+5. View the results in the `Cash Distributions` list:
+
+    ![Cash distributions list](img/test_cash_distribution_user_permissions_list.png)
+
+6. Logout, and login as `sarc_user_2`.
+
+7. Verify that you **can** see the data in the `Cash Distribution` list, created by `sarc_user`:
+
+    ![Cash distributions list user 2](img/test_cash_distribution_user_permissions_list_user2.png)
+
+8. Logout, and login as `wfp_user`.
+
+9. Verify that you **can't** see the data in the `Cash Distribution` list created by `sarc_user`:
+
+    ![Cash distributions list other user](img/test_cash_distribution_user_permissions_list_other_user.png)
 
 
 ### Test cash distribution errors
@@ -115,3 +151,8 @@ Set up the tests by doing the following:
     | 3 | National ID | Pattern Matching | 
 
 6. Remove all imports.
+
+
+### Test duplicate checking
+
+
