@@ -43,6 +43,43 @@ There is a folder for each language code, e.g. `ar_AR` is for Arabic. In each la
     ![GitHub commit changes popup](img/github_commit_changes_popup.png)
 
 
+## Upgrading EspoCRM
+
+1. First, run the upgrade on the staging/ testing site:
+
+    1. Go to `Administration` → `Upgrade`. Note the current EspoCRM version - here it is `8.0.3`.
+
+        ![EspoCRM administration upgrade page](img/espocrm_upgrade/espocrm_administration_upgrade_page.png)
+
+    2. Click the [link](https://www.espocrm.com/download/upgrades/) to go to the EspoCRM download page.
+
+        ![EspoCRM download page](img/espocrm_upgrade/espocrm_download_page.png)
+
+    3. Download the right upgrade file. E.g. for this example, the current version is shown as `8.0.3`, so we need to download the `EspoCRM-upgrade-8.0.3-to-8.0.4.zip` file.
+
+    4. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
+
+        ![EspoCRM administration upgrade popup](img/espocrm_upgrade/espocrm_administration_upgrade_popup.png)
+
+    5. Wait until the `Upgraded successfully` popup is shown:
+
+        ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
+
+2. **If the upgrade was successful** on the staging/ testing site, run the same upgrade on the main site:
+
+    1. Go to `Administration` → `Upgrade`. Make sure that the EspoCRM version is the **same as the staging/ testing site**, in our case this is `8.0.3`:
+
+        ![EspoCRM administration upgrade page](img/espocrm_upgrade/espocrm_administration_upgrade_page.png)
+
+    2. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
+
+        ![EspoCRM administration upgrade popup](img/espocrm_upgrade/espocrm_administration_upgrade_popup.png)
+
+    3. Wait until the `Upgraded successfully` popup is shown:
+
+        ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
+
+
 ### Translating email templates
 
 Email templates are at:
