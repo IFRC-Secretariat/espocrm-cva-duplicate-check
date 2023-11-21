@@ -75,6 +75,8 @@ Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't th
 
         ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
 
+    6. Run the [manual tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#manual-testing) to make sure everything is working properly.
+
 2. **If the upgrade was successful** on the staging/ testing site, run the same upgrade on the main site:
 
     1. Go to `Administration` → `Upgrade`. Make sure that the EspoCRM version is the **same as the staging/ testing site**, in our case this is `8.0.3`:
