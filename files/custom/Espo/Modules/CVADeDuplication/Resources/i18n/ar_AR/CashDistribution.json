@@ -1,18 +1,18 @@
 {
     "fields": {
-        "name": "National ID",
-        "teams": "Partners",
-        "date": "Date",
-        "governorate": "Governorate",
-        "transferValue": "Transfer Value",
-        "transferValueCurrency": "Transfer Value (Currency)",
-        "transferValueConverted": "Transfer Value (Converted)"
+        "name": "رقم الهوية",
+        "teams": "الشريك",
+        "date": "تاريخ",
+        "governorate": "محافظة",
+        "transferValue": "قيمة الحوالة",
+        "transferValueCurrency": "قيمة الحوالة (العملة)",
+        "transferValueConverted": "قيمة الحوالة (قيمة التحويل)"
     },
     "links": [],
     "labels": {
         "Create CashDistribution": "إنشاء {الكيانTypeTranslated}",
-        "Import data": "Import data",
-        "Check duplicates": "Check duplicates"
+        "Import data": "ادخل البيانات",
+        "Check duplicates": "التحقق من التكرارات"
     },
     "tooltips": {
         "name": "National ID of the individual who received cash (head of household or household member)",
