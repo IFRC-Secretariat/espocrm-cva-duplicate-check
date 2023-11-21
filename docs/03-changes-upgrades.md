@@ -1,6 +1,26 @@
 # Changes and Upgrades
 
-When making developments to this extension, follow either of the following processes.
+When making developments to this extension, follow either of the following processes
+
+
+## Adding translations
+
+To add translations into another language, edit the following files:
+
+- Translations: [files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/i18n)
+
+Open the language code folder, e.g. `ar_AR` for Arabic. Add the translations as the value on the right hand side, after the `:` symbols.
+
+
+### Translating email templates
+
+Email templates are at:
+
+- User access email template: [files/custom/Espo/Custom/Resources/templates/accessInfo/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfo)
+- User portal access email template: [files/custom/Espo/Custom/Resources/templates/accessInfoPortal/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfoPortal)
+- Two-factor authentication email template: [files/custom/Espo/Custom/Resources/templates/twoFactorCode/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/twoFactorCode)
+
+Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't there. Replace the file content with the translation. 
 
 
 ## Making changes in GitHub
