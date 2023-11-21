@@ -111,6 +111,10 @@ div.detail[data-scope="Import"] .record-grid .panel-errors .panel-body[data-name
 .detail.duplicatecheck .panel-importedNoDuplicates .panel-title span::after {
     content: " - no cash distributions recorded for the people with these National IDs";
 }
+/* Hide view list option on panel dropdown */
+.detail .panel .panel-actions-container ul.dropdown-menu a[data-name="viewRelatedList"] {
+    display: none;
+}
 
 
 /* CASH DISTRIBUTION */

@@ -9,6 +9,10 @@
         "importedNoDuplicates": "Data - no duplicates",
         "View Import list": "View previous Cash Distributions and Duplicate Checks"
     },
+    "messages": {
+        "noRecords": "No records were found to export.",
+	    "exportRequestFailed": "Export request failed with error: "
+    },
     "importEntityDescriptive": {
         "CashDistribution": "Cash distribution data import",
         "DuplicateCheck": "Duplicate check"

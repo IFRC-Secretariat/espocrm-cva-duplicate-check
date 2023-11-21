@@ -1,0 +1,7 @@
+[
+    {
+        "route": "/Import/:id/exportRelationship/:link",
+        "method": "post",
+        "actionClassName": "Espo\\Modules\\CVADeDuplication\\Tools\\Import\\Api\\PostExportRelationship"
+    }
+]
