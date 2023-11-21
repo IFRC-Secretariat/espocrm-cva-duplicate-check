@@ -3,7 +3,7 @@
 When making developments to this extension, follow either of the following processes
 
 
-## Adding translations in GitHub
+## How to add translations in GitHub
 
 To add translations into another language, edit the following files:
 
@@ -42,8 +42,18 @@ There is a folder for each language code, e.g. `ar_AR` is for Arabic. In each la
 
     ![GitHub commit changes popup](img/github_commit_changes_popup.png)
 
+### How to translate email templates
 
-## Upgrading EspoCRM
+Email templates are at:
+
+- User access email template: [files/custom/Espo/Custom/Resources/templates/accessInfo/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfo)
+- User portal access email template: [files/custom/Espo/Custom/Resources/templates/accessInfoPortal/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfoPortal)
+- Two-factor authentication email template: [files/custom/Espo/Custom/Resources/templates/twoFactorCode/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/twoFactorCode)
+
+Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't there. Replace the file content with the translation. 
+
+
+## How to upgrade EspoCRM
 
 1. First, run the upgrade on the staging/ testing site:
 
@@ -80,15 +90,24 @@ There is a folder for each language code, e.g. `ar_AR` is for Arabic. In each la
         ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
 
 
-### Translating email templates
+## How to upload a new version of the extension
 
-Email templates are at:
+1. Run the [automated tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#automated-testing-unit-and-integration-tests) to test the new extension.
 
-- User access email template: [files/custom/Espo/Custom/Resources/templates/accessInfo/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfo)
-- User portal access email template: [files/custom/Espo/Custom/Resources/templates/accessInfoPortal/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/accessInfoPortal)
-- Two-factor authentication email template: [files/custom/Espo/Custom/Resources/templates/twoFactorCode/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Custom/Resources/templates/twoFactorCode)
+2. Zip the `files`, `scripts`, and `manifest.json` folders and file. You can do this by zipping the files locally, or downloading the zipped files from Github (from the repository page under `Code`, or by downloading a release) and then unzipping, and zipping one level lower. 
 
-Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't there. Replace the file content with the translation. 
+3. Go to the EspoCRM **staging** site.
+
+    1. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
+
+    4. Run the [manual tests in the site](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#manual-testing) to test the new extension.
+
+4. Go to the EspoCRM **main** site. 
+
+    1. Put the site into maintenance mode by going to `Administration` → `Settings`, and checking the `Maintenance Mode` box.
+
+    2. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
+
 
 
 ## Making changes in GitHub
@@ -123,22 +142,3 @@ Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't th
 4. Run unit and integration tests: go to [Run unit and integration tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/actions/workflows/run-tests.yml) in `Actions`. Click the `Run workflow` button. You can see the progress of the tests under [Actions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/actions).
 
 5. If the tests have passed, [create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). This will automatically run the tests again.
-
-
-## Uploading a new version of the extension
-
-1. Run the [automated tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#automated-testing-unit-and-integration-tests) to test the new extension.
-
-2. Zip the `files`, `scripts`, and `manifest.json` folders and file. You can do this by zipping the files locally, or downloading the zipped files from Github (from the repository page under `Code`, or by downloading a release) and then unzipping, and zipping one level lower. 
-
-3. Go to the EspoCRM **staging** site.
-
-    1. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
-
-    4. Run the [manual tests in the site](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#manual-testing) to test the new extension.
-
-4. Go to the EspoCRM **main** site. 
-
-    1. Put the site into maintenance mode by going to `Administration` → `Settings`, and checking the `Maintenance Mode` box.
-
-    2. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
