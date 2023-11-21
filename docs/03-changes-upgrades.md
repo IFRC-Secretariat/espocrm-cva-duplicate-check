@@ -3,13 +3,44 @@
 When making developments to this extension, follow either of the following processes
 
 
-## Adding translations
+## Adding translations in GitHub
 
 To add translations into another language, edit the following files:
 
 - Translations: [files/custom/Espo/Modules/CVADeDuplication/Resources/i18n/](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/tree/main/files/custom/Espo/Modules/CVADeDuplication/Resources/i18n)
 
-Open the language code folder, e.g. `ar_AR` for Arabic. Add the translations as the value on the right hand side, after the `:` symbols.
+There is a folder for each language code, e.g. `ar_AR` is for Arabic. In each language folder, there are files which give translations for different parts of the site. To add the translations, change the value on the right hand side, after the `:` symbols.
+
+1. Open the file to translate in GitHub
+2. Click the pencil icon on the top right of the file:
+
+    ![GitHub edit symbol](img/github_pencil.png)
+
+3. Make the changes, by changing the text after the `:` symbol, inside the quotes `" "`. E.g. in `Admin.json` in `ar_AR` for Arabic, you would change this:
+    ```json
+    {
+        "labels": {
+            "Import": "Tools",
+            "Teams": "Partners"
+        }
+    }
+    ```
+    to:
+    ```json
+    {
+        "labels": {
+            "Import": "أدوات",
+            "Teams": "الشريك"
+        }
+    }
+    ```
+4. When you're done, click the green `Commit changes...` button on the top right:
+
+    ![GitHub commit changes button](img/github_commit_changes_button.png)
+
+5. In the pop-up, write a short commit message in the `Commit message` box, and then click the green `Commit changes` button.
+
+    ![GitHub commit changes popup](img/github_commit_changes_popup.png)
 
 
 ### Translating email templates
