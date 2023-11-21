@@ -1,6 +1,6 @@
-# How to guide
+# System management
 
-This contains instructions on common things to do, including adding translations, upgrading EspoCRM, and adding new versions of the extension.
+This contains instructions on cohow to manage the system, including adding translations, upgrading EspoCRM, adding new versions of the extension, and what to do if there is a problem.
 
 ## How to add translations in GitHub
 
@@ -54,39 +54,43 @@ Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't th
 
 ## How to upgrade EspoCRM
 
-1. First, run the upgrade on the staging/ testing site:
+1. First, run the upgrade on the **staging/ testing** site:
 
-    1. Go to `Administration` → `Upgrade`. Note the current EspoCRM version - here it is `8.0.3`.
+    1. Open the **staging/ testing** site.
+
+    2. Go to `Administration` → `Upgrade`. Note the current EspoCRM version - here it is `8.0.3`.
 
         ![EspoCRM administration upgrade page](img/espocrm_upgrade/espocrm_administration_upgrade_page.png)
 
-    2. Click the [link](https://www.espocrm.com/download/upgrades/) to go to the EspoCRM download page.
+    3. Click the [link](https://www.espocrm.com/download/upgrades/) to go to the EspoCRM download page.
 
         ![EspoCRM download page](img/espocrm_upgrade/espocrm_download_page.png)
 
-    3. Download the right upgrade file. E.g. for this example, the current version is shown as `8.0.3`, so we need to download the `EspoCRM-upgrade-8.0.3-to-8.0.4.zip` file.
+    4. Download the right upgrade file. E.g. for this example, the current version is shown as `8.0.3`, so we need to download the `EspoCRM-upgrade-8.0.3-to-8.0.4.zip` file.
 
-    4. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
+    5. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
 
         ![EspoCRM administration upgrade popup](img/espocrm_upgrade/espocrm_administration_upgrade_popup.png)
 
-    5. Wait until the `Upgraded successfully` popup is shown:
+    6. Wait until the `Upgraded successfully` popup is shown:
 
         ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
 
-    6. Run the [manual tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#manual-testing) to make sure everything is working properly.
+    7. Run the [manual tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md#manual-testing) to make sure everything is working properly.
 
-2. **If the upgrade was successful** on the staging/ testing site, run the same upgrade on the main site:
+2. **If the upgrade and tests were successful** on the staging/ testing site, run the same upgrade on the main site:
 
-    1. Go to `Administration` → `Upgrade`. Make sure that the EspoCRM version is the **same as the staging/ testing site**, in our case this is `8.0.3`:
+    1. Open the **main** site.
+
+    2. Go to `Administration` → `Upgrade`. Make sure that the EspoCRM version is the **same as the staging/ testing site**, in our case this is `8.0.3`:
 
         ![EspoCRM administration upgrade page](img/espocrm_upgrade/espocrm_administration_upgrade_page.png)
 
-    2. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
+    3. Upload the file, click the `Upload` button, and then click the `Run Upgrade` button in the popup. 
 
         ![EspoCRM administration upgrade popup](img/espocrm_upgrade/espocrm_administration_upgrade_popup.png)
 
-    3. Wait until the `Upgraded successfully` popup is shown:
+    4. Wait until the `Upgraded successfully` popup is shown:
 
         ![EspoCRM administration upgrade successful popup](img/espocrm_upgrade/espocrm_administration_upgrade_successful.png)
 
@@ -109,3 +113,7 @@ Open the language code folder, e.g. `ar_AR` for Arabic, or add it if it isn't th
 
     2. Go to `Administration` → `Extensions`. Uninstall the currently installed extension. Upload the zip file, and click the `Install` button.
 
+
+## What to do if there are issues
+
+If there are significant issues which affect the functionality of the site, put the site in maintenance mode: go to `Administration` → `Settings`, and check the `Maintenance mode` checkbox.

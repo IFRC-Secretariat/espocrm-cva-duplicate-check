@@ -18,7 +18,13 @@ However the extension can be adapted to other use cases where comparison can be 
 Documentation and instructions are in the following files:
 
 - [Setup instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/01-setup.md) - how to set up the server, install EspoCRM, and install the extension.
-- [Usage instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/02-usage.md) - how to use the software, including adding users and partners, uploading cash distribution data, and running duplicate checks.
-- [How to](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-how-to.md) - how to add translations, upgrade EspoCRM, and install a new version of the extension.
+- [Usage instructions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/02-usage.md) - how to use the software, including:
+    - How to add users and partners
+    - How to upload cash distribution data
+    - How to run duplicate checks.
+- [System management](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/03-system-management.md) - instructions on common things to do, including:
+    - How to add translations in GitHub (e.g. Arabic translations)
+    - How to upgrade EspoCRM
+    - How to install a new version of the extension
 - [Running tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/04-testing.md) - how to make edits in GitHub and locally, and how to install new versions of the extension.
 - [Developer documentation](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/blob/main/docs/05-developer-documentation.md) - information on all of the files in the extension and what they do.
