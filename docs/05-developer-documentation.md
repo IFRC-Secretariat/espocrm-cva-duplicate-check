@@ -2,6 +2,50 @@
 
 This section documents the extension files, including the new entities `CashDistribution` and `DuplicateCheck`, and customisations to standard EspoCRM functionality and UI/ UX. The project is an EspoCRM extension, and has the standard [EspoCRM extension structure](https://docs.espocrm.com/development/extension-packages/).
 
+
+## Making developments
+
+To make developments, follow these steps:
+
+1. Make changes to the files locally. You can set up a local instance to test on and make changes, [as described in the documentation](https://docs.espocrm.com/administration/installation-by-script/):
+
+    ```bash
+    wget https://github.com/espocrm/espocrm-installer/releases/latest/download/install.sh
+    sudo bash install.sh
+    ```
+    Make sure that everything works as expected. The following [EspoCRM commands](https://docs.espocrm.com/administration/commands/) are useful if making changes:
+    ```bash
+    php clear_cache.php # Clear the cache for new changes to take effect
+    php rebuild.php # Rebuild to clear the cache and update the database
+    ```
+
+2. Update the version in the `manifest.json`.
+
+3. Push changes to GitHub.
+
+4. Run unit and integration tests: go to [Run unit and integration tests](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/actions/workflows/run-tests.yml) in `Actions`. Click the `Run workflow` button. You can see the progress of the tests under [Actions](https://github.com/IFRC-Secretariat/espocrm-cva-duplicate-check/actions).
+
+5. If the tests have passed, optionally [create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). This will automatically run the tests again.
+
+
+## Docker
+
+The set up is done using Docker. Some helpful Docker information is given below.
+
+```bash
+docker ps # List running Docker containers
+docker ps -a # List all Docker containers (running and stopped)
+docker images # List images
+```
+
+To create a backup of the Docker containers at any time, run:
+
+```bash
+sudo docker commit -p [container-name] yyyy-mm-dd-espocrm
+```
+These are saved as Docker images and are shown in the list: `docker images`.
+
+
 ## New entities: CashDistribution and DuplicateCheck
 
 The extension includes two custom entities: `CashDistribution` and `DuplicateCheck`. `CashDistribution` is data on cash distributions which have been carried out, including the National ID of the person receiving cash, the governorate, the date, the transfer amount, and the partner/ organisation providing the cash. `DuplicateCheck` is an entity used for carrying out duplicate checks, e.g. of applicants to a cash program, where the user can import a list of National IDs which are compared against `CashDistribution` data, and the results are displayed. 
