@@ -23,7 +23,6 @@ class AfterInstall
 
         # Set user interface settings
         $config->set('dashboardLayout', []);
-        $config->set('theme', 'Hazyblue');
         $config->set('recordsPerPage', 200);
         $config->set('recordsPerPageSmall', 100);
         $config->set('recordsPerPageSelect', 100);
@@ -89,7 +88,12 @@ class AfterInstall
                 "WorkingTimeCalendar" => false
             ),
             'fieldData' => array(
-                "CashDistribution" => array(),
+                "CashDistribution" => array(
+                    'teams' => array(
+                        "read" => "yes",
+                        "edit" => "no"
+                    )
+                ),
                 'DuplicateCheck' => array(),
                 'User' => array(),
             )
