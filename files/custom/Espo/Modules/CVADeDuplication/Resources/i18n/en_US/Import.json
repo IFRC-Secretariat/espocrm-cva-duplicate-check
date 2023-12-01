@@ -22,5 +22,15 @@
     },
     "fields": {
         "action": "Action"
+    },
+    "validationError":{
+        "repeatedFields": "Repeated fields",
+        "invalidFields":"Invalid fields",
+        "missingRequiredFields": "Missing required fields",
+        "entityNotAllowed": "Import not allowed for",
+        "updateNotAllowed": "Update not allowed",
+        "duplicateCheckRequired": "Duplicate check must be enabled",
+        "idleModeNotAllowed": "Idle mode not allowed",
+        "manualModeNotAllowed": "Manual mode not allowed"
     }
 }

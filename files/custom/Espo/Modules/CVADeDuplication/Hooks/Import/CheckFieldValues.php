@@ -38,29 +38,29 @@ class CheckFieldValues
             // Check that the entity type is CashDistribution or DuplicateCheck
             $entityType = $entity->get('entityType');
             if (($entityType!="CashDistribution") And ($entityType!="DuplicateCheck")) {
-                throw new Error("Import not allowed for {$entityType}.");
+                throw new Error("{$this->language->translate('entityNotAllowed', 'validationError', 'Import')} {$entityType}.");
             }
             
             // Check that the action is Create only
             $action = $entity->get('params')->action;
             if ($action!="create") {
-                throw new Error("Update not allowed.");
+                throw new Error("{$this->language->translate('updateNotAllowed', 'validationError', 'Import')}.");
             }
 
             // Check that duplicate checking will be run
             $duplicateCheck = $entity->get('params')->skipDuplicateChecking;
             if (!empty($duplicateCheck)) {
-                throw new Error("Duplicate check must be enabled.");
+                throw new Error("{$this->language->translate('duplicateCheckRequired', 'validationError', 'Import')}.");
             }
 
             // Check that idle mode and manual mode are off
             $idleMode = $entity->get('params')->idleMode;
             if (!empty($idleMode)) {
-                throw new Error("Idle mode not allowed.");
+                throw new Error("{$this->language->translate('idleModeNotAllowed', 'validationError', 'Import')}.");
             }
             $manualMode = $entity->get('params')->manualMode;
             if (!empty($manualMode)) {
-                throw new Error("Manual mode not allowed.");
+                throw new Error("{$this->language->translate('manualModeNotAllowed', 'validationError', 'Import')}.");
             }
 
             // Validate fields mapping
@@ -88,8 +88,15 @@ class CheckFieldValues
             $readOnlyFields = array_intersect($selectedFields, $readOnlyFields);
             $invalidFields = array_unique(array_merge($nonCustomFields, $readOnlyFields));
             if (!empty($invalidFields)) {
+                $invalidFields = array_map(
+                    function($field) use ($entityType) 
+                    {
+                        return $this->language->translate($field, 'fields', $entityType);
+                    }, 
+                    $invalidFields
+                );
                 $invalidFieldsString = implode(", ", $invalidFields);
-                throw new Error("Invalid fields: {$invalidFieldsString}.");
+                throw new Error("{$this->language->translate('invalidFields', 'validationError', 'Import')}: {$invalidFieldsString}.");
             }
 
             // Check that fields aren't selected multiple times
@@ -101,14 +108,21 @@ class CheckFieldValues
                     return $this->language->translate($fieldName, 'fields', $entityType);
                 }, array_keys($multipleFields));
                 $multipleFieldsLabelsString = implode(", ", array_values($multipleFieldsLabels));
-                throw new Error("Repeated fields: {$multipleFieldsLabelsString}.");
+                throw new Error("{$this->language->translate('repeatedFields', 'validationError', 'Import')}: {$multipleFieldsLabelsString}.");
             }
 
             // Check that all required fields are not blank
             $missingRequiredFields = array_diff($requiredFields, $selectedFields);
             if (!empty($missingRequiredFields)) {
+                $missingRequiredFields = array_map(
+                    function($field) use ($entityType) 
+                    {
+                        return $this->language->translate($field, 'fields', $entityType);
+                    }, 
+                    $missingRequiredFields
+                );
                 $missingRequiredFieldsString = implode(", ", array_keys($missingRequiredFields));
-                throw new Error("Missing required fields: {$missingRequiredFieldsString}.");
+                throw new Error("{$this->language->translate('missingRequiredFields', 'validationError', 'Import')}: {$missingRequiredFieldsString}.");
             }
         }
     }
