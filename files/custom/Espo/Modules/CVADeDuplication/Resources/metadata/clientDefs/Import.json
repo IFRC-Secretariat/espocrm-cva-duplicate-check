@@ -2,7 +2,7 @@
     
     "listPagination": true,
     "bottomPanels": {
-    	"detail": [
+		"detail": [
 			{
 				"name": "imported",
 				"label": "Imported",
@@ -20,10 +20,10 @@
 				"selectDisabled": true,
 				"unlinkDisabled": true
 			},
-            {
-	        	"name": "importedNoDuplicates",
-	    		"label": "Not received cash",
-	    		"view": "cva-de-duplication:views/import/record/panels/imported-no-duplicates",
+			{
+				"name": "importedNoDuplicates",
+				"label": "Not received cash",
+				"view": "cva-de-duplication:views/import/record/panels/imported-no-duplicates",
 				"actionList": [
 					{
 						"label": "Export",
@@ -33,10 +33,10 @@
 						}
 					}
 				],
-                "createDisabled": true,
-                "selectDisabled": true,
-                "unlinkDisabled": true
-	    	},
+				"createDisabled": true,
+				"selectDisabled": true,
+				"unlinkDisabled": true
+			},
 			{
 				"name": "duplicates",
 				"label": "Duplicates",
@@ -72,7 +72,7 @@
 				"selectDisabled": true,
 				"unlinkDisabled": true
 			}
-        ]
+		]
     },
     "recordViews": {
         "list": "views/import/record/list",
